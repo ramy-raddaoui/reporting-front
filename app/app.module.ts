@@ -7,10 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AreaChartComponent } from './area-chart/area-chart.component';
+import { VerticalBarChartComponent } from './vertical-bar-chart/vertical-bar-chart.component';
 @NgModule({
   declarations: [
     AppComponent,
-    PieChartComponent
+    PieChartComponent,
+    AreaChartComponent,
+    VerticalBarChartComponent
   ],
   imports: [
     BrowserModule,

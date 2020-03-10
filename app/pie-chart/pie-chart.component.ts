@@ -16,10 +16,9 @@ export class PieChartComponent implements OnInit {
     data = {'param1': "nom intervenant", 
             'param2': "ventes par produit",
             'metrique': 'somme',
-            'seuil':'500'};
-    headers = new HttpHeaders ({'Content-Type': 'application/json'});
+            'seuil':'200'};
 
-  constructor(
+  constructor( 
     public restapi:RESTService
   ) {
     Object.assign(this, { single });
@@ -28,9 +27,13 @@ export class PieChartComponent implements OnInit {
     this.getPieChartData()
   }
 
+  ngOnDestroy()
+  {
+  }
+
   getPieChartData()
   {
-     this.restapi.PiechartGetDATA(this.data,this.headers).subscribe(
+     this.restapi.PiechartGetDATA(this.data).subscribe(
        response => this.handleSuccessfulResponse(response),
        error=>this.handleErrorResponse(error)
      );
