@@ -4,29 +4,28 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { single } from './data';
 import { RESTService } from '../rest.service';
 @Component({
-  selector: 'app-vertical-bar-chart',
-  templateUrl: './vertical-bar-chart.component.html',
-  styleUrls: ['./vertical-bar-chart.component.css']
+  selector: 'app-horiz-bar-chart',
+  templateUrl: './horiz-bar-chart.component.html',
+  styleUrls: ['./horiz-bar-chart.component.css']
 })
-export class VerticalBarChartComponent implements OnInit {
+export class HorizBarChartComponent implements OnInit {
 
   single: any[];
-  multi: any[];
+  view: any[] = [700, 400];
   data = {'param1': "nom intervenant", 
   'param2': "ventes par produit",
   'metrique': 'somme',
+  'display' : 'row',
   'seuil':'200'};
-  view: any[] = [700, 400];
-
   // options
-  showXAxis = true;
-  showYAxis = true;
-  gradient = false;
-  showLegend = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'Country';
-  showYAxisLabel = true;
-  yAxisLabel = 'Population';
+  showXAxis: boolean = true;
+  showYAxis: boolean = true;
+  gradient: boolean = false;
+  showLegend: boolean = true;
+  showXAxisLabel: boolean = true; 
+  yAxisLabel: string = 'Country';
+  showYAxisLabel: boolean = true;
+  xAxisLabel: string = 'Population';
 
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
@@ -38,7 +37,7 @@ export class VerticalBarChartComponent implements OnInit {
     Object.assign(this, { single })
   }
 
-  getVBarChartData()
+  getHorizBarChartData()
   {
      this.restapi.PieandHistchartGetDATA(this.data).subscribe(
        response => this.handleSuccessfulResponse(response),
@@ -56,12 +55,21 @@ export class VerticalBarChartComponent implements OnInit {
   {
     console.log("Une erreur a survenue !!!"+error)
   }
-  onSelect(event) {
-    console.log(event);
-  } 
+
+  onSelect(data): void {
+    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+  }
+
+  onActivate(data): void {
+    console.log('Activate', JSON.parse(JSON.stringify(data)));
+  }
+
+  onDeactivate(data): void {
+    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+  }
 
   ngOnInit(): void {
-    this.getVBarChartData()
+    this.getHorizBarChartData()
   }
 
 }

@@ -42,7 +42,7 @@ export class AreaChartComponent implements OnInit {
   }
   getAreaChart()
   {
-     this.restapi.PiechartGetDATA(this.data).subscribe(
+     this.restapi.PieandHistchartGetDATA(this.data).subscribe(
        response => this.handleSuccessfulResponse(response),
        error=>this.handleErrorResponse(error)
      );

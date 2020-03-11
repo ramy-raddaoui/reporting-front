@@ -9,12 +9,16 @@ import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AreaChartComponent } from './area-chart/area-chart.component';
 import { VerticalBarChartComponent } from './vertical-bar-chart/vertical-bar-chart.component';
+import { StackedVBarChartComponent } from './stacked-vbar-chart/stacked-vbar-chart.component';
+import { HorizBarChartComponent } from './horiz-bar-chart/horiz-bar-chart.component';
 @NgModule({
   declarations: [
     AppComponent,
     PieChartComponent,
     AreaChartComponent,
-    VerticalBarChartComponent
+    VerticalBarChartComponent,
+    StackedVBarChartComponent,
+    HorizBarChartComponent
   ],
   imports: [
     BrowserModule,
