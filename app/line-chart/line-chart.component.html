@@ -1,5 +1,5 @@
-<br/><br/><br/><br/><br/><br/><br/>
-<ngx-charts-area-chart
+<br/><br/><br/><br/><br/><br/><br/><br/>
+<ngx-charts-line-chart
   [view]="view"
   [scheme]="colorScheme"
   [legend]="legend"
@@ -11,5 +11,8 @@
   [yAxisLabel]="yAxisLabel"
   [timeline]="timeline"
   [results]="multi"
-  (select)="onSelect($event)">
-</ngx-charts-area-chart>
+  (select)="onSelect($event)"
+  (activate)="onActivate($event)"
+  (deactivate)="onDeactivate($event)"
+  >
+</ngx-charts-line-chart>

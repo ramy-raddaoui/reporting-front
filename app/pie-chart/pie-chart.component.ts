@@ -14,9 +14,10 @@ import { HttpHeaders } from '@angular/common/http';
 export class PieChartComponent implements OnInit {
    single = [];
     data = {'param1': "nom intervenant", 
-            'param2': "Rémunération par produit",
+    'param2': [{"nom":"ventes par produit","metrique":"somme"}],
             'metrique': 'somme',
-            'seuil':'900000'};
+            'seuil':'500',
+            'display' : 'pie'};
 
   constructor( 
     public restapi:RESTService
@@ -30,7 +31,7 @@ export class PieChartComponent implements OnInit {
   ngOnDestroy()
   {
   }
-
+ 
   getPieChartData()
   {
      this.restapi.PieandHistchartGetDATA(this.data).subscribe(

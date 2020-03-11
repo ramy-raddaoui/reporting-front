@@ -5,6 +5,7 @@ import { AreaChartComponent } from './area-chart/area-chart.component';
 import { VerticalBarChartComponent } from './vertical-bar-chart/vertical-bar-chart.component';
 import { StackedVBarChartComponent } from './stacked-vbar-chart/stacked-vbar-chart.component';
 import { HorizBarChartComponent } from './horiz-bar-chart/horiz-bar-chart.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'vbarchart' , component: VerticalBarChartComponent },
   {path: 'svbarchart' , component: StackedVBarChartComponent },
   {path: 'horizbarchart' , component: HorizBarChartComponent },
+  {path: 'linechart' , component: LineChartComponent },
 
 
   ];

@@ -1,43 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { single } from './data';
+import { multi } from './data';
 import { RESTService } from '../rest.service';
 @Component({
-  selector: 'app-horiz-bar-chart',
-  templateUrl: './horiz-bar-chart.component.html',
-  styleUrls: ['./horiz-bar-chart.component.css']
+  selector: 'app-line-chart',
+  templateUrl: './line-chart.component.html',
+  styleUrls: ['./line-chart.component.css']
 })
-export class HorizBarChartComponent implements OnInit {
+export class LineChartComponent implements OnInit {
 
-  single: any[];
-  view: any[] = [700, 400];
+  multi: any[];
+  view: any[] = [700, 300];
   data = {'param1': "nom intervenant", 
-  'param2': [{"nom":"ventes par produit","metrique":"somme"}],
+  'param2': [{"nom":"Rémunération par produit","metrique":"somme"},{"nom":"objectif par produit","metrique":"somme"}],
   'metrique': 'somme',
-  'display' : 'row',
-  'seuil':'500'};
+ // 'display': 'bar',
+ 'display': 'line',
+  'seuil':'200'};
   // options
-  showXAxis: boolean = true;
-  showYAxis: boolean = true;
-  gradient: boolean = false;
-  showLegend: boolean = true;
-  showXAxisLabel: boolean = true; 
-  yAxisLabel: string = 'Country';
+  legend: boolean = true;
+  showLabels: boolean = true;
+  animations: boolean = true;
+  xAxis: boolean = true;
+  yAxis: boolean = true;
   showYAxisLabel: boolean = true;
-  xAxisLabel: string = 'Population';
+  showXAxisLabel: boolean = true;
+  xAxisLabel: string = this.data.param1;
+  yAxisLabel: string = "Ordonnées";
+  timeline: boolean = true;
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
 
   constructor(
     public restapi:RESTService
   ) {
-    Object.assign(this, { single })
+    Object.assign(this, { multi });
   }
 
-  getHorizBarChartData()
+  getLineChartData()
   {
      this.restapi.PieandHistchartGetDATA(this.data).subscribe(
        response => this.handleSuccessfulResponse(response),
@@ -49,7 +52,7 @@ export class HorizBarChartComponent implements OnInit {
   handleSuccessfulResponse(response)
   {
     console.log(response)
-    this.single=response
+    this.multi=response
   }
   handleErrorResponse(error)
   {
@@ -69,7 +72,7 @@ export class HorizBarChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getHorizBarChartData()
+    this.getLineChartData()
   }
 
 }

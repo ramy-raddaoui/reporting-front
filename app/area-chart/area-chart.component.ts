@@ -12,31 +12,13 @@ export class AreaChartComponent implements OnInit {
   single = [];
 
   data = {'param1': "nom intervenant", 
-  'param2': "ventes par produit",
+  'param2': [{"nom":"Rémunération par produit","metrique":"somme"},{"nom":"objectif par produit","metrique":"somme"}],
   'metrique': 'somme',
+  'display': 'area',
   'seuil':'200'};
-  multi= [
-    {
-      "name": "Germany",
-      "series": [
-        {
-          "name": "Germany",
-          "value": 62000000
-        },
-        {
-            "name": "USA",
-            "value": 250000000
-          },
-          {
-            "name": "France",
-            "value": 58000000
-          }
-      ]
-    }
-  ];
    
   view: any[] = [700, 300];
-
+  multi: any[]
   ngOnInit(): void {
     this.getAreaChart()
   }
@@ -47,12 +29,12 @@ export class AreaChartComponent implements OnInit {
        error=>this.handleErrorResponse(error)
      );
   }
-
+ 
 
   handleSuccessfulResponse(response)
   {
     console.log(response)
-  //  this.multi=response
+    this.multi=response
   }
   handleErrorResponse(error)
   {
