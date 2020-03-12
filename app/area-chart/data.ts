@@ -1,3 +1,127 @@
-export var multi = [{"series":[
-    {"name":"Said  Bouiy","value":200000},{"name":"Jaouad Boutazdait","value":200000},{"name":"Abdelwahed Farouk","value":200000},{"name":"Fadoua Chahiq","value":200000},{"name":"Kenza Chraibi","value":200000},{"name":"Mestari  Mouhsine","value":200000},{"name":"Zineddine  Hartal","value":200000},{"name":"Maroua  Essifi","value":0},{"name":"AZZEDDINE EL HADDAD ","value":425},{"name":"El Ouahabi Abdelkarim","value":109},{"name":"Sara   El Harti ","value":24},{"name":"Hanane Amamou","value":80},{"name":"Mohamed  Hachhouch","value":33},{"name":"Otzougart Abdelilah","value":28},{"name":"Mohamed El Azzouzi","value":0},{"name":"Faraj  Akhalouf","value":42},{"name":"Nora Ait Foukar","value":49},{"name":"AHMED KETTANI ","value":704},{"name":"Soufiane  Latif","value":21},{"name":"Chaoui Mohamed","value":2},{"name":"Jihane Oualidi","value":0},{"name":"Bouchra  Asfouri","value":73},{"name":"Mehdi  Charik","value":21},{"name":"lahcen Badda","value":0},{"name":"Lamia Benzakour","value":51},{"name":"Sanaa Doua","value":28},{"name":"Al jlanye Chaimae","value":28},{"name":"Zakaria ait Abdellah","value":0},{"name":"Amal Abdelmouktadir","value":0},{"name":"Ahmed  Blhaj","value":2},{"name":"Faouzi Zineb","value":0},{"name":"Reda  Kabbaj","value":0},{"name":"Sara Aguermezda","value":0},{"name":"Karim Dehbi","value":250},{"name":"El Azrak Nada Salma El Azrak","value":22},{"name":"Fatima  Mabrouk","value":24},{"name":"Youssra  khallaf ","value":11},{"name":"Ouazzani  Chahdi ","value":43},{"name":"Fouad Annaimi","value":0},{"name":"Chaimae El Idrissi El Ouekili","value":30},{"name":"Bachar  Ait Saidy","value":0},{"name":"Abba Safinaze","value":0},{"name":"Lamia  Amraoui","value":40},{"name":"Issam Rhoziane","value":31},{"name":"Driss Bouayad","value":0},{"name":"NACER BENBAREK","value":0},{"name":"Siham Staifa","value":41},{"name":"Hamza Chache","value":24},{"name":"Yassine Taouzar","value":39},{"name":"Fatima Ezzahraa El Uadghiri","value":0},{"name":"Faouzi  Joundi","value":32},{"name":"Fayssal        Bensaidia           ","value":0},{"name":"Hanane  El Amari","value":0},{"name":"Mohammed Nejjar","value":30},{"name":"Hafida Baggad","value":0},{"name":"Ali  Boukili","value":0},{"name":"Abdellah Tablet","value":1},{"name":"Bakr  Marbahi","value":25},{"name":"El Mehdi Afroukh","value":50},{"name":"Bakkali  hajar","value":0},{"name":"Walid Wahidi","value":39},{"name":"Sara Amekran","value":35},{"name":"Youssef khiyati","value":70},{"name":"Hala  El Ghouch","value":0},{"name":"Mehdi  Ghandour","value":86},{"name":"Nissrine  Abdelouahab El Idrissi","value":11},{"name":"Abdessamad  Ouazzani Chahdi","value":35},{"name":"Mehdi Aboutalbi","value":0},{"name":"Yassine  Jadny","value":14},{"name":"Kaoutar  Rhnimi","value":41},{"name":"Lamyaa Hamada","value":64},{"name":"Abdelmalek Essadiki","value":0},{"name":"Ahmed Ouarraoui","value":0},{"name":"Mohamed El Briki","value":59},{"name":"Rachid Idoumhmoud","value":0},{"name":"Tarik Azizi","value":427},{"name":"Meryem Hannachi","value":24},{"name":"Siham El Bachar","value":9},{"name":"Laila Meziane","value":197},{"name":"Moanid  Soufiane","value":8},{"name":"Zakaria  Benhamou","value":78},{"name":"Saoudari  Intissar","value":52},{"name":"Oualid  Cherkaoui","value":2},{"name":"Imad  Chakchak","value":1},{"name":"Adil Taoufik ","value":111},{"name":"Jihane  Elouati","value":45},{"name":"Khadija Horaira","value":23},{"name":"Mohammed Benmiloud","value":0},{"name":"Dounia   El Rhlimi","value":4},{"name":"Abdelhaq Boujanoui","value":0},{"name":"Ahmed  El Boujaadi","value":0},{"name":"Sara  Abbou","value":34},{"name":"Ahmed  Ait Baha","value":74},{"name":"Wahib  Zakaria","value":0},{"name":"Zouhairi  Ayoub","value":22},{"name":"Amara Fatima zahra ","value":60},{"name":"Youssef Aourik","value":0},{"name":"Safae  El Msaben","value":37},{"name":"Barakat Halim","value":25},{"name":"HICHAM ALAHIANE ","value":1259},{"name":"Mounia Lamrini","value":0},{"name":"Soukaina Bachiri","value":0},{"name":"Abid   Yassine","value":4},{"name":"Hassan Oukik","value":0},{"name":"Idrissi Janati ","value":18},{"name":"Sofia  En-Nahiri","value":0},{"name":"Younes Latrache","value":0},{"name":"Yassine Bouykhfe","value":31},{"name":"Nada Benazzouz","value":0},{"name":"Sabir Chraibi","value":41},{"name":"Mohammed  El Bakkali","value":20},{"name":"Doha kiki","value":17},{"name":"Amine El Youssoufi","value":28},{"name":"Haimoura Abdeloihed","value":32},{"name":"Jaouad  Souadi","value":0},{"name":"Fatima El Ouardi","value":0},{"name":"Ayoub Azair","value":1},{"name":"Ismail Idlil","value":29},{"name":"Amine En-Khali","value":45},{"name":"Said Moatassim","value":1},{"name":"Soundous Chair","value":0},{"name":"Hajar  Lakhouaja","value":38},{"name":"Seloua Zerzour","value":31},{"name":"Mohamed  Ait Jillali","value":28},{"name":"Hassan  Abarchid","value":25},{"name":"Safouane  Hadine","value":0},{"name":"Mounia Abeida","value":32},{"name":"Zouhir  Maghraoui","value":0},{"name":"Hajar Harras","value":31},{"name":"Issam  el kizaini ","value":0},{"name":"Youssef Abrouk","value":0},{"name":"Fatna Belgouzi","value":9},{"name":"Hassan  Hachami","value":40},{"name":"Najlae Bensaber","value":0},{"name":"Sakina Samlali","value":91},{"name":"Agour Sara","value":49},{"name":"Hind Mezzara","value":0},{"name":"Otmane   El Mihyaoui","value":25},{"name":"Kaoutar Boujlili","value":0},{"name":"Hicham  Bousetaoui","value":0},{"name":"Rachid  El Haousse","value":51},{"name":"Hicham  Azeddine","value":35},{"name":"Sekali  Omar","value":0},{"name":"Allaoui  hahinaze","value":0},{"name":"Abdelhamid El Hachemi","value":24},{"name":"El Mehdi Laaziz","value":15},{"name":"El Mostapha  Rizki","value":0},{"name":"Sara Toumi","value":1},{"name":"Mohamed Amine Taghouti","value":22},{"name":"Khaoula  Shgier","value":22},{"name":"Mostafa  Mamad","value":0},{"name":"Redouane  Cherbaoui","value":36},{"name":"Sofia Raada","value":31},{"name":"Rachid Boumour","value":1},{"name":"Mehdi  el Ghazzal ","value":0},{"name":"Imane Boudrichi","value":30},{"name":"Amina Chbani Idrissi","value":23},{"name":"Wahab Ahmed","value":20},{"name":"Mohcine Rezouk","value":46},{"name":"Saidi  Mustapha","value":26},{"name":"Samah Bourass","value":0},{"name":"Salma Boukhobza","value":37},{"name":"Mohamed  Hassani","value":46},{"name":"Marouane  Habouto","value":36},{"name":"Habiba mouira","value":80},{"name":"Mohamed Mounir  Hasnaoui","value":1},{"name":"Ilham  AitRahou","value":22},{"name":"Richi Salima","value":20},{"name":"Touria Tahara","value":31},{"name":"Bessma  Adrraoui ","value":30},{"name":"Said  Akazzar","value":2},{"name":"Aziz  Seghir","value":1},{"name":"Mohamed  Lachgar","value":14},{"name":"Mohamed  aoukili ","value":0},{"name":"Aziz  Oujaa","value":2},{"name":"Hamza Abbouchi","value":21},{"name":"Mohamed Amine Chadli","value":54},{"name":"Siham Mesbahi","value":0},{"name":"Mohamed Ouazzani Touhami","value":137},{"name":"Tarik  Limouni","value":35},{"name":"Seddik Maainia","value":0},{"name":"Aggoubi  Fatima","value":0},{"name":"Fatime  Zahra Khalfi ","value":0},{"name":"Said Rachid","value":0},{"name":"Hassane El Kountami","value":0},{"name":"Fourkane Abdelmounaim","value":46},{"name":"Jalal Triate ","value":30},{"name":"Elatmani Taoufik","value":122},{"name":"Zineb Assayazgh","value":16},{"name":"El Mehdi  Elka","value":15},{"name":"Mohamed  Laayoun","value":0},{"name":"Amarti  Yasmine ","value":35},{"name":"Zohra  El Harroudi","value":53},{"name":"Hassan Bouib","value":6},{"name":"Dounia Bachar","value":48},{"name":"Asmaa  Benmoussa ","value":49},{"name":"Asabbane  Noureddine","value":46},{"name":"Meryem  Damun","value":63},{"name":"Loubna abdeddaim","value":37},{"name":"Nouhaila Kabbou","value":0},{"name":"Hakima Elbarmaqui","value":32},{"name":"Nadia  Harif","value":49},{"name":"Rabi  Chaoui","value":27},{"name":"Khadri  Samih","value":120},{"name":"Salah El Mouden","value":0},{"name":"Amine Hammadi","value":1},{"name":"El Kharbachi Wessam","value":36},{"name":"Taghouchti Youssef","value":39},{"name":"Nabil  El Korchi","value":5},{"name":"Bla Saida  Nait Bla","value":73},{"name":"Aicha  Isslouka","value":39},{"name":"OMAR ZIANI ","value":694},{"name":"Sanae chaabi","value":0},{"name":"Brahim Aouk","value":0},{"name":"Saad Soumati","value":28},{"name":"El Hachfa Chouaib","value":32},{"name":"Majida  El Houmari","value":41},{"name":"Hicham El Jihadi","value":50},{"name":"Imane Tkito","value":58},{"name":"Oussama ziani ","value":42},{"name":"Asmae  Lemghari","value":0},{"name":"Hanane Benazouz","value":46},{"name":"Adnane Yassar","value":52},{"name":"Nabih  Hajar","value":0},{"name":"Abderrahim  Charfi","value":61},{"name":"Ilham Sahhal","value":23},{"name":"Ouafir Khalid","value":29},{"name":"Mounia  El Youssafi","value":32},{"name":"Moufarit  Najib ","value":112},{"name":"Mohamed El Akkari","value":28},{"name":"Mehdi  Ouirezzane","value":0},{"name":"Redouane Belaamane","value":34},{"name":"Hakim Wahib","value":43},{"name":"Salah Hanoune","value":62},{"name":"Hamza El Jaouhari","value":25},{"name":"Marouane Belfatmi","value":27},{"name":"Naim  Chaimaa","value":33},{"name":"Ahmed  Oucheikh","value":0},{"name":"Soufiane Maarouf","value":34},{"name":"Anas Amghar","value":39},{"name":"Rachid  Ouali ","value":0},{"name":"Mohamed  Ait Taleb","value":0},{"name":"Sara sidki","value":29},{"name":"Mohamed Talbi","value":43},{"name":"El Mehdi Abounous","value":6},{"name":"Laila Hartifa","value":3},{"name":"Badr  Kanbar","value":12},{"name":"Badr  Kabbaj","value":22},{"name":"Abdelmajid Sabri","value":0},{"name":"Hanane Bricha","value":101},{"name":"Nadif Abdlilah  ","value":114},{"name":"Habiba El Kebche","value":74},{"name":"Ali Maataoui","value":0},{"name":"Sanaa  El Malhouni","value":170},{"name":"Yassine Daboub","value":0},{"name":"ADNANE AKRAM","value":639},{"name":"Youssef  Zerhouni","value":1},{"name":"Mohcine Ariani","value":63},{"name":"Karim  Hammouche","value":15},{"name":"Said  El Mokni","value":111},{"name":"AHMED AIT EL FALS ","value":390}],"name":"ventes par produit"},
-{"series":[{"name":"Said  Bouiy","value":2665.8300296999996},{"name":"Jaouad Boutazdait","value":22303.4969533},{"name":"Abdelwahed Farouk","value":13625.0870267},{"name":"Fadoua Chahiq","value":6412.187008299999},{"name":"Kenza Chraibi","value":13082.538249099998},{"name":"Mestari  Mouhsine","value":5604.3107348},{"name":"Zineddine  Hartal","value":12823.8485409},{"name":"Maroua  Essifi","value":23212.453631700002},{"name":"AZZEDDINE EL HADDAD ","value":240314.56},{"name":"El Ouahabi Abdelkarim","value":38197.8639089},{"name":"Sara   El Harti ","value":6677.4502366},{"name":"Hanane Amamou","value":46420.9819538},{"name":"Mohamed  Hachhouch","value":12732.6213029},{"name":"Otzougart Abdelilah","value":16811.3242168},{"name":"Mohamed El Azzouzi","value":28297.072950800004},{"name":"Faraj  Akhalouf","value":69637.36089530001},{"name":"Nora Ait Foukar","value":2665.8300296999996},{"name":"AHMED KETTANI ","value":220564.13999999998},{"name":"Soufiane  Latif","value":10572.5702406},{"name":"Chaoui Mohamed","value":91577.76774280002},{"name":"Jihane Oualidi","value":15249.768692},{"name":"Bouchra  Asfouri","value":17108.441267100003},{"name":"Mehdi  Charik","value":5859.6077024},{"name":"lahcen Badda","value":16577.0650534},{"name":"Lamia Benzakour","value":7823.529288799999},{"name":"Sanaa Doua","value":16811.3242168},{"name":"Al jlanye Chaimae","value":10878.7908995},{"name":"Zakaria ait Abdellah","value":20622.5927982},{"name":"Amal Abdelmouktadir","value":5805.0508751},{"name":"Ahmed  Blhaj","value":169782.4377046},{"name":"Faouzi Zineb","value":10572.5702406},{"name":"Reda  Kabbaj","value":6677.4502366},{"name":"Sara Aguermezda","value":20622.592798200003},{"name":"Karim Dehbi","value":97909.1180952},{"name":"El Azrak Nada Salma El Azrak","value":28297.072950800004},{"name":"Fatima  Mabrouk","value":2665.8300296999996},{"name":"Youssra  khallaf ","value":23193.6260482},{"name":"Ouazzani  Chahdi ","value":27288.728988400002},{"name":"Fouad Annaimi","value":6411.9242705},{"name":"Chaimae El Idrissi El Ouekili","value":17605.1794241},{"name":"Bachar  Ait Saidy","value":5747.6013317},{"name":"Abba Safinaze","value":14366.2925691},{"name":"Lamia  Amraoui","value":16605.6490815},{"name":"Issam Rhoziane","value":13082.538249099998},{"name":"Driss Bouayad","value":9682.9473378},{"name":"NACER BENBAREK","value":125347.84000000001},{"name":"Siham Staifa","value":27288.7289884},{"name":"Hamza Chache","value":5613.956912799999},{"name":"Yassine Taouzar","value":10572.5702406},{"name":"Fatima Ezzahraa El Uadghiri","value":6411.924270500001},{"name":"Faouzi  Joundi","value":59526.626667100005},{"name":"Fayssal        Bensaidia           ","value":8826.0512208},{"name":"Hanane  El Amari","value":27288.7289884},{"name":"Mohammed Nejjar","value":479.7713834},{"name":"Hafida Baggad","value":6351.752767200001},{"name":"Ali  Boukili","value":1586.1364788},{"name":"Abdellah Tablet","value":49816.9472445},{"name":"Bakr  Marbahi","value":7823.529288799999},{"name":"El Mehdi Afroukh","value":4209.3712816},{"name":"Bakkali  hajar","value":8826.0512208},{"name":"Walid Wahidi","value":6677.4502366},{"name":"Sara Amekran","value":8554.220633600002},{"name":"Youssef khiyati","value":3031.6460380000003},{"name":"Hala  El Ghouch","value":2616.2648584999997},{"name":"Mehdi  Ghandour","value":66910.4908599},{"name":"Nissrine  Abdelouahab El Idrissi","value":23193.6260482},{"name":"Abdessamad  Ouazzani Chahdi","value":15473.660651299999},{"name":"Mehdi Aboutalbi","value":4581.764346600001},{"name":"Yassine  Jadny","value":23193.6260482},{"name":"Kaoutar  Rhnimi","value":28297.072950800004},{"name":"Lamyaa Hamada","value":3031.6460380000003},{"name":"Abdelmalek Essadiki","value":16577.0650534},{"name":"Ahmed Ouarraoui","value":14086.348592800001},{"name":"Mohamed El Briki","value":13625.0870267},{"name":"Rachid Idoumhmoud","value":16577.0650534},{"name":"Tarik Azizi","value":202995.48},{"name":"Meryem Hannachi","value":8645.879211899999},{"name":"Siham El Bachar","value":2811.7377794000004},{"name":"Laila Meziane","value":9094.938114000002},{"name":"Moanid  Soufiane","value":34446.310736399995},{"name":"Zakaria  Benhamou","value":34820.5466828},{"name":"Saoudari  Intissar","value":5747.6013317},{"name":"Oualid  Cherkaoui","value":34820.5466828},{"name":"Imad  Chakchak","value":95375.6091864},{"name":"Adil Taoufik ","value":18129.6849174},{"name":"Jihane  Elouati","value":15473.660651299999},{"name":"Khadija Horaira","value":3677.7536939},{"name":"Mohammed Benmiloud","value":13082.538249099998},{"name":"Dounia   El Rhlimi","value":23193.6260482},{"name":"Abdelhaq Boujanoui","value":16811.3242168},{"name":"Ahmed  El Boujaadi","value":15985.0880878},{"name":"Sara  Abbou","value":28297.072950800004},{"name":"Ahmed  Ait Baha","value":37650.5551069},{"name":"Wahib  Zakaria","value":16605.6490815},{"name":"Zouhairi  Ayoub","value":23193.6260482},{"name":"Amara Fatima zahra ","value":9146.2617694},{"name":"Youssef Aourik","value":5613.956912799999},{"name":"Safae  El Msaben","value":40279.8070467},{"name":"Barakat Halim","value":13082.538249099998},{"name":"HICHAM ALAHIANE ","value":361285.64},{"name":"Mounia Lamrini","value":28732.585137899998},{"name":"Soukaina Bachiri","value":7043.1742964000005},{"name":"Abid   Yassine","value":31970.1761752},{"name":"Hassan Oukik","value":6351.752767200001},{"name":"Idrissi Janati ","value":13082.538249099998},{"name":"Sofia  En-Nahiri","value":15985.0880878},{"name":"Younes Latrache","value":0},{"name":"Yassine Bouykhfe","value":16811.3242168},{"name":"Nada Benazzouz","value":13625.0870267},{"name":"Sabir Chraibi","value":6175.5155948},{"name":"Mohammed  El Bakkali","value":16811.3242168},{"name":"Doha kiki","value":28297.072950800004},{"name":"Amine El Youssoufi","value":10572.5702406},{"name":"Haimoura Abdeloihed","value":10686.6404181},{"name":"Jaouad  Souadi","value":0},{"name":"Fatima El Ouardi","value":5805.0508751},{"name":"Ayoub Azair","value":17291.758423600004},{"name":"Ismail Idlil","value":3677.7536939},{"name":"Amine En-Khali","value":10878.7908995},{"name":"Said Moatassim","value":41245.1855961},{"name":"Soundous Chair","value":10878.7908995},{"name":"Hajar  Lakhouaja","value":8554.220633600002},{"name":"Seloua Zerzour","value":10572.5702406},{"name":"Mohamed  Ait Jillali","value":22303.4969533},{"name":"Hassan  Abarchid","value":11150.562796200002},{"name":"Safouane  Hadine","value":14773.1911515},{"name":"Mounia Abeida","value":10572.5702406},{"name":"Zouhir  Maghraoui","value":15557.734024599999},{"name":"Hajar Harras","value":9146.2617694},{"name":"Issam  el kizaini ","value":8826.0512208},{"name":"Youssef Abrouk","value":6412.187008299999},{"name":"Fatna Belgouzi","value":59526.626667100005},{"name":"Hassan  Hachami","value":10878.7908995},{"name":"Najlae Bensaber","value":10878.7908995},{"name":"Sakina Samlali","value":27438.7853085},{"name":"Agour Sara","value":4514.809310500001},{"name":"Hind Mezzara","value":5859.6077024},{"name":"Otmane   El Mihyaoui","value":15249.768692},{"name":"Kaoutar Boujlili","value":6175.5155948},{"name":"Hicham  Bousetaoui","value":17415.1526253},{"name":"Rachid  El Haousse","value":4209.3712816},{"name":"Hicham  Azeddine","value":8435.2133382},{"name":"Sekali  Omar","value":26478.153662700002},{"name":"Allaoui  hahinaze","value":19055.258301700003},{"name":"Abdelhamid El Hachemi","value":11227.9138255},{"name":"El Mehdi Laaziz","value":10572.5702406},{"name":"El Mostapha  Rizki","value":7403.5102816},{"name":"Sara Toumi","value":13625.0870267},{"name":"Mohamed Amine Taghouti","value":10686.6404181},{"name":"Khaoula  Shgier","value":1586.1364788},{"name":"Mostafa  Mamad","value":18672.5584418},{"name":"Redouane  Cherbaoui","value":5604.3107348},{"name":"Sofia Raada","value":3870.2269418},{"name":"Rachid Boumour","value":7740.4538834},{"name":"Mehdi  el Ghazzal ","value":15473.660651299999},{"name":"Imane Boudrichi","value":16811.3242168},{"name":"Amina Chbani Idrissi","value":13082.538249099998},{"name":"Wahab Ahmed","value":2811.7377794000004},{"name":"Mohcine Rezouk","value":10572.5702406},{"name":"Saidi  Mustapha","value":23193.6260482},{"name":"Samah Bourass","value":7800.1145744000005},{"name":"Salma Boukhobza","value":10878.7908995},{"name":"Mohamed  Hassani","value":7823.529288799999},{"name":"Marouane  Habouto","value":17145.6216161},{"name":"Habiba mouira","value":34446.3107364},{"name":"Mohamed Mounir  Hasnaoui","value":76248.84345980002},{"name":"Ilham  AitRahou","value":15249.768692},{"name":"Richi Salima","value":11150.562796200002},{"name":"Touria Tahara","value":6412.187008299999},{"name":"Bessma  Adrraoui ","value":12550.185035600001},{"name":"Said  Akazzar","value":13544.427931600001},{"name":"Aziz  Seghir","value":29048.8420136},{"name":"Mohamed  Lachgar","value":1586.1364788},{"name":"Mohamed  aoukili ","value":15557.734024599999},{"name":"Aziz  Oujaa","value":4758.4094362},{"name":"Hamza Abbouchi","value":6175.5155948},{"name":"Mohamed Amine Chadli","value":21373.2808361},{"name":"Siham Mesbahi","value":14773.1911515},{"name":"Mohamed Ouazzani Touhami","value":117679.26951740001},{"name":"Tarik  Limouni","value":40279.8070467},{"name":"Seddik Maainia","value":16605.6490815},{"name":"Aggoubi  Fatima","value":13625.0870267},{"name":"Fatime  Zahra Khalfi ","value":9336.279221},{"name":"Said Rachid","value":0},{"name":"Hassane El Kountami","value":0},{"name":"Fourkane Abdelmounaim","value":4514.809310500001},{"name":"Jalal Triate ","value":43444.2161014},{"name":"Elatmani Taoufik","value":23470.5878664},{"name":"Zineb Assayazgh","value":16811.3242168},{"name":"El Mehdi  Elka","value":23193.6260482},{"name":"Mohamed  Laayoun","value":7800.1145744000005},{"name":"Amarti  Yasmine ","value":10878.7908995},{"name":"Zohra  El Harroudi","value":13625.0870267},{"name":"Hassan Bouib","value":2811.7377794000004},{"name":"Dounia Bachar","value":28297.0729508},{"name":"Asmaa  Benmoussa ","value":17145.6216161},{"name":"Asabbane  Noureddine","value":15249.768692},{"name":"Meryem  Damun","value":20032.350709600003},{"name":"Loubna abdeddaim","value":12732.6213029},{"name":"Nouhaila Kabbou","value":14366.2925691},{"name":"Hakima Elbarmaqui","value":6175.5155948},{"name":"Nadia  Harif","value":15249.768692000001},{"name":"Rabi  Chaoui","value":23212.453631700002},{"name":"Khadri  Samih","value":44602.2511843},{"name":"Salah El Mouden","value":5232.5297168},{"name":"Amine Hammadi","value":81866.1869651},{"name":"El Kharbachi Wessam","value":11150.562796200002},{"name":"Taghouchti Youssef","value":3870.2269418},{"name":"Nabil  El Korchi","value":6175.5155948},{"name":"Bla Saida  Nait Bla","value":7997.4900892},{"name":"Aicha  Isslouka","value":11150.5627962},{"name":"OMAR ZIANI ","value":467858.23999999993},{"name":"Sanae chaabi","value":2616.2648584999997},{"name":"Brahim Aouk","value":49731.1951603},{"name":"Saad Soumati","value":17605.1794241},{"name":"El Hachfa Chouaib","value":8645.879211899999},{"name":"Majida  El Houmari","value":119053.25333390001},{"name":"Hicham El Jihadi","value":9682.9473378},{"name":"Imane Tkito","value":35210.358847999996},{"name":"Oussama ziani ","value":10878.7908995},{"name":"Asmae  Lemghari","value":7403.5102816},{"name":"Hanane Benazouz","value":43444.2161014},{"name":"Adnane Yassar","value":7355.507387600001},{"name":"Nabih  Hajar","value":6351.7527672},{"name":"Abderrahim  Charfi","value":19236.561025},{"name":"Ilham Sahhal","value":10878.7908995},{"name":"Ouafir Khalid","value":17145.6216161},{"name":"Mounia  El Youssafi","value":12550.185035600001},{"name":"Moufarit  Najib ","value":208742.6344336},{"name":"Mohamed El Akkari","value":6175.5155948},{"name":"Mehdi  Ouirezzane","value":14807.020562999998},{"name":"Redouane Belaamane","value":9163.528692900001},{"name":"Hakim Wahib","value":10572.5702406},{"name":"Salah Hanoune","value":13625.087026700001},{"name":"Hamza El Jaouhari","value":10572.5702406},{"name":"Marouane Belfatmi","value":13082.538249099998},{"name":"Naim  Chaimaa","value":4514.809310500001},{"name":"Ahmed  Oucheikh","value":9336.279221},{"name":"Soufiane Maarouf","value":4581.764346600001},{"name":"Anas Amghar","value":12732.621302900001},{"name":"Rachid  Ouali ","value":29546.382303},{"name":"Mohamed  Ait Taleb","value":5805.0508751},{"name":"Sara sidki","value":22303.4969533},{"name":"Mohamed Talbi","value":6175.5155948},{"name":"El Mehdi Abounous","value":23193.6260482},{"name":"Laila Hartifa","value":23193.6260482},{"name":"Badr  Kanbar","value":12550.185035600001},{"name":"Badr  Kabbaj","value":5747.6013317},{"name":"Abdelmajid Sabri","value":9146.2617694},{"name":"Hanane Bricha","value":8418.742563},{"name":"Nadif Abdlilah  ","value":51436.8648483},{"name":"Habiba El Kebche","value":17242.803995100003},{"name":"Ali Maataoui","value":7043.1742964000005},{"name":"Sanaa  El Malhouni","value":43228.6091638},{"name":"Yassine Daboub","value":9682.9473378},{"name":"ADNANE AKRAM","value":422036.68},{"name":"Youssef  Zerhouni","value":105725.70240560001},{"name":"Mohcine Ariani","value":3031.6460380000003},{"name":"Karim  Hammouche","value":23212.453631700002},{"name":"Said  El Mokni","value":18129.6849174},{"name":"AHMED AIT EL FALS ","value":352513.04}],"name":"objectif par produit"}]
+export var multi = [
+    {
+      "name": "Zambia",
+      "series": [
+        {
+          "value": 2144,
+          "name": "2016-09-18T06:27:56.718Z"
+        },
+        {
+          "value": 4190,
+          "name": "2016-09-23T01:00:24.870Z"
+        },
+        {
+          "value": 3176,
+          "name": "2016-09-18T22:22:23.310Z"
+        },
+        {
+          "value": 3933,
+          "name": "2016-09-22T13:37:12.677Z"
+        },
+        {
+          "value": 2911,
+          "name": "2016-09-14T18:33:00.705Z"
+        }
+      ]
+    },
+    {
+      "name": "Estonia",
+      "series": [
+        {
+          "value": 3670,
+          "name": "2016-09-18T06:27:56.718Z"
+        },
+        {
+          "value": 5421,
+          "name": "2016-09-23T01:00:24.870Z"
+        },
+        {
+          "value": 2553,
+          "name": "2016-09-18T22:22:23.310Z"
+        },
+        {
+          "value": 4711,
+          "name": "2016-09-22T13:37:12.677Z"
+        },
+        {
+          "value": 2920,
+          "name": "2016-09-14T18:33:00.705Z"
+        }
+      ]
+    },
+    {
+      "name": "Timor-Leste",
+      "series": [
+        {
+          "value": 6844,
+          "name": "2016-09-18T06:27:56.718Z"
+        },
+        {
+          "value": 3022,
+          "name": "2016-09-23T01:00:24.870Z"
+        },
+        {
+          "value": 3532,
+          "name": "2016-09-18T22:22:23.310Z"
+        },
+        {
+          "value": 2952,
+          "name": "2016-09-22T13:37:12.677Z"
+        },
+        {
+          "value": 3119,
+          "name": "2016-09-14T18:33:00.705Z"
+        }
+      ]
+    },
+    {
+      "name": "Armenia",
+      "series": [
+        {
+          "value": 6481,
+          "name": "2016-09-18T06:27:56.718Z"
+        },
+        {
+          "value": 4988,
+          "name": "2016-09-23T01:00:24.870Z"
+        },
+        {
+          "value": 5623,
+          "name": "2016-09-18T22:22:23.310Z"
+        },
+        {
+          "value": 6438,
+          "name": "2016-09-22T13:37:12.677Z"
+        },
+        {
+          "value": 3530,
+          "name": "2016-09-14T18:33:00.705Z"
+        }
+      ]
+    },
+    {
+      "name": "Malaysia",
+      "series": [
+        {
+          "value": 2855,
+          "name": "2016-09-18T06:27:56.718Z"
+        },
+        {
+          "value": 6392,
+          "name": "2016-09-23T01:00:24.870Z"
+        },
+        {
+          "value": 6965,
+          "name": "2016-09-18T22:22:23.310Z"
+        },
+        {
+          "value": 4464,
+          "name": "2016-09-22T13:37:12.677Z"
+        },
+        {
+          "value": 4988,
+          "name": "2016-09-14T18:33:00.705Z"
+        }
+      ]
+    }
+  ]

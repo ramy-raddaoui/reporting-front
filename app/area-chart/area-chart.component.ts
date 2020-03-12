@@ -11,8 +11,8 @@ import { RESTService } from '../rest.service';
 export class AreaChartComponent implements OnInit {
   single = [];
 
-  data = {'param1': "nom intervenant", 
-  'param2': [{"nom":"Rémunération par produit","metrique":"somme"},{"nom":"objectif par produit","metrique":"somme"}],
+  data = {'param1': "boutique", 
+  'param2': [{"nom":"Nom du produit","metrique":"N/A"},{"nom":"Rémunération finale","metrique":"somme"}],
   'metrique': 'somme',
   'display': 'area',
   'seuil':'200'};
