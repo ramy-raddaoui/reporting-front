@@ -73,27 +73,18 @@ export class ItemsService {
           title: "Rémunération finale",
         }
        */
-      ],
-      tasks2: [
-        {
-          id: 0,
-          title: "somme",
-        },
-        
-        {
-          id: 1,
-          title: "Rémunération finale",
-        }
-       
       ]
     }
   ];
   
   taskGroupsSubject = new Subject<any[]>();
-
+  dataSubject=new Subject<any>();
   constructor() { }
 
   emitTaskGroups() {
     this.taskGroupsSubject.next(this.taskGroups);
+  }
+  emitData() {
+    this.dataSubject.next(this.data);
   }
 }

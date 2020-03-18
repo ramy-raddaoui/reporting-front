@@ -4,6 +4,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { multi } from './data';
 import { RESTService } from '../rest.service';
 import { ItemsService } from '../items.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-stacked-vbar-chart',
   templateUrl: './stacked-vbar-chart.component.html',
@@ -29,6 +30,7 @@ export class StackedVBarChartComponent implements OnInit {
   showYAxisLabel: boolean = true;
   yAxisLabel: string = "Y LABEL";
   animations: boolean = true;
+  dataSubscription: Subscription;
 
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA','pink','blue']
@@ -36,8 +38,6 @@ export class StackedVBarChartComponent implements OnInit {
 
   getAreaChart()
   {
-    console.log("This getArea Chart")
-    console.log(this.itemsService.data)
      this.restapi.PieandHistchartGetDATA(this.itemsService.data).subscribe(
        response => this.handleSuccessfulResponse(response),
        error=>this.handleErrorResponse(error)
@@ -67,7 +67,12 @@ export class StackedVBarChartComponent implements OnInit {
 
   ngOnInit(): void {
     this.itemsService.data["display"]="stackv";
-    this.getAreaChart()
+    this.dataSubscription = this.itemsService.dataSubject.subscribe(
+      (data: any) => {
+        this.getAreaChart()
+      }
+      );
+      this.itemsService.emitData();
   }
 
 }

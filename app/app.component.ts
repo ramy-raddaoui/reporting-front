@@ -35,37 +35,42 @@ export class AppComponent implements OnInit,OnDestroy{
   */
   ngOnInit()
   {
- //   console.log(this.data)
- this.data["param2"]=[]
+    this.ChangingFunction()
+  }
+
+  onTaskDrop(event: CdkDragDrop<any[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
+    
+    this.itemsService.emitTaskGroups(); // Exécuter cette méthode pour émettre les données , si on n'émet pas les données on ne pourra jamais les récupérer
+  }
+
+  ChangingFunction()
+  {
     this.taskGroupsSubscription = this.itemsService.taskGroupsSubject.subscribe(
       (taskGroups: any[]) => {
         this.taskGroups = taskGroups;
+        this.data["param2"]=[]
         taskGroups.forEach(function (child) {
           switch(child.title){
             case "Abscisse":
-            //  this.jsonObjAbscisse["param1"]=child.tasks[0]['title'];
             this.data["param1"]=child.tasks[0]['title'];
             break;
             case "GROUP BY":
+              if(child.tasks.length==0)break;
               this.jsonObjGB["nom"]=child.tasks[0]['title'];
               this.jsonObjGB["metrique"]="GB";
               this.data["param2"].push(this.jsonObjGB);
               break;
             case "Ordonnée":
-          //     console.log(child.tasks)
-           /*   this.jsonObjOrdonnee["nom"]=child.tasks[0]['title'];
-              if (child.tasks[0].title in ["somme","moyenne","max","min"])
-              {
-                this.jsonObjOrdonnee["metrique"]=child.tasks[0].title;
-                this.jsonObjOrdonnee["nom"]=child.tasks[1].title;
-              }
-              else
-              {
-
-              }
-              */
               var compteur=0;
-            
               while (compteur<child.tasks.length)
               {
                 if (this.metrique.indexOf(child.tasks[compteur].title) !== -1)
@@ -82,30 +87,21 @@ export class AppComponent implements OnInit,OnDestroy{
               }
               this.data["param2"].push(this.jsonObjOrdonnee);
               }
+              this.data["display"]="stackv";
+              this.itemsService.data=this.data;
+              this.itemsService.emitData();
+             // console.log(this.data)
             break;
             default:console.log("Error on switch Boucle");
           }
-       
-       //   this.taskGroupsIds.push(child);
         },this);
       }
     );
     this.itemsService.emitTaskGroups(); // Exécuter cette méthode pour émettre les données , si on n'émet pas les données on ne pourra jamais les récupérer
       
-      this.data["display"]="";
-      this.itemsService.data=this.data;
-  }
+     
 
-  onTaskDrop(event: CdkDragDrop<any[]>) {
-    if (event.previousContainer === event.container) {
-      console.log(event)
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex);
-    }
+
   }
 
   ngOnDestroy() {
