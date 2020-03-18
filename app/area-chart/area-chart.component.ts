@@ -12,9 +12,9 @@ export class AreaChartComponent implements OnInit {
   single = [];
 
   data = {'param1': "boutique", 
-  'param2': [{"nom":"Nom du produit","metrique":"N/A"},{"nom":"Rémunération finale","metrique":"somme"}],
+  'param2': [{"nom":"Nom du produit","metrique":"GB"},{"nom":"Rémunération finale","metrique":"somme"}],
   'metrique': 'somme',
-  'display': 'area',
+  'display': 'stackv',
   'seuil':'200'};
    
   view: any[] = [700, 300];

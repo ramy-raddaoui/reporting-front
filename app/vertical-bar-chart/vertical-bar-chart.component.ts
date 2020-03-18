@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { single } from './data';
 import { RESTService } from '../rest.service';
+import { Subject } from 'rxjs';
+
 @Component({
   selector: 'app-vertical-bar-chart',
   templateUrl: './vertical-bar-chart.component.html',
@@ -61,7 +63,23 @@ export class VerticalBarChartComponent implements OnInit {
     console.log(event);
   } 
 
+
+  TestSubject()
+  {
+    const subject = new Subject<number>();
+ 
+    subject.subscribe({
+      next: (v) => console.log(`observerA: ${v}`)
+    });
+    subject.subscribe({
+      next: (v) => console.log(`observerB: ${v}`)
+    });
+     
+   // subject.next(1);
+   // subject.next(2);
+  }
   ngOnInit(): void {
+    this.TestSubject()
     this.getVBarChartData()
   }
 

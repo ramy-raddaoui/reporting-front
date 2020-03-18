@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { multi } from './data';
+import { RESTService } from '../rest.service';
+import { ItemsService } from '../items.service';
 @Component({
   selector: 'app-stacked-vbar-chart',
   templateUrl: './stacked-vbar-chart.component.html',
@@ -11,23 +13,51 @@ export class StackedVBarChartComponent implements OnInit {
 
   multi: any[];
   view: any[] = [700, 400];
-
+ /* data = {'param1': "Nom du produit", 
+  'param2': [{"nom":"boutique","metrique":"GB"},{"nom":"Rémunération finale","metrique":"somme"}],
+  'where':  [{"nom":"Date début","value":"GB"},{"nom":"Date fin","value":"somme"}],
+  'display': 'stackv',
+  'seuil':'200'};
+  */
   // options
   showXAxis: boolean = true;
   showYAxis: boolean = true;
   gradient: boolean = false;
   showLegend: boolean = true;
   showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Country';
+  xAxisLabel: string = "X LABEL";
   showYAxisLabel: boolean = true;
-  yAxisLabel: string = 'Population';
+  yAxisLabel: string = "Y LABEL";
   animations: boolean = true;
 
   colorScheme = {
-    domain: ['#5AA454', '#C7B42C', '#AAAAAA']
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA','pink','blue']
   };
 
-  constructor() {
+  getAreaChart()
+  {
+    console.log("This getArea Chart")
+    console.log(this.itemsService.data)
+     this.restapi.PieandHistchartGetDATA(this.itemsService.data).subscribe(
+       response => this.handleSuccessfulResponse(response),
+       error=>this.handleErrorResponse(error)
+     );
+  }
+ 
+
+  handleSuccessfulResponse(response)
+  {
+   // console.log(response)
+    this.multi=response
+  }
+  handleErrorResponse(error)
+  {
+    console.log("Une erreur a survenue !!!"+error)
+  }
+  constructor(
+    public restapi:RESTService,
+    public itemsService: ItemsService
+  ) {
     Object.assign(this, { multi });
   }
 
@@ -36,6 +66,8 @@ export class StackedVBarChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.itemsService.data["display"]="stackv";
+    this.getAreaChart()
   }
 
 }
