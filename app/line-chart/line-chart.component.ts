@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { multi } from './data';
 import { RESTService } from '../rest.service';
+import { Subscription } from 'rxjs';
+import { ItemsService } from '../items.service';
 @Component({
   selector: 'app-line-chart',
   templateUrl: './line-chart.component.html',
@@ -29,20 +31,22 @@ export class LineChartComponent implements OnInit {
   xAxisLabel: string = this.data.param1;
   yAxisLabel: string = "Ordonnées";
   timeline: boolean = true;
+  dataSubscription: Subscription;
 
   colorScheme = {
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
 
   constructor(
-    public restapi:RESTService
+    public restapi:RESTService,
+    public itemsService: ItemsService
   ) {
     Object.assign(this, { multi });
   }
 
   getLineChartData()
   {
-     this.restapi.PieandHistchartGetDATA(this.data).subscribe(
+     this.restapi.PieandHistchartGetDATA(this.itemsService.data).subscribe(
        response => this.handleSuccessfulResponse(response),
        error=>this.handleErrorResponse(error)
      );
@@ -72,7 +76,12 @@ export class LineChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getLineChartData()
-  }
+    this.itemsService.data["display"]="line";
+    this.dataSubscription = this.itemsService.dataSubject.subscribe(
+      (data: any) => {
+        this.getLineChartData()
+      }
+      );
+      this.itemsService.emitData();  }
 
 }

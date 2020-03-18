@@ -1,3 +1,4 @@
+
 <div class="container py-5">
   <div class="row" cdkDropListGroup>
     <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let taskGroup of taskGroups" cdkDropList [cdkDropListData]="taskGroup.tasks" (cdkDropListDropped)="onTaskDrop($event)">
@@ -13,4 +14,16 @@
     </div>
   </div>
 </div>
+<!--
+<h1>Vertical Menu</h1>
+
+<div class="vertical-menu">
+  <a href="#" class="active">Home</a>
+  <a href="#">Link 1</a>
+  <a href="#">Link 2</a>
+  <a href="#">Link 3</a>
+  <a href="#">Link 4</a>
+</div>
+-->
+
 <router-outlet></router-outlet>

@@ -6,7 +6,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit,OnDestroy{
   param1={};
@@ -61,6 +61,7 @@ export class AppComponent implements OnInit,OnDestroy{
         taskGroups.forEach(function (child) {
           switch(child.title){
             case "Abscisse":
+            if(child.tasks.length==0)break;
             this.data["param1"]=child.tasks[0]['title'];
             break;
             case "GROUP BY":

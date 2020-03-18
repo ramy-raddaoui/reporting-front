@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { multi } from './data';
 import { RESTService } from '../rest.service';
+import { Subscription } from 'rxjs';
+import { ItemsService } from '../items.service';
 @Component({
   selector: 'app-area-chart',
   templateUrl: './area-chart.component.html',
@@ -19,12 +21,20 @@ export class AreaChartComponent implements OnInit {
    
   view: any[] = [700, 300];
   multi: any[]
+  dataSubscription: Subscription;
+
   ngOnInit(): void {
-    this.getAreaChart()
+    this.itemsService.data["display"]="area";
+    this.dataSubscription = this.itemsService.dataSubject.subscribe(
+      (data: any) => {
+        this.getAreaChart()
+      }
+      );
+      this.itemsService.emitData();
   }
   getAreaChart()
   {
-     this.restapi.PieandHistchartGetDATA(this.data).subscribe(
+     this.restapi.PieandHistchartGetDATA(this.itemsService.data).subscribe(
        response => this.handleSuccessfulResponse(response),
        error=>this.handleErrorResponse(error)
      );
@@ -57,7 +67,8 @@ export class AreaChartComponent implements OnInit {
   };
 
   constructor(
-    public restapi:RESTService
+    public restapi:RESTService,
+    public itemsService: ItemsService
   ) {
     Object.assign(this, { multi });
   }

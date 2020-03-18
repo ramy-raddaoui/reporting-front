@@ -3,7 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { single } from './data';
 import { RESTService } from '../rest.service';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { ItemsService } from '../items.service';
 
 @Component({
   selector: 'app-vertical-bar-chart',
@@ -20,6 +21,7 @@ export class VerticalBarChartComponent implements OnInit {
   'display': 'bar',
   'seuil':'200'};
   view: any[] = [700, 400];
+  dataSubscription: Subscription;
 
   // options
   showXAxis = true;
@@ -36,14 +38,15 @@ export class VerticalBarChartComponent implements OnInit {
   };
 
   constructor(
-    public restapi:RESTService
+    public restapi:RESTService,
+    public itemsService: ItemsService
   ) {
     Object.assign(this, { single })
   }
 
   getVBarChartData()
   {
-     this.restapi.PieandHistchartGetDATA(this.data).subscribe(
+     this.restapi.PieandHistchartGetDATA(this.itemsService.data).subscribe(
        response => this.handleSuccessfulResponse(response),
        error=>this.handleErrorResponse(error)
      );
@@ -79,8 +82,13 @@ export class VerticalBarChartComponent implements OnInit {
    // subject.next(2);
   }
   ngOnInit(): void {
-    this.TestSubject()
-    this.getVBarChartData()
+    this.itemsService.data["display"]="pie";
+    this.dataSubscription = this.itemsService.dataSubject.subscribe(
+      (data: any) => {
+        this.getVBarChartData()
+      }
+      );
+      this.itemsService.emitData();
   }
 
 }

@@ -4,6 +4,8 @@ import { single } from './data';
 import { BrowserModule } from '@angular/platform-browser';
 import { RESTService } from '../rest.service';
 import { HttpHeaders } from '@angular/common/http';
+import { ItemsService } from '../items.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -15,18 +17,22 @@ export class PieChartComponent implements OnInit {
    single = [];
     data = {'param1': "nom intervenant", 
     'param2': [{"nom":"ventes par produit","metrique":"somme"}],
-            'metrique': 'somme',
-            'seuil':'500',
-            'display' : 'pie'};
-
+           };
+ dataSubscription: Subscription;
   constructor( 
-    public restapi:RESTService
+    public restapi:RESTService,
+    public itemsService: ItemsService
   ) {
     Object.assign(this, { single });
   }
   ngOnInit() {
-    this.getPieChartData()
-  }
+    this.itemsService.data["display"]="pie";
+    this.dataSubscription = this.itemsService.dataSubject.subscribe(
+      (data: any) => {
+        this.getPieChartData()
+      }
+      );
+      this.itemsService.emitData();  }
 
   ngOnDestroy()
   {
@@ -34,7 +40,7 @@ export class PieChartComponent implements OnInit {
  
   getPieChartData()
   {
-     this.restapi.PieandHistchartGetDATA(this.data).subscribe(
+     this.restapi.PieandHistchartGetDATA(this.itemsService.data).subscribe(
        response => this.handleSuccessfulResponse(response),
        error=>this.handleErrorResponse(error)
      );
