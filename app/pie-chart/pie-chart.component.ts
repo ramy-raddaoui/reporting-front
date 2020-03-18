@@ -15,9 +15,7 @@ import { Subscription } from 'rxjs';
 })
 export class PieChartComponent implements OnInit {
    single = [];
-    data = {'param1': "nom intervenant", 
-    'param2': [{"nom":"ventes par produit","metrique":"somme"}],
-           };
+    data = {};
  dataSubscription: Subscription;
   constructor( 
     public restapi:RESTService,

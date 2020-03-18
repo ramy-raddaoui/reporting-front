@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { single } from './data';
 import { RESTService } from '../rest.service';
+import { Subscription } from 'rxjs';
+import { ItemsService } from '../items.service';
 @Component({
   selector: 'app-horiz-bar-chart',
   templateUrl: './horiz-bar-chart.component.html',
@@ -12,11 +14,7 @@ export class HorizBarChartComponent implements OnInit {
 
   single: any[];
   view: any[] = [700, 400];
-  data = {'param1': "nom intervenant", 
-  'param2': [{"nom":"ventes par produit","metrique":"somme"}],
-  'metrique': 'somme',
-  'display' : 'row',
-  'seuil':'500'};
+  data = {};
   // options
   showXAxis: boolean = true;
   showYAxis: boolean = true;
@@ -26,20 +24,22 @@ export class HorizBarChartComponent implements OnInit {
   yAxisLabel: string = 'Country';
   showYAxisLabel: boolean = true;
   xAxisLabel: string = 'Population';
+  dataSubscription: Subscription;
 
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
   constructor(
-    public restapi:RESTService
+    public restapi:RESTService,
+    public itemsService: ItemsService
   ) {
     Object.assign(this, { single })
   }
 
   getHorizBarChartData()
   {
-     this.restapi.PieandHistchartGetDATA(this.data).subscribe(
+     this.restapi.PieandHistchartGetDATA(this.itemsService.data).subscribe(
        response => this.handleSuccessfulResponse(response),
        error=>this.handleErrorResponse(error)
      );
@@ -69,7 +69,13 @@ export class HorizBarChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getHorizBarChartData()
+    this.itemsService.data["display"]="horiz";
+    this.dataSubscription = this.itemsService.dataSubject.subscribe(
+      (data: any) => {
+        this.getHorizBarChartData()
+      }
+      );
+      this.itemsService.emitData();
   }
 
 }

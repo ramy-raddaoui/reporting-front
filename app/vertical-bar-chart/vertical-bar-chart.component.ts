@@ -15,11 +15,7 @@ export class VerticalBarChartComponent implements OnInit {
 
   single: any[];
   multi: any[];
-  data = {'param1': "nom intervenant", 
-  'param2': [{"nom":"ventes par produit","metrique":"somme"}],
-  'metrique': 'somme',
-  'display': 'bar',
-  'seuil':'200'};
+  data = {};
   view: any[] = [700, 400];
   dataSubscription: Subscription;
 

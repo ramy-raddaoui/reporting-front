@@ -58,6 +58,7 @@ export class AppComponent implements OnInit,OnDestroy{
       (taskGroups: any[]) => {
         this.taskGroups = taskGroups;
         this.data["param2"]=[]
+        this.data["GroupBy"]=[]
         taskGroups.forEach(function (child) {
           switch(child.title){
             case "Abscisse":
@@ -67,8 +68,7 @@ export class AppComponent implements OnInit,OnDestroy{
             case "GROUP BY":
               if(child.tasks.length==0)break;
               this.jsonObjGB["nom"]=child.tasks[0]['title'];
-              this.jsonObjGB["metrique"]="GB";
-              this.data["param2"].push(this.jsonObjGB);
+              this.data["GroupBy"].push(this.jsonObjGB);
               break;
             case "Ordonnée":
               var compteur=0;
@@ -91,7 +91,7 @@ export class AppComponent implements OnInit,OnDestroy{
               this.data["display"]="stackv";
               this.itemsService.data=this.data;
               this.itemsService.emitData();
-             // console.log(this.data)
+              console.log(this.data)
             break;
             default:console.log("Error on switch Boucle");
           }
