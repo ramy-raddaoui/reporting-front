@@ -13,11 +13,7 @@ import { ItemsService } from '../items.service';
 export class AreaChartComponent implements OnInit {
   single = [];
 
-  data = {'param1': "boutique", 
-  'param2': [{"nom":"Nom du produit","metrique":"GB"},{"nom":"Rémunération finale","metrique":"somme"}],
-  'metrique': 'somme',
-  'display': 'stackv',
-  'seuil':'200'};
+
    
   view: any[] = [700, 300];
   multi: any[]
@@ -27,6 +23,7 @@ export class AreaChartComponent implements OnInit {
     this.itemsService.data["display"]="area";
     this.dataSubscription = this.itemsService.dataSubject.subscribe(
       (data: any) => {
+        this.itemsService.data["display"]="area";
         this.getAreaChart()
       }
       );

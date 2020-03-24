@@ -2,6 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ItemsService } from './items.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Moment } from 'moment';
+import {formatDate} from '@angular/common'
+import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +12,9 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit,OnDestroy{
+  public start: Date = new Date ("10/07/2017"); 
+  public end: Date = new Date ("11/25/2017");
+  value=[];
   param1={};
   param2=[];
   data={};
@@ -20,8 +26,9 @@ export class AppComponent implements OnInit,OnDestroy{
   jsonObjGB={};
   jsonObjOrdonnee={};
   metrique=["somme","moyenne","max","min"]
-
+  selected: {start: Moment, end: Moment};
   constructor(public itemsService: ItemsService){
+    this.value = [new Date('1/12/2020'), new Date('2/1/2023')];
 
   }
 
@@ -35,9 +42,37 @@ export class AppComponent implements OnInit,OnDestroy{
   */
   ngOnInit()
   {
-    this.ChangingFunction()
+   // this.ChangingFunction()
   }
 
+  change($event){
+
+    // Begin Date
+    let full_begin_date=new Date($event.value[0])
+    let date_debut=(full_begin_date.getDate()<10)?"0"+full_begin_date.getDate():full_begin_date.getDate();
+    date_debut+="/";
+    date_debut=(full_begin_date.getMonth()<10)?date_debut+"0"+(full_begin_date.getMonth()+1).toString():date_debut+(full_begin_date.getMonth()+1).toString();
+    date_debut+="/"+full_begin_date.getFullYear()
+    console.log(date_debut)
+
+    // End Date
+
+    let full_end_date=new Date($event.value[1])
+    let date_fin=(full_end_date.getDate()<10)?'0'+full_end_date.getDate():full_end_date.getDate();
+    console.log("check"+date_fin)
+    date_fin+="/";
+    date_fin=((full_end_date.getMonth()+1)<10)?date_fin+"0"+(full_end_date.getMonth()+1).toString():date_fin+(full_end_date.getMonth()+1).toString();
+    date_fin+="/"+full_end_date.getFullYear()
+    console.log(date_fin)
+  // console.log(date.getMonth())
+    const locale = 'en-USA';
+ 
+      //console.log(formatDate("01/12/2020", "dd/mm/yyyy",locale));
+
+    //console.log(formatDate((date.getDate().toString()+'/'+(date.getMonth()+1).toString()+'/'+date.getFullYear().toString()).toString(), "dd/mm/yyyy",locale));
+
+  }
+ 
   onTaskDrop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -67,8 +102,13 @@ export class AppComponent implements OnInit,OnDestroy{
             break;
             case "GROUP BY":
               if(child.tasks.length==0)break;
-              this.jsonObjGB["nom"]=child.tasks[0]['title'];
-              this.data["GroupBy"].push(this.jsonObjGB);
+              console.log("child.tasks"+child.tasks[0].title)
+              for (var i=0;i<child.tasks.length;i++)
+              {
+                this.jsonObjGB={}
+                this.jsonObjGB["nom"]=child.tasks[i].title;
+                this.data["GroupBy"].push(this.jsonObjGB);
+              }
               break;
             case "Ordonnée":
               var compteur=0;

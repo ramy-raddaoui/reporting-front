@@ -32,17 +32,19 @@ export class ItemsService {
       title: "GROUP BY",
       id: "GROUP BY",
       tasks: [
-         /*    
+         
         {
           id: 0,
-          title: "Nom du produit",
+          title: "nom intervenant",
+          description: ""
         },
-        
+           
         {
           id: 1,
-          title: "boutique",
-        },
-   
+          title: "Nom du produit",
+          description: ""
+        }
+    /*
         {
           id: 2,
           title: "Préparer une quiche",

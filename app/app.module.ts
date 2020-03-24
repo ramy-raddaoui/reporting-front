@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,6 +14,8 @@ import { StackedVBarChartComponent } from './stacked-vbar-chart/stacked-vbar-cha
 import { HorizBarChartComponent } from './horiz-bar-chart/horiz-bar-chart.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { DragAndDropHorizBarComponent } from './drag-and-drop-horiz-bar/drag-and-drop-horiz-bar.component';
+import { FormsModule } from '@angular/forms';
+import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,10 @@ import { DragAndDropHorizBarComponent } from './drag-and-drop-horiz-bar/drag-and
     NgxChartsModule,
     BrowserAnimationsModule,
     DragDropModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    DateRangePickerModule ,
+    NgxDaterangepickerMd.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
