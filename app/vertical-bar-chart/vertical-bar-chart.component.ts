@@ -78,7 +78,7 @@ export class VerticalBarChartComponent implements OnInit {
    // subject.next(2);
   }
   ngOnInit(): void {
-    this.itemsService.data["display"]="pie";
+    this.itemsService.data["display"]="vbarchart";
     this.dataSubscription = this.itemsService.dataSubject.subscribe(
       (data: any) => {
         this.getVBarChartData()

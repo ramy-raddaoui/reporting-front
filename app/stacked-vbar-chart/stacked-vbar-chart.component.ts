@@ -69,10 +69,11 @@ export class StackedVBarChartComponent implements OnInit {
     this.itemsService.data["display"]="stackv";
     this.dataSubscription = this.itemsService.dataSubject.subscribe(
       (data: any) => {
-        this.getAreaChart()
-      }
+        if (this.itemsService.can_send_api_request)
+        this.getAreaChart();
+        }
       );
-      this.itemsService.emitData();
+      //this.itemsService.emitData();
   }
 
 }

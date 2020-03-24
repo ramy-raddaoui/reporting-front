@@ -69,7 +69,7 @@ export class HorizBarChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.itemsService.data["display"]="horiz";
+    this.itemsService.data["display"]="horizbarchart";
     this.dataSubscription = this.itemsService.dataSubject.subscribe(
       (data: any) => {
         this.getHorizBarChartData()

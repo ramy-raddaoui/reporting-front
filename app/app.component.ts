@@ -12,8 +12,10 @@ import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit,OnDestroy{
-  public start: Date = new Date ("10/07/2017"); 
-  public end: Date = new Date ("11/25/2017");
+  isAbscisseValid=false
+  isOrdonneeValid=false
+  isGroupByValid=false
+  isMultiParamsGroupByAllowed=false
   value=[];
   param1={};
   param2=[];
@@ -42,28 +44,36 @@ export class AppComponent implements OnInit,OnDestroy{
   */
   ngOnInit()
   {
-   // this.ChangingFunction()
+   this.ChangingFunction()
   }
 
   change($event){
-
+    this.itemsService.data["period"]=[]
     // Begin Date
+    let JSON_OBj={}
     let full_begin_date=new Date($event.value[0])
     let date_debut=(full_begin_date.getDate()<10)?"0"+full_begin_date.getDate():full_begin_date.getDate();
     date_debut+="/";
     date_debut=(full_begin_date.getMonth()<10)?date_debut+"0"+(full_begin_date.getMonth()+1).toString():date_debut+(full_begin_date.getMonth()+1).toString();
     date_debut+="/"+full_begin_date.getFullYear()
-    console.log(date_debut)
-
+    JSON_OBj["name"]="debut_période"
+    JSON_OBj["value"]=date_debut
+    this.itemsService.data["period"].push(JSON_OBj)
+   // console.log(this.itemsService.data["period"])
+  
     // End Date
-
+    JSON_OBj={}
     let full_end_date=new Date($event.value[1])
     let date_fin=(full_end_date.getDate()<10)?'0'+full_end_date.getDate():full_end_date.getDate();
-    console.log("check"+date_fin)
     date_fin+="/";
     date_fin=((full_end_date.getMonth()+1)<10)?date_fin+"0"+(full_end_date.getMonth()+1).toString():date_fin+(full_end_date.getMonth()+1).toString();
     date_fin+="/"+full_end_date.getFullYear()
-    console.log(date_fin)
+    JSON_OBj["name"]="fin_période"
+    JSON_OBj["value"]=date_fin
+    this.itemsService.data["period"].push(JSON_OBj)
+    
+    console.log(this.itemsService.data["period"])
+    this.itemsService.emitTaskGroups()
   // console.log(date.getMonth())
     const locale = 'en-USA';
  
@@ -97,12 +107,40 @@ export class AppComponent implements OnInit,OnDestroy{
         taskGroups.forEach(function (child) {
           switch(child.title){
             case "Abscisse":
-            if(child.tasks.length==0)break;
+            if(child.tasks.length==0){return null;}
             this.data["param1"]=child.tasks[0]['title'];
+            this.isAbscisseValid=true
             break;
+            
             case "GROUP BY":
-              if(child.tasks.length==0)break;
-              console.log("child.tasks"+child.tasks[0].title)
+                switch(this.itemsService.data["display"])
+                {
+                  case "area":
+                    
+                    if (child.tasks.length==0){this.itemsService.can_send_api_request=false;return null;}
+                    this.isGroupByValid=true;
+                    this.isMultiParamsGroupByAllowed=true;break; 
+                  case "line":
+                    if (child.tasks.length==0){this.itemsService.can_send_api_request=false;return null;}
+                    this.isGroupByValid=true;
+                    this.isMultiParamsGroupByAllowed=true;break; 
+                  case "stackv":
+                    if (child.tasks.length==0){return null;}
+                    this.isGroupByValid=true;
+                    this.isMultiParamsGroupByAllowed=true;
+                   break;         
+                  case "pie":
+                    if (child.tasks.length==0)this.isGroupByValid=true;
+                    else {this.isMultiParamsGroupByAllowed=false;this.itemsService.can_send_api_request=false;return null;}break;
+                  case "vbarchart":
+                    if (child.tasks.length==0)this.isGroupByValid=true;
+                    else {this.isMultiParamsGroupByAllowed=false;this.itemsService.can_send_api_request=false;return null;}break;   
+                  case "horizbarchart":
+                    if (child.tasks.length==0)this.isGroupByValid=true;
+                    else {this.isMultiParamsGroupByAllowed=false;this.itemsService.can_send_api_request=false;return null;}break; 
+               
+                    
+                }
               for (var i=0;i<child.tasks.length;i++)
               {
                 this.jsonObjGB={}
@@ -112,6 +150,9 @@ export class AppComponent implements OnInit,OnDestroy{
               break;
             case "Ordonnée":
               var compteur=0;
+              if(child.tasks.length==0)return null;
+              this.isOrdonneeValid=true
+              this.itemsService.can_send_api_request=true;
               while (compteur<child.tasks.length)
               {
                 if (this.metrique.indexOf(child.tasks[compteur].title) !== -1)
