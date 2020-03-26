@@ -71,7 +71,10 @@ export class StackedVBarChartComponent implements OnInit {
     this.dataSubscription = this.itemsService.dataSubject.subscribe(
       (data: any) => {
         if (this.itemsService.can_send_api_request)
+        {
+        this.itemsService.data["display"]="stackv";
         this.getAreaChart();
+        }
         else
         console.log("Sorry !!!! I can't SEND API REQUEST")
         }

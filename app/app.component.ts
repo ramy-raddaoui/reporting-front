@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ɵConsole } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ItemsService } from './items.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
@@ -44,16 +44,16 @@ export class AppComponent implements OnInit,OnDestroy{
   */
   ngOnInit()
   {
-    this.value = [new Date(), new Date()];
-    this.itemsService.data["period"]=[]
-    this.itemsService.data["period"].push(this.Prepare_JSON_DATE(this.value[0],"debut_période"))
-    this.itemsService.data["period"].push(this.Prepare_JSON_DATE(this.value[1],"fin_période"))
-    console.log("aa"+this.itemsService.data)
+    this.value = [new Date("10/01/2019"), new Date("12/31/2019")];
+    this.data["period"]=[]
+    this.data["period"].push(this.Prepare_JSON_DATE(this.value[0],"debut_période"))
+    this.data["period"].push(this.Prepare_JSON_DATE(this.value[1],"fin_période"))
+
     this.ChangingFunction()
   }
 
   change($event){
-    this.itemsService.data["period"]=[]
+    this.data["period"]=[]
     // Begin Date
     let JSON_OBj={}
     if ($event.value==null)
@@ -63,15 +63,15 @@ export class AppComponent implements OnInit,OnDestroy{
     }
     else
     {
+     this.is_Date_Range_NULL=false
     let full_begin_date=new Date($event.value[0])
     let full_end_date=new Date($event.value[1])
 
-    this.itemsService.data["period"].push(this.Prepare_JSON_DATE(full_begin_date,"debut_période"))
+    this.data["period"].push(this.Prepare_JSON_DATE(full_begin_date,"debut_période"))
     //JSON_OBj={}
    
 
-    this.itemsService.data["period"].push(this.Prepare_JSON_DATE(full_end_date,"fin_période"))
-    console.log("testee "+this.itemsService.data)
+    this.data["period"].push(this.Prepare_JSON_DATE(full_end_date,"fin_période"))
     this.itemsService.emitTaskGroups()
     console.log("On change method here")
     }
@@ -109,9 +109,7 @@ export class AppComponent implements OnInit,OnDestroy{
   {
     this.taskGroupsSubscription = this.itemsService.taskGroupsSubject.subscribe(
       (taskGroups: any[]) => {
-        if (this.is_Date_Range_NULL==true)
-        return
-        console.log(this.itemsService.data["period"])
+        if (this.is_Date_Range_NULL==true){console.log("this.is_Date_Range_NULL==true");return;}
         this.isAbscisseValid=false
         this.isOrdonneeValid=false
         this.isGroupByValid=false
@@ -125,7 +123,7 @@ export class AppComponent implements OnInit,OnDestroy{
             case "Abscisse":
             if(child.tasks.length==0 || child.tasks.length>1)
             {
-            this.itemsService.can_send_api_request=false;console.log("IS abscisse valid"+this.isAbscisseValid);return true;
+            this.itemsService.can_send_api_request=false;return true;
             }
            console.log("Abscisse section")
             this.data["param1"]=child.tasks[0]['title'];
@@ -148,6 +146,7 @@ export class AppComponent implements OnInit,OnDestroy{
                     if (child.tasks.length==0){this.isMultiParamsGroupByAllowed=true;return true;}
                     this.isGroupByValid=true;
                     this.isMultiParamsGroupByAllowed=true;
+                    console.log("stackedv")
                    break;         
                   case "pie":
                     if (child.tasks.length==0)this.isGroupByValid=true;
@@ -189,12 +188,14 @@ export class AppComponent implements OnInit,OnDestroy{
               }
               this.data["param2"].push(this.jsonObjOrdonnee);
               }
-              this.data["display"]="stackv";
+             
+            
+              console.log("this.data[\"period\"]"+this.data["period"])
               this.itemsService.data=this.data;
               this.itemsService.emitData();
               console.log("After emit DATA FUNCTION CALL")
               console.log(this.data)
-            break;
+            break; 
             default:console.log("Error on switch Boucle");
           }
         },this);
