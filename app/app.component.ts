@@ -15,6 +15,7 @@ export class AppComponent implements OnInit,OnDestroy{
   isAbscisseValid=false
   isOrdonneeValid=false
   isGroupByValid=false
+  is_Date_Range_NULL=false
   isMultiParamsGroupByAllowed=false
   value=[];
   param1={};
@@ -30,7 +31,6 @@ export class AppComponent implements OnInit,OnDestroy{
   metrique=["somme","moyenne","max","min"]
   selected: {start: Moment, end: Moment};
   constructor(public itemsService: ItemsService){
-    this.value = [new Date('1/12/2020'), new Date('2/1/2023')];
 
   }
 
@@ -44,43 +44,51 @@ export class AppComponent implements OnInit,OnDestroy{
   */
   ngOnInit()
   {
-   this.ChangingFunction()
+    this.value = [new Date(), new Date()];
+    this.itemsService.data["period"]=[]
+    this.itemsService.data["period"].push(this.Prepare_JSON_DATE(this.value[0],"debut_période"))
+    this.itemsService.data["period"].push(this.Prepare_JSON_DATE(this.value[1],"fin_période"))
+    console.log("aa"+this.itemsService.data)
+    this.ChangingFunction()
   }
 
   change($event){
     this.itemsService.data["period"]=[]
     // Begin Date
     let JSON_OBj={}
+    if ($event.value==null)
+    {
+    this.is_Date_Range_NULL=true
+    console.log("event value NULL")
+    }
+    else
+    {
     let full_begin_date=new Date($event.value[0])
-    let date_debut=(full_begin_date.getDate()<10)?"0"+full_begin_date.getDate():full_begin_date.getDate();
-    date_debut+="/";
-    date_debut=(full_begin_date.getMonth()<10)?date_debut+"0"+(full_begin_date.getMonth()+1).toString():date_debut+(full_begin_date.getMonth()+1).toString();
-    date_debut+="/"+full_begin_date.getFullYear()
-    JSON_OBj["name"]="debut_période"
-    JSON_OBj["value"]=date_debut
-    this.itemsService.data["period"].push(JSON_OBj)
-   // console.log(this.itemsService.data["period"])
-  
-    // End Date
-    JSON_OBj={}
     let full_end_date=new Date($event.value[1])
-    let date_fin=(full_end_date.getDate()<10)?'0'+full_end_date.getDate():full_end_date.getDate();
-    date_fin+="/";
-    date_fin=((full_end_date.getMonth()+1)<10)?date_fin+"0"+(full_end_date.getMonth()+1).toString():date_fin+(full_end_date.getMonth()+1).toString();
-    date_fin+="/"+full_end_date.getFullYear()
-    JSON_OBj["name"]="fin_période"
-    JSON_OBj["value"]=date_fin
-    this.itemsService.data["period"].push(JSON_OBj)
-    
-    console.log(this.itemsService.data["period"])
+
+    this.itemsService.data["period"].push(this.Prepare_JSON_DATE(full_begin_date,"debut_période"))
+    //JSON_OBj={}
+   
+
+    this.itemsService.data["period"].push(this.Prepare_JSON_DATE(full_end_date,"fin_période"))
+    console.log("testee "+this.itemsService.data)
     this.itemsService.emitTaskGroups()
-  // console.log(date.getMonth())
-    const locale = 'en-USA';
- 
-      //console.log(formatDate("01/12/2020", "dd/mm/yyyy",locale));
+    console.log("On change method here")
+    }
 
-    //console.log(formatDate((date.getDate().toString()+'/'+(date.getMonth()+1).toString()+'/'+date.getFullYear().toString()).toString(), "dd/mm/yyyy",locale));
+  }
 
+   Prepare_JSON_DATE(full_date,alias_date)
+  {
+    let JSON_OBj={}
+    let date=(full_date.getDate()<10)?'0'+full_date.getDate():full_date.getDate();
+    date+="/";
+    date=((full_date.getMonth()+1)<10)?date+"0"+(full_date.getMonth()+1).toString():date+(full_date.getMonth()+1).toString();
+    date+="/"+full_date.getFullYear()
+    JSON_OBj["name"]=alias_date
+    JSON_OBj["value"]=date
+
+    return JSON_OBj;
   }
  
   onTaskDrop(event: CdkDragDrop<any[]>) {
@@ -101,6 +109,9 @@ export class AppComponent implements OnInit,OnDestroy{
   {
     this.taskGroupsSubscription = this.itemsService.taskGroupsSubject.subscribe(
       (taskGroups: any[]) => {
+        if (this.is_Date_Range_NULL==true)
+        return
+        console.log(this.itemsService.data["period"])
         this.isAbscisseValid=false
         this.isOrdonneeValid=false
         this.isGroupByValid=false
@@ -114,7 +125,7 @@ export class AppComponent implements OnInit,OnDestroy{
             case "Abscisse":
             if(child.tasks.length==0 || child.tasks.length>1)
             {
-            console.log("condition IF vérifiée");this.itemsService.can_send_api_request=false;console.log("IS abscisse valid"+this.isAbscisseValid);return true;
+            this.itemsService.can_send_api_request=false;console.log("IS abscisse valid"+this.isAbscisseValid);return true;
             }
            console.log("Abscisse section")
             this.data["param1"]=child.tasks[0]['title'];
@@ -181,7 +192,7 @@ export class AppComponent implements OnInit,OnDestroy{
               this.data["display"]="stackv";
               this.itemsService.data=this.data;
               this.itemsService.emitData();
-              console.log("TEST IF CONDITION WHERE HERE")
+              console.log("After emit DATA FUNCTION CALL")
               console.log(this.data)
             break;
             default:console.log("Error on switch Boucle");

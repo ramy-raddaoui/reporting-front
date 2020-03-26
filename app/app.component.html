@@ -1,5 +1,9 @@
+<div>
+
 <ejs-daterangepicker #ejDateRangePickers [(ngModel)]='value'  width="230px" (change)="change($event)"></ejs-daterangepicker>
-    <div class="container py-5">
+<span *ngIf="is_Date_Range_NULL" class="alert alert-danger">DateRange Can't be NULL</span>
+</div>    
+<div class="container py-5">
   <div class="row" cdkDropListGroup>
     <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let taskGroup of taskGroups" cdkDropList [cdkDropListData]="taskGroup.tasks" (cdkDropListDropped)="onTaskDrop($event)">
 
