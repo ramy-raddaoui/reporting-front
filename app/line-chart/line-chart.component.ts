@@ -79,8 +79,13 @@ export class LineChartComponent implements OnInit {
     this.itemsService.data["display"]="line";
     this.dataSubscription = this.itemsService.dataSubject.subscribe(
       (data: any) => {
-        this.itemsService.data["display"]="line";
-        this.getLineChartData()
+        if (this.itemsService.can_send_api_request)
+        {
+          this.itemsService.data["display"]="line";
+          this.getLineChartData()
+        }
+        else
+        console.log("Sorry !!!! I can't SEND API REQUEST")
       }
       );
       this.itemsService.emitData();  }

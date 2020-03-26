@@ -101,44 +101,53 @@ export class AppComponent implements OnInit,OnDestroy{
   {
     this.taskGroupsSubscription = this.itemsService.taskGroupsSubject.subscribe(
       (taskGroups: any[]) => {
+        this.isAbscisseValid=false
+        this.isOrdonneeValid=false
+        this.isGroupByValid=false
+        this.isMultiParamsGroupByAllowed=false
         this.taskGroups = taskGroups;
         this.data["param2"]=[]
         this.data["GroupBy"]=[]
-        taskGroups.forEach(function (child) {
+        this.data["param1"]=[]
+        taskGroups.some(function (child) {
           switch(child.title){
             case "Abscisse":
-            if(child.tasks.length==0){return null;}
+            if(child.tasks.length==0 || child.tasks.length>1)
+            {
+            console.log("condition IF vérifiée");this.itemsService.can_send_api_request=false;console.log("IS abscisse valid"+this.isAbscisseValid);return true;
+            }
+           console.log("Abscisse section")
             this.data["param1"]=child.tasks[0]['title'];
             this.isAbscisseValid=true
             break;
-            
             case "GROUP BY":
+              console.log("GROUP BY section")
                 switch(this.itemsService.data["display"])
                 {
                   case "area":
                     
-                    if (child.tasks.length==0){this.itemsService.can_send_api_request=false;return null;}
+                    if (child.tasks.length==0){this.isMultiParamsGroupByAllowed=true;this.itemsService.can_send_api_request=false;return true;}
                     this.isGroupByValid=true;
                     this.isMultiParamsGroupByAllowed=true;break; 
                   case "line":
-                    if (child.tasks.length==0){this.itemsService.can_send_api_request=false;return null;}
+                    if (child.tasks.length==0){this.isMultiParamsGroupByAllowed=true;this.itemsService.can_send_api_request=false;return true;}
                     this.isGroupByValid=true;
                     this.isMultiParamsGroupByAllowed=true;break; 
                   case "stackv":
-                    if (child.tasks.length==0){return null;}
+                    if (child.tasks.length==0){this.isMultiParamsGroupByAllowed=true;return true;}
                     this.isGroupByValid=true;
                     this.isMultiParamsGroupByAllowed=true;
                    break;         
                   case "pie":
                     if (child.tasks.length==0)this.isGroupByValid=true;
-                    else {this.isMultiParamsGroupByAllowed=false;this.itemsService.can_send_api_request=false;return null;}break;
+                    else {this.isMultiParamsGroupByAllowed=false;this.itemsService.can_send_api_request=false;return true;}break;
                   case "vbarchart":
                     if (child.tasks.length==0)this.isGroupByValid=true;
-                    else {this.isMultiParamsGroupByAllowed=false;this.itemsService.can_send_api_request=false;return null;}break;   
+                    else {this.isMultiParamsGroupByAllowed=false;this.itemsService.can_send_api_request=false;return true;}break;   
                   case "horizbarchart":
                     if (child.tasks.length==0)this.isGroupByValid=true;
-                    else {this.isMultiParamsGroupByAllowed=false;this.itemsService.can_send_api_request=false;return null;}break; 
-               
+                    else {this.isMultiParamsGroupByAllowed=false;this.itemsService.can_send_api_request=false;return true;}break; 
+                  default: return true;
                     
                 }
               for (var i=0;i<child.tasks.length;i++)
@@ -172,6 +181,7 @@ export class AppComponent implements OnInit,OnDestroy{
               this.data["display"]="stackv";
               this.itemsService.data=this.data;
               this.itemsService.emitData();
+              console.log("TEST IF CONDITION WHERE HERE")
               console.log(this.data)
             break;
             default:console.log("Error on switch Boucle");

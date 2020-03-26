@@ -34,16 +34,16 @@ export class ItemsService {
       title: "GROUP BY",
       id: "GROUP BY",
       tasks: [
-            
+          
         {
           id: 0,
-          title: "nom intervenant",
+          title: "Nom du produit",
           description: ""
         },
-       /* 
+        /*  
         {
           id: 1,
-          title: "Nom du produit",
+          title: "nom intervenant",
           description: ""
         }
     

@@ -81,7 +81,13 @@ export class VerticalBarChartComponent implements OnInit {
     this.itemsService.data["display"]="vbarchart";
     this.dataSubscription = this.itemsService.dataSubject.subscribe(
       (data: any) => {
+        if (this.itemsService.can_send_api_request)
+        {
+        this.itemsService.data["display"]="vbarchart";
         this.getVBarChartData()
+        }
+        else
+        console.log("Sorry !!!! I can't SEND API REQUEST")
       }
       );
       this.itemsService.emitData();

@@ -23,8 +23,15 @@ export class AreaChartComponent implements OnInit {
     this.itemsService.data["display"]="area";
     this.dataSubscription = this.itemsService.dataSubject.subscribe(
       (data: any) => {
+        if (this.itemsService.can_send_api_request)
+        {
         this.itemsService.data["display"]="area";
         this.getAreaChart()
+        }
+        else
+        console.log("Sorry !!!! I can't SEND API REQUEST")
+
+
       }
       );
       this.itemsService.emitData();

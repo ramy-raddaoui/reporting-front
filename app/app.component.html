@@ -6,15 +6,15 @@
       <div class="bg-light shadow rounded p-3">
         <h2 class="font-weight-normal text-center">{{ taskGroup.title }}</h2>
               <div style="text-align:center;" *ngIf="taskGroup.title=='Abscisse' && !isAbscisseValid"> 
-                <span class="alert alert-danger" >Vous devez sélectionner un Item</span>
+                <span class="alert alert-danger" >Vous devez sélectionner un seul Item</span>
               </div>   
               <div style="text-align:center;" *ngIf="taskGroup.title=='Ordonnée' && isAbscisseValid && isGroupByValid && !isOrdonneeValid"> 
                 <span class="alert alert-danger" >Vous devez sélectionner un Item</span>
               </div>
-              <div style="text-align:center;" *ngIf="taskGroup.title=='GROUP BY' && !isGroupByValid && isAbscisseValid"> 
+              <div style="text-align:center;" *ngIf="taskGroup.title=='GROUP BY' && !isGroupByValid && isAbscisseValid && isMultiParamsGroupByAllowed"> 
                 <span class="alert alert-danger" >Vous devez sélectionner un Item </span>
               </div>   
-              <div style="text-align:center;" *ngIf="taskGroup.title=='GROUP BY' && isGroupByValid && !isMultiParamsGroupByAllowed"> 
+              <div style="text-align:center;" *ngIf="taskGroup.title=='GROUP BY' && isAbscisseValid && !isMultiParamsGroupByAllowed"> 
                 <span class="alert alert-danger" >GROUP BY Not Allowed for this chart </span>
               </div>   
         <div class="bg-white shadow my-2 p-3" *ngFor="let task of taskGroup.tasks" cdkDrag>

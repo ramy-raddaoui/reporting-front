@@ -66,11 +66,14 @@ export class StackedVBarChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("This is ngOnInit")
     this.itemsService.data["display"]="stackv";
     this.dataSubscription = this.itemsService.dataSubject.subscribe(
       (data: any) => {
         if (this.itemsService.can_send_api_request)
         this.getAreaChart();
+        else
+        console.log("Sorry !!!! I can't SEND API REQUEST")
         }
       );
       //this.itemsService.emitData();
