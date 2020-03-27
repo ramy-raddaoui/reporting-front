@@ -20,6 +20,7 @@ export class AppComponent implements OnInit,OnDestroy{
   value=[];
   param1={};
   param2=[];
+  is_checkbox_date_checked=true
   data={};
   title = 'ngxcharts';
   taskGroups: any[];
@@ -52,6 +53,20 @@ export class AppComponent implements OnInit,OnDestroy{
     this.ChangingFunction()
   }
 
+  change_checkbox($event)
+  {
+   this.is_checkbox_date_checked=$event["checked"]
+   if (this.is_checkbox_date_checked && this.value!=null)
+   {
+    this.data["period"].push(this.Prepare_JSON_DATE(this.value[0],"debut_période"))
+    this.data["period"].push(this.Prepare_JSON_DATE(this.value[1],"fin_période"))
+   }
+   else
+   this.data["period"]=[]
+   this.itemsService.emitTaskGroups()
+  }
+
+  
   change($event){
     this.data["period"]=[]
     // Begin Date
@@ -70,7 +85,7 @@ export class AppComponent implements OnInit,OnDestroy{
     this.data["period"].push(this.Prepare_JSON_DATE(full_begin_date,"debut_période"))
     //JSON_OBj={}
    
-
+    
     this.data["period"].push(this.Prepare_JSON_DATE(full_end_date,"fin_période"))
     this.itemsService.emitTaskGroups()
     console.log("On change method here")
@@ -109,7 +124,7 @@ export class AppComponent implements OnInit,OnDestroy{
   {
     this.taskGroupsSubscription = this.itemsService.taskGroupsSubject.subscribe(
       (taskGroups: any[]) => {
-        if (this.is_Date_Range_NULL==true){console.log("this.is_Date_Range_NULL==true");return;}
+        if (this.is_Date_Range_NULL==true && this.is_checkbox_date_checked){console.log("this.is_Date_Range_NULL==true");return;}
         this.isAbscisseValid=false
         this.isOrdonneeValid=false
         this.isGroupByValid=false

@@ -16,6 +16,7 @@ import { LineChartComponent } from './line-chart/line-chart.component';
 import { DragAndDropHorizBarComponent } from './drag-and-drop-horiz-bar/drag-and-drop-horiz-bar.component';
 import { FormsModule } from '@angular/forms';
 import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { MatCheckboxModule   } from '@angular/material/checkbox';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
     HttpClientModule,
     FormsModule,
     DateRangePickerModule ,
+    MatCheckboxModule,
     NgxDaterangepickerMd.forRoot()
   ],
   providers: [],
