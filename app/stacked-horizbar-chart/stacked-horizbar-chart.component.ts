@@ -5,12 +5,13 @@ import { multi } from './data';
 import { RESTService } from '../rest.service';
 import { ItemsService } from '../items.service';
 import { Subscription } from 'rxjs';
+
 @Component({
-  selector: 'app-stacked-vbar-chart',
-  templateUrl: './stacked-vbar-chart.component.html',
-  styleUrls: ['./stacked-vbar-chart.component.css']
+  selector: 'app-stacked-horizbar-chart',
+  templateUrl: './stacked-horizbar-chart.component.html',
+  styleUrls: ['./stacked-horizbar-chart.component.css']
 })
-export class StackedVBarChartComponent implements OnInit {
+export class StackedHorizbarChartComponent implements OnInit {
 
   multi: any[];
   view: any[] = [900, 600];
@@ -81,5 +82,6 @@ export class StackedVBarChartComponent implements OnInit {
       );
       //this.itemsService.emitData();
   }
+
 
 }

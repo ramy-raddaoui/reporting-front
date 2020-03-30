@@ -15,7 +15,7 @@ export class AreaChartComponent implements OnInit {
 
 
    
-  view: any[] = [700, 300];
+  view: any[] = [900, 600];
   multi: any[]
   dataSubscription: Subscription;
 

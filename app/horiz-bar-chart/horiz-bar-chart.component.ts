@@ -13,7 +13,7 @@ import { ItemsService } from '../items.service';
 export class HorizBarChartComponent implements OnInit {
 
   single: any[];
-  view: any[] = [700, 400];
+  view: any[] = [900, 600];
   data = {};
   // options
   showXAxis: boolean = true;
@@ -21,9 +21,9 @@ export class HorizBarChartComponent implements OnInit {
   gradient: boolean = false;
   showLegend: boolean = true;
   showXAxisLabel: boolean = true; 
-  yAxisLabel: string = 'Country';
+  yAxisLabel: string = 'Ordonnée';
   showYAxisLabel: boolean = true;
-  xAxisLabel: string = 'Population';
+  xAxisLabel: string = 'Abscisse';
   dataSubscription: Subscription;
 
   colorScheme = {

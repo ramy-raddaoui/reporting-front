@@ -13,8 +13,8 @@ import { ItemsService } from '../items.service';
 export class LineChartComponent implements OnInit {
 
   multi: any[];
-  view: any[] = [700, 300];
-  data = {'param1': "nom intervenant", 
+  view: any[] = [900, 600];
+    data = {'param1': "Abscisse", 
   'param2': [{"nom":"Rémunération par produit","metrique":"somme"},{"nom":"objectif par produit","metrique":"somme"}],
   'metrique': 'somme',
  // 'display': 'bar',

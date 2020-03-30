@@ -8,6 +8,7 @@ import { HorizBarChartComponent } from './horiz-bar-chart/horiz-bar-chart.compon
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { AppComponent } from './app.component';
 import { DragAndDropHorizBarComponent } from './drag-and-drop-horiz-bar/drag-and-drop-horiz-bar.component';
+import { StackedHorizbarChartComponent } from './stacked-horizbar-chart/stacked-horizbar-chart.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'area' , component: AreaChartComponent },
   {path: 'vbarchart' , component: VerticalBarChartComponent },
   {path: 'svbarchart' , component: StackedVBarChartComponent },
+  {path: 'shbarchart' , component: StackedHorizbarChartComponent},
   {path: 'horizbarchart' , component: HorizBarChartComponent },
   {path: 'linechart' , component: LineChartComponent },
   {path: 'dragdrop' , component: DragAndDropHorizBarComponent },

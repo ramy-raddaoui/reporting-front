@@ -17,6 +17,8 @@ import { DragAndDropHorizBarComponent } from './drag-and-drop-horiz-bar/drag-and
 import { FormsModule } from '@angular/forms';
 import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { MatCheckboxModule   } from '@angular/material/checkbox';
+import { StackedHorizbarChartComponent } from './stacked-horizbar-chart/stacked-horizbar-chart.component';
+import { ExportPDFComponent } from './export-pdf/export-pdf.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,9 @@ import { MatCheckboxModule   } from '@angular/material/checkbox';
     StackedVBarChartComponent,
     HorizBarChartComponent,
     LineChartComponent,
-    DragAndDropHorizBarComponent
+    DragAndDropHorizBarComponent,
+    StackedHorizbarChartComponent,
+    ExportPDFComponent
   ],
   imports: [ 
     BrowserModule,

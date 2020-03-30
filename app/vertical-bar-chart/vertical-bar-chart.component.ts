@@ -16,7 +16,7 @@ export class VerticalBarChartComponent implements OnInit {
   single: any[];
   multi: any[];
   data = {};
-  view: any[] = [700, 400];
+  view: any[] = [900, 600];
   dataSubscription: Subscription;
 
   // options
@@ -25,9 +25,9 @@ export class VerticalBarChartComponent implements OnInit {
   gradient = false;
   showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Country';
+  xAxisLabel = 'Abscisse';
   showYAxisLabel = true;
-  yAxisLabel = 'Population';
+  yAxisLabel = 'Ordonnée';
 
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']

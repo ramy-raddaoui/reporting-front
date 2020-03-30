@@ -17,41 +17,22 @@ export class ItemsService {
           title: "boutique",
           description: ""
         },
-        /*{
-          id: 1,
-          title: "Acheter du pain",
-          description: "Aller acheter du pain à la boulangerie"
-        },
-        {
-          id: 2,
-          title: "Faire les courses",
-          description: "Prendre du lait, des céréales et des bananes"
-        }
-        */
+        
       ]
     },
     {
       title: "GROUP BY",
       id: "GROUP BY",
       tasks: [
-          
-        {
+    /* 
+       {
           id: 0,
           title: "Nom du produit",
           description: ""
         },
-        /*  
-        {
-          id: 1,
-          title: "nom intervenant",
-          description: ""
-        }
-    
-        {
-          id: 2,
-          title: "Préparer une quiche",
-          description: "Voir la recette de la quiche"
-        }
+ 
+     
+        
         */
       ]
     },
@@ -68,10 +49,12 @@ export class ItemsService {
           id: 1,
           title: "Rémunération finale",
         }/*,
+              
         {
-          id: 2,
-          title: "somme",
-        },
+          id: 1,
+          title: "objectif par produit",
+          description: ""
+        }
         
         {
           id: 3,

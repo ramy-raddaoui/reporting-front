@@ -2,9 +2,8 @@
 <ejs-daterangepicker #ejDateRangePickers [(ngModel)]='value'  width="230px" (enabled)="change($event)" [enabled]="is_checkbox_date_checked" (change)="change($event)"></ejs-daterangepicker>
 <span *ngIf="is_Date_Range_NULL && is_checkbox_date_checked" class="alert alert-danger">DateRange Can't be NULL</span><br/>
 <mat-checkbox checked="true" (change)="change_checkbox($event)">Utiliser comme dimension</mat-checkbox>
-
 </div>    
-<div class="container py-5">
+<div class="container py-3">
   <div class="row" cdkDropListGroup>
     <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let taskGroup of taskGroups" cdkDropList [cdkDropListData]="taskGroup.tasks" (cdkDropListDropped)="onTaskDrop($event)">
 
@@ -43,4 +42,21 @@
 </div>
 -->
 
-<router-outlet></router-outlet>  
+<div  style="display: table;margin: auto;">
+<router-outlet ></router-outlet>  
+<app-export-pdf></app-export-pdf>
+</div>
+
+<!--
+#wrap {
+  float: left;
+  position: relative;
+  left: 50%;
+}
+
+#content {
+  float: left;
+  position: relative;
+  left: -50%;
+}
+-->

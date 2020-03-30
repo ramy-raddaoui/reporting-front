@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy, ɵConsole } from '@angular/core';
+import { Component, OnInit, OnDestroy, ɵConsole, ViewChild, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ItemsService } from './items.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Moment } from 'moment';
 import {formatDate} from '@angular/common'
 import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
-
+import * as jsPDF from 'jspdf';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -119,7 +119,24 @@ export class AppComponent implements OnInit,OnDestroy{
     
     this.itemsService.emitTaskGroups(); // Exécuter cette méthode pour émettre les données , si on n'émet pas les données on ne pourra jamais les récupérer
   }
-
+  
+  
+            @ViewChild('content') content:ElementRef
+            downloadPDF()
+            {
+              let doc=new jsPDF()
+              let specialElementHandlers= {
+                '#editor': function(element,renderer){
+                return true;
+              }
+            };
+            let content=this.content.nativeElement;
+            doc.fromHTML(content.innerHTML,15,15,{
+              'width': 198,
+              'elementHandlers': specialElementHandlers
+            });
+            doc.save('report.pdf');
+          }
   ChangingFunction()
   {
     this.taskGroupsSubscription = this.itemsService.taskGroupsSubject.subscribe(
