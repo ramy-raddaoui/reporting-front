@@ -19,11 +19,17 @@
                 <span class="alert alert-danger" >Vous devez sélectionner un Item </span>
               </div>   
               <div style="text-align:center;" *ngIf="taskGroup.title=='GROUP BY' && isAbscisseValid && !isMultiParamsGroupByAllowed"> 
-                <span class="alert alert-danger" >GROUP BY Not Allowed for this chart </span>
+                <span class="alert alert-info" >GROUP BY Not Allowed for this chart </span>
               </div>   
         <div class="bg-white shadow my-2 p-3" *ngFor="let task of taskGroup.tasks" cdkDrag>
-          <h4 class="font-weight-normal">{{ task.title }}</h4>
-          <p class="lead mb-0">{{ task.description }}</p>
+          <h4 class="font-weight-normal">{{ task.title }}
+            <span style="float:right;" (click)="delete(task,taskGroup.title)" class="material-icons">
+              delete
+              </span>
+
+          </h4>
+         <!-- <p class="lead mb-0">{{ task.description }}</p>-->
+      
         </div>
       </div>
 

@@ -105,6 +105,24 @@ export class AppComponent implements OnInit,OnDestroy{
 
     return JSON_OBj;
   }
+
+  delete(task,taskGroup_title)
+  {
+   let index_in_array;
+   switch (taskGroup_title)
+   {
+   case "Abscisse":
+    index_in_array=this.itemsService.taskGroups[0].tasks.indexOf(task)
+    this.itemsService.taskGroups[0].tasks.splice(index_in_array,1);break;
+    case "GROUP BY":
+    this.itemsService.taskGroups[1].tasks.splice(index_in_array,1);break;
+   case "Ordonnée":
+    this.itemsService.taskGroups[2].tasks.splice(index_in_array,1);break;
+   default: console.log("Error on remove Item")
+
+   } 
+   this.itemsService.emitTaskGroups()
+  }
  
   onTaskDrop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
@@ -119,24 +137,7 @@ export class AppComponent implements OnInit,OnDestroy{
     
     this.itemsService.emitTaskGroups(); // Exécuter cette méthode pour émettre les données , si on n'émet pas les données on ne pourra jamais les récupérer
   }
-  
-  
-            @ViewChild('content') content:ElementRef
-            downloadPDF()
-            {
-              let doc=new jsPDF()
-              let specialElementHandlers= {
-                '#editor': function(element,renderer){
-                return true;
-              }
-            };
-            let content=this.content.nativeElement;
-            doc.fromHTML(content.innerHTML,15,15,{
-              'width': 198,
-              'elementHandlers': specialElementHandlers
-            });
-            doc.save('report.pdf');
-          }
+
   ChangingFunction()
   {
     this.taskGroupsSubscription = this.itemsService.taskGroupsSubject.subscribe(
@@ -201,7 +202,10 @@ export class AppComponent implements OnInit,OnDestroy{
               break;
             case "Ordonnée":
               var compteur=0;
-              if(child.tasks.length==0)return null;
+              if(child.tasks.length==0)
+              {
+              this.itemsService.can_send_api_request=false;return true;
+              }
               this.isOrdonneeValid=true
               this.itemsService.can_send_api_request=true;
               while (compteur<child.tasks.length)

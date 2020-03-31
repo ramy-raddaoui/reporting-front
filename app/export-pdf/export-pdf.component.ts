@@ -87,4 +87,24 @@ export class ExportPDFComponent implements OnInit {
   
     }
 
+
+    /*
+      @ViewChild('content') content:ElementRef
+            downloadPDF()
+            {
+              let doc=new jsPDF()
+              let specialElementHandlers= {
+                '#editor': function(element,renderer){
+                return true;
+              }
+            };
+            let content=this.content.nativeElement;
+            doc.fromHTML(content.innerHTML,15,15,{
+              'width': 198,
+              'elementHandlers': specialElementHandlers
+            });
+            doc.save('report.pdf');
+          }
+    */
+
 }

@@ -39,31 +39,6 @@ export class PieChartComponent implements OnInit {
   }
 
   
-
-
-  /*
-  @ViewChild('content') content:ElementRef
-  downloadPDF()
-  {
-    setTimeout(()=>{    //<<<---    using ()=> syntax
-      
- }, 5000);
-    let doc=new jsPDF()
-    let specialElementHandlers= {
-      '#editor': function(element,renderer){
-      return true;
-    }
-  };
-  let content=this.content.nativeElement;
-  doc.fromHTML(content.innerHTML,30,30,{
-    'width': 500,
-    'elementHandlers': specialElementHandlers
-  });
-  doc.save('report.pdf');
-}
-*/
-
-
   ngOnInit() {
     this.itemsService.data["display"]="pie";
     this.dataSubscription = this.itemsService.dataSubject.subscribe(
