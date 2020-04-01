@@ -5,7 +5,8 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { Moment } from 'moment';
 import {formatDate} from '@angular/common'
 import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
-import * as jsPDF from 'jspdf';
+import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
+import { FilterComponent } from './filter/filter.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -31,7 +32,7 @@ export class AppComponent implements OnInit,OnDestroy{
   jsonObjOrdonnee={};
   metrique=["somme","moyenne","max","min"]
   selected: {start: Moment, end: Moment};
-  constructor(public itemsService: ItemsService){
+  constructor(public itemsService: ItemsService,public dialog:MatDialog){
 
   }
 
@@ -122,6 +123,15 @@ export class AppComponent implements OnInit,OnDestroy{
 
    } 
    this.itemsService.emitTaskGroups()
+  }
+
+  filter(task)
+  {
+   this.dialog.open(FilterComponent, {
+    height: '700px',
+    width: '1100px',
+    data: {'task':task}
+  });
   }
  
   onTaskDrop(event: CdkDragDrop<any[]>) {

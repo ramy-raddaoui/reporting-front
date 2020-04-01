@@ -17,12 +17,12 @@ export class ItemsService {
           title: "boutique",
           description: ""
         },
-        {
+     /*   {
           id: 1,
           title: "produit",
           description: ""
         },
-        
+       */ 
       ]
     },
     {

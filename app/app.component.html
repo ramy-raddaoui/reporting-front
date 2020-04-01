@@ -23,9 +23,13 @@
               </div>   
         <div class="bg-white shadow my-2 p-3" *ngFor="let task of taskGroup.tasks" cdkDrag>
           <h4 class="font-weight-normal">{{ task.title }}
+
             <span style="float:right;" (click)="delete(task,taskGroup.title)" class="material-icons">
               delete
               </span>
+              <span *ngIf="taskGroup.title!='Ordonnée'" style="float:right;" (click)="filter(task)" class="material-icons">
+                local_bar
+                </span>
 
           </h4>
          <!-- <p class="lead mb-0">{{ task.description }}</p>-->

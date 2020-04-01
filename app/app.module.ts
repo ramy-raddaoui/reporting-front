@@ -14,11 +14,15 @@ import { StackedVBarChartComponent } from './stacked-vbar-chart/stacked-vbar-cha
 import { HorizBarChartComponent } from './horiz-bar-chart/horiz-bar-chart.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { DragAndDropHorizBarComponent } from './drag-and-drop-horiz-bar/drag-and-drop-horiz-bar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { MatCheckboxModule   } from '@angular/material/checkbox';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatRadioModule} from '@angular/material/radio'; 
+
 import { StackedHorizbarChartComponent } from './stacked-horizbar-chart/stacked-horizbar-chart.component';
 import { ExportPDFComponent } from './export-pdf/export-pdf.component';
+import { FilterComponent } from './filter/filter.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +34,8 @@ import { ExportPDFComponent } from './export-pdf/export-pdf.component';
     LineChartComponent,
     DragAndDropHorizBarComponent,
     StackedHorizbarChartComponent,
-    ExportPDFComponent
+    ExportPDFComponent,
+    FilterComponent
   ],
   imports: [ 
     BrowserModule,
@@ -43,6 +48,9 @@ import { ExportPDFComponent } from './export-pdf/export-pdf.component';
     FormsModule,
     DateRangePickerModule ,
     MatCheckboxModule,
+    MatDialogModule,
+    MatRadioModule,
+    ReactiveFormsModule ,
     NgxDaterangepickerMd.forRoot()
   ],
   providers: [],

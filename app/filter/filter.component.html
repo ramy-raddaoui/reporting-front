@@ -1,0 +1,163 @@
+<form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+    <div class="card m-3">
+        <h5 class="card-header">{{data}}</h5>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Number of Conditions</label>
+                    <select formControlName="numberOfConditions" class="form-control" (change)="onChangeConditions($event)" [ngClass]="{ 'is-invalid': submitted && f.numberOfConditions.errors }">
+                        <option value=""></option>
+                        <option *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]">{{i}}</option>
+                    </select>
+                    <div *ngIf="submitted && f.numberOfConditions.errors" class="invalid-feedback">
+                        <div *ngIf="f.numberOfConditions.errors.required">Number of conditions is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Logic Operator</label>
+                    <mat-radio-group formControlName="logic" aria-label="Select an option" class="form-control">
+                        <mat-radio-button value="ET">ET</mat-radio-button>
+                        <mat-radio-button value="OU">OU</mat-radio-button>
+                      </mat-radio-group>
+                      <div *ngIf="submitted && f.logic.errors" class="invalid-feedback">
+                        <div *ngIf="f.logic.errors.required">Number of conditions is required</div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div *ngFor="let ticket of t.controls; let i = index" class="list-group list-group-flush">
+            <div class="list-group-item">
+                <h5 class="card-title">Condition {{i + 1}}</h5>
+                <div [formGroup]="ticket" class="form-row">
+                    <div class="form-group col-6">
+                        <label>Name</label>
+                        <input type="text" [(ngModel)]="data" readonly formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && ticket.controls.name.errors }" />
+                        <div *ngIf="submitted && ticket.controls.name.errors" class="invalid-feedback">
+                            <div *ngIf="ticket.controls.name.errors.required">Name is required</div>
+                        </div>
+                    </div>
+                    <!-- second ITEM-->
+                    <div class="form-group col-6">
+                        <label>Opérateur</label>
+                        <select class="form-control" formControlName="operator">
+                            <option value="=">=</option>
+                            <option value=">">></option>
+                            <option value=">=">>=</option>
+                            <option value="<"><</option>
+                            <option value="<="><=</option>
+                            <option value="contains">contains</option>
+                            <option value="not contains">not contains</option>
+                            <option value="begins with">begins with</option>
+                            <option value="not begins with">not begins with</option>
+                            <option value="is empty">is empty</option>
+                            <option value="is not empty">is not empty</option>
+                            <option value="ends with">ends with</option>
+                            <option value="not ends with">not ends with</option>
+                            <option value="is null">is null</option>
+                            <option value="is not null">is not null</option>
+
+
+
+                          </select>
+                            <div *ngIf="submitted && ticket.controls.operator.errors" class="invalid-feedback">
+                            <div *ngIf="ticket.controls.operator.errors.required">Operator is required</div>
+                        </div>
+                    </div>
+                    <!-- Third Item-->
+                    <div class="form-group col-6">
+                        <label>Valeur</label>
+                        <input type="text" formControlName="valeur" class="form-control" [ngClass]="{ 'is-invalid': submitted && ticket.controls.valeur.errors }" />
+                     <!--   <div *ngIf="submitted && ticket.controls.email.errors" class="invalid-feedback">
+                            <div *ngIf="ticket.controls.email.errors.required">Email is required</div>
+                            <div *ngIf="ticket.controls.email.errors.email">Email must be a valid email address</div>
+                   
+                        </div>
+                           -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <button class="btn btn-primary mr-1">Confirm</button>
+            <button class="btn btn-secondary mr-1" type="reset" (click)="onReset()">Reset</button>
+            <button class="btn btn-secondary" type="button" (click)="onClear()">Clear</button>
+        </div>
+    </div>
+</form>
+
+
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       <!-- 
+           
+        <form [formGroup]="filterForm" (ngSubmit)="onSubmitForm()">
+        <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="label">Label</label>
+        <div class="col-sm-10">
+        <input type="text" id="label" value="boutique" readonly class="form-control-plaintext" formControlName="label">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="condition">Condition</label><br/>
+        <div class="col-sm-10">
+            <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="1">ET</mat-radio-button>
+                <mat-radio-button value="2">OU</mat-radio-button>
+              </mat-radio-group>
+
+              <div formArrayName="hobbies">
+                <h3>Vos conditions :</h3>
+                <div class="form-group" *ngFor="let hobbyControl of getHobbies().controls; let i = index">
+                  <input type="text" class="form-control row" [formControlName]="i*i">
+                  <input type="text" class="form-control row" [formControlName]="i*i*i">
+                  <input type="text" class="form-control row" [formControlName]="i*i*i*i">
+
+                </div>
+                <button type="button" class="btn btn-success" (click)="onAddHobby()">Ajouter un hobby</button>
+          </div>
+            </div>
+      
+         
+
+       
+      </div>
+  <div class="form-group">
+        <label for="drinkPreference">Quelle boisson préférez-vous ?</label>
+        <select id="drinkPreference" class="form-control" formControlName="drinkPreference">
+          <option value="jus d\'orange">Jus d'orange</option>
+          <option value="jus de mangue">Jus de mangue</option>
+        </select>
+      </div>
+
+      <div formArrayName="hobbies">
+        <h3>Vos hobbies</h3>
+        <div class="form-group" *ngFor="let hobbyControl of getHobbies().controls; let i = index">
+          <input type="text" class="form-control" [formControlName]="i">
+          <input type="text" class="form-control" [formControlName]="i">
+          <input type="text" class="form-control" [formControlName]="i">
+
+        </div>
+        <button type="button" class="btn btn-success" (click)="onAddHobby()">Ajouter un hobby</button>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="filterForm.invalid">Soumettre</button>
+  
+      <button type="submit" class="btn btn-primary">Soumettre</button>
+    </form>
+  
+  -->
