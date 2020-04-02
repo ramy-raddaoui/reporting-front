@@ -48,6 +48,7 @@ export class AppComponent implements OnInit,OnDestroy{
   {
     this.value = [new Date("10/01/2019"), new Date("12/31/2019")];
     this.data["period"]=[]
+    this.data["where"]=[]
     this.data["period"].push(this.Prepare_JSON_DATE(this.value[0],"debut_période"))
     this.data["period"].push(this.Prepare_JSON_DATE(this.value[1],"fin_période"))
 
@@ -125,12 +126,16 @@ export class AppComponent implements OnInit,OnDestroy{
    this.itemsService.emitTaskGroups()
   }
 
+  
+
   filter(task)
   {
    this.dialog.open(FilterComponent, {
     height: '700px',
     width: '1100px',
-    data: {'task':task}
+    disableClose : false,
+    data: {'task':task,
+          'dialog':this.dialog}
   });
   }
  
@@ -233,10 +238,8 @@ export class AppComponent implements OnInit,OnDestroy{
                 compteur++;
               }
               this.data["param2"].push(this.jsonObjOrdonnee);
-              }
-             
-            
-              console.log("this.data[\"period\"]"+this.data["period"])
+              }            
+              this.data["where"]=this.itemsService.data["where"]
               this.itemsService.data=this.data;
               this.itemsService.emitData();
               console.log("After emit DATA FUNCTION CALL")

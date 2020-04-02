@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 export class ItemsService {
   data={}
   can_send_api_request=false
-
+  data_filter=[]
   taskGroups: any[] = [
     {
       title: "Abscisse",
@@ -17,25 +17,26 @@ export class ItemsService {
           title: "boutique",
           description: ""
         },
-     /*   {
+         /*
+      {
           id: 1,
           title: "produit",
           description: ""
         },
-       */ 
+        */ 
       ]
     },
     {
       title: "GROUP BY",
       id: "GROUP BY",
       tasks: [
-    /* 
+   
        {
           id: 0,
           title: "Nom du produit",
           description: ""
         },
- 
+  /* 
      
         
         */

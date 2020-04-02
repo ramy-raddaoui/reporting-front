@@ -43,7 +43,7 @@
                     <div class="form-group col-6">
                         <label>Opérateur</label>
                         <select class="form-control" formControlName="operator">
-                            <option value="=">=</option>
+                            <option [selected]="true" value="=">=</option>
                             <option value=">">></option>
                             <option value=">=">>=</option>
                             <option value="<"><</option>
@@ -82,8 +82,9 @@
         </div>
         <div class="card-footer text-center">
             <button class="btn btn-primary mr-1">Confirm</button>
-            <button class="btn btn-secondary mr-1" type="reset" (click)="onReset()">Reset</button>
-            <button class="btn btn-secondary" type="button" (click)="onClear()">Clear</button>
+           <!-- <button class="btn btn-secondary mr-1" type="reset" (click)="onReset()">Reset</button>-->
+            <button class="btn btn-secondary mr-2" type="button" (click)="onClear()">Clear</button>
+            <button class="btn btn-secondary" mat-dialog-close>Cancel</button>
         </div>
     </div>
 </form>
