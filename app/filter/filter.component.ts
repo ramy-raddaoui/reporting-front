@@ -11,6 +11,7 @@ export class FilterComponent implements OnInit {
   dynamicForm: FormGroup;
   submitted = false;
   data :any;
+  nb_conditions: any
   constructor(public formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<FilterComponent>,
     @Inject(MAT_DIALOG_DATA) public task: any,@Inject(MAT_DIALOG_DATA) public dialog: any,public itemsService: ItemsService) {
@@ -30,6 +31,11 @@ export class FilterComponent implements OnInit {
      }
      */
   ngOnInit() {
+    this.dynamicForm = this.formBuilder.group({
+      numberOfConditions: ['', Validators.required],
+      logic: ['ET', Validators.required],
+      conditions: new FormArray([])
+  });
 
   /*  this.t.push(this.formBuilder.group({
       name: ['', Validators.required],
@@ -43,22 +49,27 @@ export class FilterComponent implements OnInit {
 //this.parseObject()
     //let obj = 
    // this.data=obj.title
-   console.log(this.itemsService.data_filter)
-   if (this.itemsService.data_filter.length==0)
+   //console.log(this.itemsService.data_filter)
+   /*if (this.itemsService.data_filter.length==0)
     this.dynamicForm = this.formBuilder.group({
-        numberOfConditions: ['1', Validators.required],
+        numberOfConditions: ['', Validators.required],
         logic: ['ET', Validators.required],
         conditions: new FormArray([])
     });
-
-    if (this.itemsService.data_filter.length >0)
-    {
+*/
+   // else {
       let counter=0;
+      
     while (counter<this.itemsService.data_filter.length)
     {
       if (this.itemsService.data_filter[counter]["conditions"][0].name===this.task["task"].title)
       {
-
+        this.nb_conditions=this.itemsService.data_filter[counter].numberOfConditions;
+        this.dynamicForm = this.formBuilder.group({
+          numberOfConditions: [this.itemsService.data_filter[counter].numberOfConditions, Validators.required],
+          logic: [this.itemsService.data_filter[counter].logic, Validators.required],
+          conditions: new FormArray([])
+      });
        for (let i=0;i<this.itemsService.data_filter[counter].numberOfConditions;i++)
        {
          this.t.push(this.formBuilder.group({
@@ -67,16 +78,11 @@ export class FilterComponent implements OnInit {
            valeur: [this.itemsService.data_filter[counter]["conditions"][i].valeur, [Validators.required]]
        }));
        }
-       this.dynamicForm = this.formBuilder.group({
-        numberOfConditions: [this.itemsService.data_filter[counter].numberOfConditions, Validators.required],
-        logic: [this.itemsService.data_filter[counter].logic, Validators.required],
-        conditions: new FormArray([])
-    });
         break;
       }
       counter++;
     }
-  }
+ // }
 
 }
 
@@ -112,6 +118,7 @@ export class FilterComponent implements OnInit {
      let trouve=false
      let counter=0;
      JSON_OBJECT["name"]=this.task["task"].title
+     JSON_OBJECT["logic"]=this.dynamicForm.value["logic"]
      JSON_OBJECT["conditions"]=[]
      if (this.itemsService.data_filter !== undefined)
      {
@@ -144,6 +151,7 @@ export class FilterComponent implements OnInit {
           {
             if (this.itemsService.data["where"][i].name===this.task["task"].title)
             {
+              this.itemsService.data["where"][i]["logic"]=JSON_OBJECT["logic"]
               this.itemsService.data["where"][i]["conditions"]=JSON_OBJECT["conditions"]
               filter_already_exist=true
               break;
@@ -182,6 +190,10 @@ export class FilterComponent implements OnInit {
      // clear errors and reset ticket fields
      this.submitted = false;
      this.t.reset();
+ }
+ ngOnDestroy()
+ {
+   console.log("Ng on destroy here")
  }
 /*
   initForm() {
