@@ -53,6 +53,66 @@ metriques = [
   'Realization',
 ];
 
+
+onTaskDrop(event: CdkDragDrop<any[]>) {
+  console.log(event)
+
+if (["cdk-drop-list-0","cdk-drop-list-1"].indexOf(event.previousContainer["id"])>-1)
+{
+  this.itemsService.taskGroups[event.container["id"]].tasks.splice(event.currentIndex, 0, {
+    id: event.previousIndex,
+    title: event.previousContainer.data[event.previousIndex]["title"],
+    description: ""
+  });
+}
+else
+{
+  if (event.previousContainer === event.container) {
+    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    
+  } else {
+    transferArrayItem(event.previousContainer.data,
+      event.container.data,
+      event.previousIndex,
+      event.currentIndex);
+  }
+}
+
+/*
+  switch()
+  {
+  case "cdk-drop-list-0":
+ transferArrayItem(event.previousContainer.data,
+    event.container.data,
+    event.previousIndex,
+    event.currentIndex);
+ 
+  console.log(event.previousContainer.data[event.previousIndex])
+    console.log(this.itemsService.taskGroups[event.container["id"]].tasks)
+  break;
+  case "cdk-drop-list-1":
+    transferArrayItem(event.previousContainer.data,
+      event.container.data,
+      event.previousIndex,
+      event.currentIndex);
+    
+    this.meta_data[1].tasks.push({
+      id: event.previousIndex,
+      title: event.previousContainer.data[event.previousIndex],
+      description: ""
+    });break;
+    default :
+   
+    break;
+
+}
+  //event.previousContainer.data[event.previousIndex]=
+ 
+ // this.meta_data.push
+  */
+  this.itemsService.emitTaskGroups(); // Exécuter cette méthode pour émettre les données , si on n'émet pas les données on ne pourra jamais les récupérer
+}
+
   meta_data = [
     {
       title: "Métadonnées",
@@ -60,19 +120,19 @@ metriques = [
       tasks: [
         {
           id: 0,
-          title: "Produit NOM",
+          title: "boutique",
           description: ""
         },
         
       {
           id: 1,
-          title: "Employee NOM",
+          title: "Nom du produit",
           description: ""
         },
        
       ]
     },
- /*   {
+    {
       title: "Métriques",
       id: "Métriques",
       tasks: [
@@ -89,7 +149,7 @@ metriques = [
         },
      
       ]
-    }  */
+    } /* */
   ];
 /*
   done = [
@@ -235,28 +295,6 @@ metriques = [
   });
   }
  
-  onTaskDrop(event: CdkDragDrop<any[]>) {
-    console.log(event)
-    let JSON_OBj={}
-    if(event.previousContainer["id"]=="metadata")
-    JSON_OBj={
-      id: event.previousIndex,
-      title: event.previousContainer.data[event.previousIndex],
-      description: ""
-    }
-    //event.previousContainer.data[event.previousIndex]=
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      
-    } else {
-      transferArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex);
-    }
-    
-    this.itemsService.emitTaskGroups(); // Exécuter cette méthode pour émettre les données , si on n'émet pas les données on ne pourra jamais les récupérer
-  }
 
   ChangingFunction()
   {

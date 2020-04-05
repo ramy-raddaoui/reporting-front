@@ -16,12 +16,13 @@ export class ItemsService {
       title: "Abscisse",
       id: "Abscisse",
       tasks: [
-        {
+        
+         /*{
           id: 0,
           title: "boutique",
           description: ""
         },
-         /*
+        
       {
           id: 1,
           title: "produit",
@@ -34,14 +35,14 @@ export class ItemsService {
       title: "GROUP BY",
       id: "GROUP BY",
       tasks: [
-   
+    /*
        {
           id: 0,
           title: "Nom du produit",
           description: ""
         },
   
-     
+     */
         
         
       ]

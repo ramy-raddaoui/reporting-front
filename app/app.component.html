@@ -5,11 +5,11 @@
     <span *ngIf="is_Date_Range_NULL && is_checkbox_date_checked" class="alert alert-danger">DateRange Can't be NULL</span><br/>
     <mat-checkbox checked="true" (change)="change_checkbox($event)">Utiliser comme dimension</mat-checkbox>
     </div>   
-
+    
 <!-- New added -->
 <div class="split-example ex1" style="height: 500px;">
-  <as-split [gutterSize]="15" direction="vertical" >
-
+  <as-split [gutterSize]="30" direction="vertical" >
+    <as-split-area [visible]="actionSplit.isVisibleA" [order]="0">
       <div class="example-list" *ngFor="let taskGroup of meta_data; let i = index" cdkDropList [cdkDropListConnectedTo]="connectedTo" [cdkDropListData]="taskGroup.tasks" (cdkDropListDropped)="drop($event)">
     
         <div class="bg-light shadow rounded p-3">
@@ -25,89 +25,16 @@
         </div>
   
       </div>
-      <!--
-          <div class="example-container">
-            <h2>Méta données</h2>
-            <div
-              cdkDropList
-              id="metadata"
-              #todoList="cdkDropList"
-              [cdkDropListData]="meta_data"
-              [cdkDropListConnectedTo]="connectedTo"
-              class="example-list"
-              (cdkDropListDropped)="drop($event)">
-              <div class="example-box" *ngFor="let item of meta_data" cdkDrag>{{item}}</div>
-            </div>
-          </div>
-          -->
 
-
-    <as-split-area [visible]="actionSplit.isVisibleB" [order]="1">
-
-
-
-
-        <!--  <div class="example-container">
-            <h2>Métriques</h2>
-            <div
-              cdkDropList
-              #doneList="cdkDropList"
-              [cdkDropListData]="metriques"
-              class="example-list"
-              [cdkDropListConnectedTo]="[todoList]"
-              (cdkDropListDropped)="drop($event)">
-              <div class="example-box" *ngFor="let item of metriques" cdkDrag>{{item}}</div>
-            </div>
-          </div>
-        -->
     </as-split-area>
+
   </as-split>
+
+  
 </div>
 
 
-<!---->
 
-
-
-
-    <!---->
-  <!--  <div class="row" cdkDropListGroup>
-      <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let taskGroup of taskGroups" cdkDropList [cdkDropListData]="taskGroup.tasks" (cdkDropListDropped)="onTaskDrop($event)">
-  
-        <div class="bg-light shadow rounded p-3">
-          <h2 class="font-weight-normal text-center">{{ taskGroup.title }}</h2>
-                <div style="text-align:center;" *ngIf="taskGroup.title=='Abscisse' && !isAbscisseValid"> 
-                  <span class="alert alert-danger" >Vous devez sélectionner un seul Item</span>
-                </div>   
-                <div style="text-align:center;" *ngIf="taskGroup.title=='Ordonnée' && isAbscisseValid && isGroupByValid && !isOrdonneeValid"> 
-                  <span class="alert alert-danger" >Vous devez sélectionner un Item</span>
-                </div>
-                <div style="text-align:center;" *ngIf="taskGroup.title=='GROUP BY' && !isGroupByValid && isAbscisseValid && isMultiParamsGroupByAllowed"> 
-                  <span class="alert alert-danger" >Vous devez sélectionner un Item </span>
-                </div>   
-                <div style="text-align:center;" *ngIf="taskGroup.title=='GROUP BY' && isAbscisseValid && !isMultiParamsGroupByAllowed"> 
-                  <span class="alert alert-info" >GROUP BY Not Allowed for this chart </span>
-                </div>   
-          <div class="bg-white shadow my-2 p-3" *ngFor="let task of taskGroup.tasks" cdkDrag>
-            <h4 class="font-weight-normal">{{ task.title }}
-  
-              <span style="float:right;" (click)="delete(task,taskGroup.title)" class="material-icons">
-                delete
-                </span>
-                <span *ngIf="taskGroup.title!='Ordonnée'" style="float:right;" (click)="filter(task)" class="material-icons">
-                  local_bar
-                  </span>
-  
-            </h4>
-            <p class="lead mb-0">{{ task.description }}</p>
-        
-          </div>
-        </div>
-  
-      </div>
-    </div>
-  -->
-    <!---->
     
   </mat-drawer>
   <mat-drawer-content>
