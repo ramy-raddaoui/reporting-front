@@ -7,6 +7,10 @@ export class ItemsService {
   data={}
   can_send_api_request=false
   data_filter=[]
+
+ 
+
+
   taskGroups: any[] = [
     {
       title: "Abscisse",
@@ -23,7 +27,7 @@ export class ItemsService {
           title: "produit",
           description: ""
         },
-        */ 
+      */
       ]
     },
     {
@@ -36,10 +40,10 @@ export class ItemsService {
           title: "Nom du produit",
           description: ""
         },
-  /* 
+  
      
         
-        */
+        
       ]
     },
     {

@@ -1,6 +1,6 @@
 <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
     <div class="card m-3">
-        <h5 class="card-header"></h5>
+        <h5 class="card-header">{{data}}</h5>
         <div class="card-body">
             <div class="form-row">
                 <div class="form-group">
@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Logic Operator</label>
+                    <label>Logic Operator</label> 
                     <mat-radio-group formControlName="logic" aria-label="Select an option" class="form-control">
                         <mat-radio-button value="ET">ET</mat-radio-button>
                         <mat-radio-button value="OU">OU</mat-radio-button>

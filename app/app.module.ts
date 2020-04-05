@@ -19,10 +19,18 @@ import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { MatCheckboxModule   } from '@angular/material/checkbox';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio'; 
-
+import {MatToolbarModule} from '@angular/material/toolbar'; 
+import {MatSidenavModule} from '@angular/material/sidenav'; 
+import {MatListModule} from '@angular/material/list'; 
+import {MatButtonModule} from '@angular/material/button'; 
+import {MatIconModule} from '@angular/material/icon';
+import { FlexLayoutModule } from "@angular/flex-layout";
 import { StackedHorizbarChartComponent } from './stacked-horizbar-chart/stacked-horizbar-chart.component';
 import { ExportPDFComponent } from './export-pdf/export-pdf.component';
 import { FilterComponent } from './filter/filter.component';
+import { MenuOfChartsComponent } from './menu-of-charts/menu-of-charts.component';
+import { AngularSplitModule } from 'angular-split';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +43,8 @@ import { FilterComponent } from './filter/filter.component';
     DragAndDropHorizBarComponent,
     StackedHorizbarChartComponent,
     ExportPDFComponent,
-    FilterComponent
+    FilterComponent,
+    MenuOfChartsComponent
   ],
   imports: [ 
     BrowserModule,
@@ -51,6 +60,13 @@ import { FilterComponent } from './filter/filter.component';
     MatDialogModule,
     MatRadioModule,
     ReactiveFormsModule ,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
+    FlexLayoutModule,
+    AngularSplitModule.forRoot(),
     NgxDaterangepickerMd.forRoot()
   ],
   providers: [],

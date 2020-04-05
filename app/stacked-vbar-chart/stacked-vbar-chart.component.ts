@@ -81,6 +81,8 @@ export class StackedVBarChartComponent implements OnInit {
         }
       );
       //this.itemsService.emitData();
+      this.itemsService.emitTaskGroups()
+
   }
 
 }

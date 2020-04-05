@@ -34,7 +34,8 @@ export class AreaChartComponent implements OnInit {
 
       }
       );
-      this.itemsService.emitData();
+    //  this.itemsService.emitData();
+    this.itemsService.emitTaskGroups()
   }
   getAreaChart()
   {

@@ -81,7 +81,8 @@ export class HorizBarChartComponent implements OnInit {
         console.log("Sorry !!!! I can't SEND API REQUEST")
       }
       );
-      this.itemsService.emitData();
+     // this.itemsService.emitData();
+     this.itemsService.emitTaskGroups()
   }
 
 }

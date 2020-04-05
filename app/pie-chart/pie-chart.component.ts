@@ -52,7 +52,8 @@ export class PieChartComponent implements OnInit {
         console.log("Sorry !!!! I can't SEND API REQUEST")
       }
       );
-      this.itemsService.emitData();  
+      this.itemsService.emitTaskGroups()
+      //this.itemsService.emitData();  
     }
 
   ngOnDestroy()

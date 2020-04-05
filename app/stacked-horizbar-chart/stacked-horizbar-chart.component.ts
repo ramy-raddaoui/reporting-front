@@ -81,6 +81,7 @@ export class StackedHorizbarChartComponent implements OnInit {
         }
       );
       //this.itemsService.emitData();
+      this.itemsService.emitTaskGroups()
   }
 
 

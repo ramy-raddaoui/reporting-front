@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ɵConsole, ViewChild, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ItemsService } from './items.service';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem,copyArrayItem } from '@angular/cdk/drag-drop';
 import { Moment } from 'moment';
 import {formatDate} from '@angular/common'
 import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
@@ -32,6 +32,84 @@ export class AppComponent implements OnInit,OnDestroy{
   jsonObjOrdonnee={};
   metrique=["somme","moyenne","max","min"]
   selected: {start: Moment, end: Moment};
+  connectedTo = ["0","1","2"];
+  actionSplit = {
+    isVisibleA: true,
+    isVisibleB: true,
+    isPresentA: true,
+    isPresentB: true,
+    logs: ''
+ }
+
+ meta_data = [
+  'PRODUIT NOM',
+  'PRODUIT LEVEL'
+];
+
+metriques = [
+  'Achievement',
+  'Payment',
+  'Target',
+  'Realization',
+];
+/*
+  metadata = [
+    {
+      title: "Métadonnées",
+      id: "Métadonnées",
+      tasks: [
+        {
+          id: 0,
+          title: "Produit NOM",
+          description: ""
+        },
+        
+      {
+          id: 1,
+          title: "Employee NOM",
+          description: ""
+        },
+       
+      ]
+    },
+  ];
+
+  done = [
+    {
+      title: "Métriques",
+      id: "Métriques",
+      tasks: [
+        {
+          id: 0,
+          title: "achievement",
+          description: ""
+        },
+        
+      {
+          id: 1,
+          title: "payment",
+          description: ""
+        },
+       
+      ]
+    },
+  ];
+*/
+  drop(event: CdkDragDrop<string[]>) {
+
+    if (event.previousContainer === event.container) {
+      
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+     
+    } else {
+
+       transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+     
+    } 
+  }
   constructor(public itemsService: ItemsService,public dialog:MatDialog){
 
   }
@@ -140,6 +218,8 @@ export class AppComponent implements OnInit,OnDestroy{
   }
  
   onTaskDrop(event: CdkDragDrop<any[]>) {
+    console.log(event)
+    console.log(event.previousContainer["id"])
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
       
