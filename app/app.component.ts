@@ -41,19 +41,19 @@ export class AppComponent implements OnInit,OnDestroy{
     logs: ''
  }
 
- meta_data = [
+ /*meta_data = [
   'PRODUIT NOM',
   'PRODUIT LEVEL'
 ];
-
+*/
 metriques = [
   'Achievement',
   'Payment',
   'Target',
   'Realization',
 ];
-/*
-  metadata = [
+
+  meta_data = [
     {
       title: "Métadonnées",
       id: "Métadonnées",
@@ -72,8 +72,26 @@ metriques = [
        
       ]
     },
+ /*   {
+      title: "Métriques",
+      id: "Métriques",
+      tasks: [
+        {
+          id: 0,
+          title: "achievement",
+          description: ""
+        },
+        
+      {
+          id: 1,
+          title: "payment",
+          description: ""
+        },
+     
+      ]
+    }  */
   ];
-
+/*
   done = [
     {
       title: "Métriques",
@@ -219,7 +237,14 @@ metriques = [
  
   onTaskDrop(event: CdkDragDrop<any[]>) {
     console.log(event)
-    console.log(event.previousContainer["id"])
+    let JSON_OBj={}
+    if(event.previousContainer["id"]=="metadata")
+    JSON_OBj={
+      id: event.previousIndex,
+      title: event.previousContainer.data[event.previousIndex],
+      description: ""
+    }
+    //event.previousContainer.data[event.previousIndex]=
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
       

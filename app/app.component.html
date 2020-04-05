@@ -9,7 +9,23 @@
 <!-- New added -->
 <div class="split-example ex1" style="height: 500px;">
   <as-split [gutterSize]="15" direction="vertical" >
-    <as-split-area [visible]="actionSplit.isVisibleA" [order]="0">
+
+      <div class="example-list" *ngFor="let taskGroup of meta_data; let i = index" cdkDropList [cdkDropListConnectedTo]="connectedTo" [cdkDropListData]="taskGroup.tasks" (cdkDropListDropped)="drop($event)">
+    
+        <div class="bg-light shadow rounded p-3">
+          <h2 class="font-weight-normal text-center">{{ taskGroup.title }} </h2>
+               
+          <div class="example-box" *ngFor="let task of taskGroup.tasks" cdkDrag>
+            <h4 class="font-weight-normal">{{ task.title }}
+  
+            </h4>
+           <!-- <p class="lead mb-0">{{ task.description }}</p>-->
+        
+          </div>
+        </div>
+  
+      </div>
+      <!--
           <div class="example-container">
             <h2>Méta données</h2>
             <div
@@ -23,10 +39,15 @@
               <div class="example-box" *ngFor="let item of meta_data" cdkDrag>{{item}}</div>
             </div>
           </div>
-    </as-split-area>
+          -->
+
 
     <as-split-area [visible]="actionSplit.isVisibleB" [order]="1">
-          <div class="example-container">
+
+
+
+
+        <!--  <div class="example-container">
             <h2>Métriques</h2>
             <div
               cdkDropList
@@ -38,7 +59,7 @@
               <div class="example-box" *ngFor="let item of metriques" cdkDrag>{{item}}</div>
             </div>
           </div>
-
+        -->
     </as-split-area>
   </as-split>
 </div>
