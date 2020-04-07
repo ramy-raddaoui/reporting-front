@@ -39,6 +39,8 @@ export class PieChartComponent implements OnInit {
   }
 
   
+
+  
   ngOnInit() {
     this.itemsService.data["display"]="pie";
     this.dataSubscription = this.itemsService.dataSubject.subscribe(

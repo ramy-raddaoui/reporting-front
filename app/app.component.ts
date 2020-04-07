@@ -7,6 +7,11 @@ import {formatDate} from '@angular/common'
 import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
 import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
 import { FilterComponent } from './filter/filter.component';
+import * as shape from 'd3-shape';
+import * as d3Array from 'd3-array';
+import { formatLabel, escapeLabel } from '@swimlane/ngx-charts';
+import { barChart, lineChartSeries } from './combo-chart/combo-chart-data';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -41,18 +46,68 @@ export class AppComponent implements OnInit,OnDestroy{
     logs: ''
  }
 
- /*meta_data = [
-  'PRODUIT NOM',
-  'PRODUIT LEVEL'
-];
-*/
-metriques = [
-  'Achievement',
-  'Payment',
-  'Target',
-  'Realization',
-];
+meta_data = [];
+metriques=[];
 
+
+
+//
+
+view = [500,400];
+showXAxis = true;
+showYAxis = true;
+gradient = false;
+showLegend = true;
+legendTitle = 'Legend';
+legendPosition = 'right';
+showXAxisLabel = true;
+xAxisLabel = 'Country';
+showYAxisLabel = true;
+yAxisLabel = 'GDP Per Capita';
+showGridLines = true;
+innerPadding = '10%';
+animations: boolean = true;
+barChart: any[] = barChart;
+lineChartSeries: any[] = lineChartSeries;
+lineChartScheme = {
+  name: 'coolthree',
+  selectable: true,
+  group: 'Ordinal',
+  domain: ['#01579b', '#7aa3e5', '#a8385d', '#00bfa5']
+};
+
+comboBarScheme = {
+  name: 'singleLightBlue',
+  selectable: true,
+  group: 'Ordinal',
+  domain: ['#01579b']
+};
+
+showRightYAxisLabel: boolean = true;
+yAxisLabelRight: string = 'Utilization';
+
+
+yLeftAxisScale(min, max) {
+  return { min: `${min}`, max: `${max}` };
+}
+
+yRightAxisScale(min, max) {
+  return { min: `${min}`, max: `${max}` };
+}
+
+yLeftTickFormat(data) {
+  return `${data.toLocaleString()}`;
+}
+
+yRightTickFormat(data) {
+  return `${data}%`;
+}
+
+
+constructor(public itemsService: ItemsService,public dialog:MatDialog){
+this.meta_data=this.itemsService.meta_data;
+this.metriques=this.itemsService.metriques;
+}
 
 onTaskDrop(event: CdkDragDrop<any[]>) {
   console.log(event)
@@ -77,102 +132,10 @@ else
       event.currentIndex);
   }
 }
-
-/*
-  switch()
-  {
-  case "cdk-drop-list-0":
- transferArrayItem(event.previousContainer.data,
-    event.container.data,
-    event.previousIndex,
-    event.currentIndex);
- 
-  console.log(event.previousContainer.data[event.previousIndex])
-    console.log(this.itemsService.taskGroups[event.container["id"]].tasks)
-  break;
-  case "cdk-drop-list-1":
-    transferArrayItem(event.previousContainer.data,
-      event.container.data,
-      event.previousIndex,
-      event.currentIndex);
-    
-    this.meta_data[1].tasks.push({
-      id: event.previousIndex,
-      title: event.previousContainer.data[event.previousIndex],
-      description: ""
-    });break;
-    default :
-   
-    break;
-
-}
-  //event.previousContainer.data[event.previousIndex]=
- 
- // this.meta_data.push
-  */
   this.itemsService.emitTaskGroups(); // Exécuter cette méthode pour émettre les données , si on n'émet pas les données on ne pourra jamais les récupérer
 }
 
-  meta_data = [
-    {
-      title: "Métadonnées",
-      id: "Métadonnées",
-      tasks: [
-        {
-          id: 0,
-          title: "boutique",
-          description: ""
-        },
-        
-      {
-          id: 1,
-          title: "Nom du produit",
-          description: ""
-        },
-       
-      ]
-    },
-    {
-      title: "Métriques",
-      id: "Métriques",
-      tasks: [
-        {
-          id: 0,
-          title: "achievement",
-          description: ""
-        },
-        
-      {
-          id: 1,
-          title: "payment",
-          description: ""
-        },
-     
-      ]
-    } /* */
-  ];
-/*
-  done = [
-    {
-      title: "Métriques",
-      id: "Métriques",
-      tasks: [
-        {
-          id: 0,
-          title: "achievement",
-          description: ""
-        },
-        
-      {
-          id: 1,
-          title: "payment",
-          description: ""
-        },
-       
-      ]
-    },
-  ];
-*/
+
   drop(event: CdkDragDrop<string[]>) {
 
     if (event.previousContainer === event.container) {
@@ -188,9 +151,7 @@ else
      
     } 
   }
-  constructor(public itemsService: ItemsService,public dialog:MatDialog){
 
-  }
 
 
   /*
@@ -404,3 +365,109 @@ else
     this.taskGroupsSubscription.unsubscribe();
   }
 }
+/*
+export let lineChartSeries = [
+  {
+    name: 'Tablets',
+    series: [
+          {
+      name: 'USA',
+      value: 50
+    },
+      {
+        value: 80,
+        name: 'United Kingdom'
+      },
+      {
+        value: 85,
+        name: 'France'
+      },
+      {
+        value: 90,
+        name: 'Japan'
+      },
+      {
+        value: 100,
+        name: 'China'
+      }
+    ]
+  },
+    {
+    name: 'Cell Phones',
+    series: [
+          {
+      value: 10,
+      name: 'USA'
+    },
+      {
+        value: 20,
+        name: 'United Kingdom'
+      },
+      {
+        value: 30,
+        name: 'France'
+      },
+      {
+        value: 40,
+        name: 'Japan'
+      },
+      {
+        value: 10,
+        name: 'China'
+      }
+    ]
+  },
+    {
+    name: 'Computers',
+    series: [
+          {
+      value: 2,
+      name: 'USA',
+  
+    },
+      {
+        value: 4,
+        name: 'United Kingdom'
+      },
+      {
+        value: 20,
+        name: 'France'
+      },
+      {
+        value: 30,
+        name: 'Japan'
+      },
+      {
+        value: 35,
+        name: 'China'
+      }
+    ]
+  }
+  ];
+  
+  export let barChart: any = [
+  {
+    name: 'USA',
+    value: 50000
+  },
+  {
+    name: 'United Kingdom',
+    value: 30000
+  },
+  {
+    name: 'France',
+    value: 10000
+  },
+  {
+    name: 'Japan',
+    value: 5000
+  },
+  {
+    name: 'China',
+    value: 500
+  }
+  ];
+  
+  
+  
+*/

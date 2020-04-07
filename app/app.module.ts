@@ -30,6 +30,15 @@ import { ExportPDFComponent } from './export-pdf/export-pdf.component';
 import { FilterComponent } from './filter/filter.component';
 import { MenuOfChartsComponent } from './menu-of-charts/menu-of-charts.component';
 import { AngularSplitModule } from 'angular-split';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AngularBlockUiDynamicModule } from 'angular-block-ui-dynamic';
+
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { ComboChartComponent } from './combo-chart/combo-chart.component';
+import { ComboSeriesVerticalComponent } from './combo-chart/combo-series-vertical.component';
+library.add(fas);
+
 
 @NgModule({
   declarations: [
@@ -44,7 +53,9 @@ import { AngularSplitModule } from 'angular-split';
     StackedHorizbarChartComponent,
     ExportPDFComponent,
     FilterComponent,
-    MenuOfChartsComponent
+    MenuOfChartsComponent,
+    ComboChartComponent,
+    ComboSeriesVerticalComponent
   ],
   imports: [ 
     BrowserModule,
@@ -66,10 +77,12 @@ import { AngularSplitModule } from 'angular-split';
     MatIconModule,
     MatButtonModule,
     FlexLayoutModule,
+    FontAwesomeModule,
+    AngularBlockUiDynamicModule,
     AngularSplitModule.forRoot(),
     NgxDaterangepickerMd.forRoot()
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent] 
 })
 export class AppModule { }

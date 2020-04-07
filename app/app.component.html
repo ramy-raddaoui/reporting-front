@@ -1,3 +1,4 @@
+
 <mat-drawer-container class="example-container">
   <mat-drawer mode="side" opened>
     <div>
@@ -89,7 +90,32 @@
     -->
     
     <div  style="display: table;margin: auto;">
-    <router-outlet ></router-outlet>  
+      <combo-chart-component
+  [view]="view"
+  [scheme]="comboBarScheme"
+  [colorSchemeLine]="lineChartScheme"
+  [results]="barChart"
+  [animations]="animations"
+  [lineChart]="lineChartSeries"
+  [yAxisTickFormatting]="yLeftTickFormat"
+  [yLeftAxisScaleFactor]="yLeftAxisScale"
+  [yRightAxisScaleFactor]="yRightAxisScale"
+  [yRightAxisTickFormatting]="yRightTickFormat"
+  [gradient]="gradient"
+  [xAxis]="showXAxis"
+  [yAxis]="showYAxis"
+  [legend]="showLegend"
+  [legendTitle]="legendTitle"
+  [legendPosition]="legendPosition"
+  [showGridLines]="showGridLines"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [showRightYAxisLabel]="showYAxisLabel"
+  [xAxisLabel]="xAxisLabel"
+  [yAxisLabel]="yAxisLabel"
+  [yAxisLabelRight]="yAxisLabelRight">
+</combo-chart-component>
+    <!--<router-outlet ></router-outlet>-->  
     <br/>
     <app-export-pdf></app-export-pdf>
     </div>

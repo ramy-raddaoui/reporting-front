@@ -5,10 +5,55 @@ import { Subject } from 'rxjs';
 })
 export class ItemsService {
   data={}
-  can_send_api_request=false
+  public can_send_api_request=false
   data_filter=[]
 
- 
+  metriques = [
+    'Achievement',
+    'Payment',
+    'Target',
+    'Realization',
+  ];
+
+
+  meta_data = [
+    {
+      title: "Métadonnées",
+      id: "Métadonnées",
+      tasks: [
+        {
+          id: 0,
+          title: "boutique",
+          description: ""
+        },
+        
+      {
+          id: 1,
+          title: "Nom du produit",
+          description: ""
+        },
+       
+      ]
+    },
+    {
+      title: "Métriques",
+      id: "Métriques",
+      tasks: [
+        {
+          id: 0,
+          title: "achievement",
+          description: ""
+        },
+        
+      {
+          id: 1,
+          title: "payment",
+          description: ""
+        },
+     
+      ]
+    } 
+  ];
 
 
   taskGroups: any[] = [
