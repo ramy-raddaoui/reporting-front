@@ -9,7 +9,7 @@ import { LineChartComponent } from './line-chart/line-chart.component';
 import { AppComponent } from './app.component';
 import { DragAndDropHorizBarComponent } from './drag-and-drop-horiz-bar/drag-and-drop-horiz-bar.component';
 import { StackedHorizbarChartComponent } from './stacked-horizbar-chart/stacked-horizbar-chart.component';
-import { ComboChartComponent } from './combo-chart/combo-chart.component';
+import { ComboChartGComponent } from './combo-chart-g/combo-chart-g.component';
 
 
 const routes: Routes = [
@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'shbarchart' , component: StackedHorizbarChartComponent},
   {path: 'horizbarchart' , component: HorizBarChartComponent },
   {path: 'linechart' , component: LineChartComponent },
-  {path: 'combochart' , component: ComboChartComponent },
+  {path: 'combochart' , component: ComboChartGComponent },
   {path: 'dragdrop' , component: DragAndDropHorizBarComponent },
 
 

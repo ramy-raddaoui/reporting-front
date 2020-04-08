@@ -7,7 +7,7 @@ export class ItemsService {
   data={}
   public can_send_api_request=false
   data_filter=[]
-
+  data_function=[]
   metriques = [
     'Achievement',
     'Payment',
@@ -62,12 +62,12 @@ export class ItemsService {
       id: "Abscisse",
       tasks: [
         
-         /*{
+         {
           id: 0,
           title: "boutique",
           description: ""
         },
-        
+   /*     
       {
           id: 1,
           title: "produit",
@@ -98,14 +98,14 @@ export class ItemsService {
       tasks: [
         {
           id: 0,
-          title: "somme",
+          title: "Rémunération finale",
         },
         
         {
           id: 1,
-          title: "Rémunération finale",
-        }/*,
-              
+          title: "objectif par produit",
+        },
+     /*         
         {
           id: 1,
           title: "objectif par produit",

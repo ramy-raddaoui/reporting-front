@@ -19,6 +19,7 @@ export let lineChart: any = [
       value: 100,
       name: 'China'
     }
+    
   ];
   
   export let lineChartSeries = [
@@ -29,7 +30,7 @@ export let lineChart: any = [
           name: 'USA',
           value: 50
         },
-        {
+       {
           value: 80,
           name: 'United Kingdom'
         },
@@ -45,16 +46,17 @@ export let lineChart: any = [
           value: 100,
           name: 'China'
         }
+        
       ]
-    },
-    {
+    }];
+  /*  {
       name: 'Cell Phones',
       series: [
         {
           value: 10,
           name: 'USA'
         },
-        {
+       {
           value: 20,
           name: 'United Kingdom'
         },
@@ -70,6 +72,7 @@ export let lineChart: any = [
           value: 10,
           name: 'China'
         }
+        
       ]
     },
     {
@@ -79,7 +82,7 @@ export let lineChart: any = [
           value: 2,
           name: 'USA'
         },
-        {
+     /*   {
           value: 4,
           name: 'United Kingdom'
         },
@@ -98,26 +101,26 @@ export let lineChart: any = [
       ]
     }
   ];
-  
+  */
   export let barChart: any = [
     {
-      name: 'USA',
-      value: 50000
+      name: 'Orange Store 2 Mars',
+      value: 97096.17919542
     },
     {
-      name: 'United Kingdom',
-      value: 30000
+      name: 'Orange Store Agadir Hassan II',
+      value: 196259.70687408
     },
     {
-      name: 'France',
-      value: 10000
+      name: 'Orange Store Agadir Souk',
+      value: 97614.8875215
     },
     {
-      name: 'Japan',
-      value: 0
+      name: 'Orange Store Ait Melloul',
+      value: 66766.31453166
     },
     {
-      name: 'China',
-      value: 500
+      name: 'Orange Store Beni Mellal',
+      value: 128441.66438676
     }
   ];

@@ -37,7 +37,9 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { ComboChartComponent } from './combo-chart/combo-chart.component';
 import { ComboSeriesVerticalComponent } from './combo-chart/combo-series-vertical.component';
-library.add(fas);
+import { ComboChartGComponent } from './combo-chart-g/combo-chart-g.component';
+import { GroupFunctionComponent } from './group-function/group-function.component';
+library.add(fas); 
 
 
 @NgModule({
@@ -55,7 +57,9 @@ library.add(fas);
     FilterComponent,
     MenuOfChartsComponent,
     ComboChartComponent,
-    ComboSeriesVerticalComponent
+    ComboSeriesVerticalComponent,
+    ComboChartGComponent,
+    GroupFunctionComponent
   ],
   imports: [ 
     BrowserModule,

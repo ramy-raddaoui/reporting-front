@@ -165,7 +165,8 @@ export class FilterComponent implements OnInit {
       this.itemsService.data["where"].push(JSON_OBJECT)
      }
      this.itemsService.emitTaskGroups()
-     this.close()
+
+     
     
     /* console.log(this.dynamicForm.value["numberOfConditions"])
      console.log(this.dynamicForm.value["logic"])

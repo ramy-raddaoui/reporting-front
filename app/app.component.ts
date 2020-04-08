@@ -1,16 +1,14 @@
 import { Component, OnInit, OnDestroy, ɵConsole, ViewChild, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ItemsService } from './items.service';
-import { CdkDragDrop, moveItemInArray, transferArrayItem,copyArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Moment } from 'moment';
 import {formatDate} from '@angular/common'
 import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
 import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
 import { FilterComponent } from './filter/filter.component';
-import * as shape from 'd3-shape';
-import * as d3Array from 'd3-array';
-import { formatLabel, escapeLabel } from '@swimlane/ngx-charts';
-import { barChart, lineChartSeries } from './combo-chart/combo-chart-data';
+import { GroupFunctionComponent } from './group-function/group-function.component';
+
 
 @Component({
   selector: 'app-root',
@@ -51,60 +49,8 @@ metriques=[];
 
 
 
-//
 
-view = [500,400];
-showXAxis = true;
-showYAxis = true;
-gradient = false;
-showLegend = true;
-legendTitle = 'Legend';
-legendPosition = 'right';
-showXAxisLabel = true;
-xAxisLabel = 'Country';
-showYAxisLabel = true;
-yAxisLabel = 'GDP Per Capita';
-showGridLines = true;
-innerPadding = '10%';
-animations: boolean = true;
-barChart: any[] = barChart;
-lineChartSeries: any[] = lineChartSeries;
-lineChartScheme = {
-  name: 'coolthree',
-  selectable: true,
-  group: 'Ordinal',
-  domain: ['#01579b', '#7aa3e5', '#a8385d', '#00bfa5']
-};
-
-comboBarScheme = {
-  name: 'singleLightBlue',
-  selectable: true,
-  group: 'Ordinal',
-  domain: ['#01579b']
-};
-
-showRightYAxisLabel: boolean = true;
-yAxisLabelRight: string = 'Utilization';
-
-
-yLeftAxisScale(min, max) {
-  return { min: `${min}`, max: `${max}` };
-}
-
-yRightAxisScale(min, max) {
-  return { min: `${min}`, max: `${max}` };
-}
-
-yLeftTickFormat(data) {
-  return `${data.toLocaleString()}`;
-}
-
-yRightTickFormat(data) {
-  return `${data}%`;
-}
-
-
-constructor(public itemsService: ItemsService,public dialog:MatDialog){
+constructor(public itemsService: ItemsService,public dialog:MatDialog,public dialog_function:MatDialog){
 this.meta_data=this.itemsService.meta_data;
 this.metriques=this.itemsService.metriques;
 }
@@ -163,11 +109,13 @@ else
   */
   ngOnInit()
   {
+    this.itemsService.data_function=[]
     this.value = [new Date("10/01/2019"), new Date("12/31/2019")];
     this.data["period"]=[]
     this.data["where"]=[]
     this.data["period"].push(this.Prepare_JSON_DATE(this.value[0],"debut_période"))
     this.data["period"].push(this.Prepare_JSON_DATE(this.value[1],"fin_période"))
+   // console.log(this.itemsService.data_function)
 
     this.ChangingFunction()
   }
@@ -257,8 +205,21 @@ else
   }
  
 
+  function_to_use(task_title)
+  {
+    this.dialog.open(GroupFunctionComponent, {
+      height: '200px',
+      width: '500px',
+      disableClose : false,
+      data: {'task_title':task_title,
+            'dialog':this.dialog_function}
+    });
+  }
+
+
   ChangingFunction()
   {
+
     this.taskGroupsSubscription = this.itemsService.taskGroupsSubject.subscribe(
       (taskGroups: any[]) => {
         if (this.is_Date_Range_NULL==true && this.is_checkbox_date_checked){console.log("this.is_Date_Range_NULL==true");return;}
@@ -317,32 +278,44 @@ else
                 this.jsonObjGB={}
                 this.jsonObjGB["nom"]=child.tasks[i].title;
                 this.data["GroupBy"].push(this.jsonObjGB);
+             
               }
               break;
             case "Ordonnée":
+    
+         
+            
+              console.log("check this")
+              console.log(this.itemsService.data_function)
+              
               var compteur=0;
               if(child.tasks.length==0)
               {
               this.itemsService.can_send_api_request=false;return true;
               }
+              for (let j=0;j<child.tasks.length;j++)
+              {
+                this.data["param2"].push({"nom":child.tasks[j].title,"metrique":"sum"})
+              }
               this.isOrdonneeValid=true
               this.itemsService.can_send_api_request=true;
-              while (compteur<child.tasks.length)
+         //     this.data["param2"]=this.itemsService.data_function
+     
+             // console.log("this.data[param2]")
+         //  console.log(this.data["param2"])
+          /*    for (let i=0;i<child.tasks.length;i++)
               {
-                if (this.metrique.indexOf(child.tasks[compteur].title) !== -1)
-              {
-                this.jsonObjOrdonnee["metrique"]=child.tasks[compteur].title;
-                this.jsonObjOrdonnee["nom"]=child.tasks[compteur+1].title;
-                compteur+=2;
+                this.jsonObjOrdonnee={}
+                if (this.itemsService.data_function.indexOf(child.tasks[i])===-1)
+                {
+                  console.log("index OFFFF")
+                  this.jsonObjOrdonnee["nom"]=child.tasks[i].title;
+                  this.jsonObjOrdonnee["metrique"]="sum";
+                  this.data["param2"].push(this.jsonObjOrdonnee);
+                }
               }
-              else
-              {
-                this.jsonObjOrdonnee["nom"]=child.tasks[compteur].title;
-                this.jsonObjOrdonnee["metrique"]="N/A";
-                compteur++;
-              }
-              this.data["param2"].push(this.jsonObjOrdonnee);
-              }            
+         */
+                          
               this.data["where"]=this.itemsService.data["where"]
               this.itemsService.data=this.data;
               this.itemsService.emitData();

@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+    Fonction à appliquer pour : {{data}}
+  </mat-toolbar>
+  <br/>
+
+  <mat-radio-group [(ngModel)]="selection" #radioGroup="matRadioGroup">
+    <mat-radio-button  value="sum">sum</mat-radio-button>
+    <mat-radio-button value="avg">avg</mat-radio-button>
+    <mat-radio-button value="min">min</mat-radio-button>
+    <mat-radio-button value="max">max</mat-radio-button>
+  </mat-radio-group>
+  <div>radio group ngModel: {{ selection }}</div>
+  <!--  <div>radio group value: {{ radioGroup.value }}</div>
+        <div class="form-group">
+      <mat-radio-group>
+        <mat-radio-button name="function_name" (change)="onItemChange()" [(ngModel)]="selectedStatus" *ngFor="let op of selectoptions" value="{{op}}">{{op}}</mat-radio-button>
+  <mat-radio-button value="avg">Moyenne</mat-radio-button>
+        <mat-radio-button value="max">Max</mat-radio-button>
+        <mat-radio-button value="min">MIN</mat-radio-button>
+  
+      </mat-radio-group>
+          
+    </div>
+      -->
+    <div class="card-footer text-center">
+      <button class="btn btn-primary mr-1" mat-dialog-close (click)="onClick($event)">Confirm</button>
+      <button class="btn btn-secondary" mat-dialog-close>Cancel</button>
+  </div>

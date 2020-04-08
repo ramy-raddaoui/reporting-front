@@ -64,9 +64,15 @@
                 <span style="float:right;" (click)="delete(task,taskGroup.title)" class="material-icons">
                   delete
                   </span>
-                  <span *ngIf="taskGroup.title!='Ordonnée'" style="float:right;" (click)="filter(task)" class="material-icons">
+                  <span *ngIf="taskGroup.title!='Ordonnée';else other_content" style="float:right;" (click)="filter(task)" class="material-icons">
                     local_bar
                     </span>
+                    <ng-template #other_content>
+                      <span class="material-icons" style="float:right;" (click)="function_to_use(task.title)">
+                        label_important
+                      </span>
+
+                    </ng-template>
     
               </h4>
              <!-- <p class="lead mb-0">{{ task.description }}</p>-->
@@ -90,32 +96,8 @@
     -->
     
     <div  style="display: table;margin: auto;">
-      <combo-chart-component
-  [view]="view"
-  [scheme]="comboBarScheme"
-  [colorSchemeLine]="lineChartScheme"
-  [results]="barChart"
-  [animations]="animations"
-  [lineChart]="lineChartSeries"
-  [yAxisTickFormatting]="yLeftTickFormat"
-  [yLeftAxisScaleFactor]="yLeftAxisScale"
-  [yRightAxisScaleFactor]="yRightAxisScale"
-  [yRightAxisTickFormatting]="yRightTickFormat"
-  [gradient]="gradient"
-  [xAxis]="showXAxis"
-  [yAxis]="showYAxis"
-  [legend]="showLegend"
-  [legendTitle]="legendTitle"
-  [legendPosition]="legendPosition"
-  [showGridLines]="showGridLines"
-  [showXAxisLabel]="showXAxisLabel"
-  [showYAxisLabel]="showYAxisLabel"
-  [showRightYAxisLabel]="showYAxisLabel"
-  [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel"
-  [yAxisLabelRight]="yAxisLabelRight">
-</combo-chart-component>
-    <!--<router-outlet ></router-outlet>-->  
+
+    <router-outlet ></router-outlet>
     <br/>
     <app-export-pdf></app-export-pdf>
     </div>
