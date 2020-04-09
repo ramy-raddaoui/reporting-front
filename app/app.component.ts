@@ -285,8 +285,8 @@ else
     
          
             
-              console.log("check this")
-              console.log(this.itemsService.data_function)
+              //console.log("check this")
+              //console.log(this.itemsService.data_function)
               
               var compteur=0;
               if(child.tasks.length==0)
@@ -296,6 +296,19 @@ else
               for (let j=0;j<child.tasks.length;j++)
               {
                 this.data["param2"].push({"nom":child.tasks[j].title,"metrique":"sum"})
+              }
+              for (let j=0;j<this.itemsService.data_function.length;j++)
+              {
+                let k=0;
+                while(k<this.data["param2"].length)
+                {
+                if(this.data["param2"][k]["nom"]===this.itemsService.data_function[j]["nom"])
+                {
+                this.data["param2"][k]["metrique"]=this.itemsService.data_function[j]["metrique"]
+                break;
+                }
+                k++;
+                }
               }
               this.isOrdonneeValid=true
               this.itemsService.can_send_api_request=true;
