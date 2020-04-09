@@ -43,8 +43,6 @@ export class GroupFunctionComponent implements OnInit {
 
   ngOnInit(): void {
 
-  console.log("ng on Init group function component")
-  //  console.log(this.itemsService.data_function)
     let i=0;
     let trouve=false
     console.log(this.itemsService.data_function.length)

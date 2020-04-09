@@ -89,6 +89,7 @@ export let lineChartSeries = [
   {
     name: 'Commission/Granted SR',
     series: [
+      
       {
         name: '12 Janvier',
         value: 200

@@ -49,8 +49,11 @@
                   <div style="text-align:center;" *ngIf="taskGroup.title=='Abscisse' && !isAbscisseValid"> 
                     <span class="alert alert-danger" >Vous devez sélectionner un seul Item</span>
                   </div>   
-                  <div style="text-align:center;" *ngIf="taskGroup.title=='Ordonnée' && isAbscisseValid && isGroupByValid && !isOrdonneeValid"> 
+                  <div style="text-align:center;" *ngIf="taskGroup.title=='Ordonnée' && isAbscisseValid && isGroupByValid && !isOrdonneeValid && isComboValid"> 
                     <span class="alert alert-danger" >Vous devez sélectionner un Item</span>
+                  </div>
+                  <div style="text-align:center;" *ngIf="taskGroup.title=='Ordonnée' && isAbscisseValid && isGroupByValid && !isOrdonneeValid && !isComboValid"> 
+                    <span class="alert alert-danger" >Vous devez sélectionner deux Items</span>
                   </div>
                   <div style="text-align:center;" *ngIf="taskGroup.title=='GROUP BY' && !isGroupByValid && isAbscisseValid && isMultiParamsGroupByAllowed"> 
                     <span class="alert alert-danger" >Vous devez sélectionner un Item </span>

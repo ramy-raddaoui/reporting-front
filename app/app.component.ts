@@ -19,6 +19,7 @@ export class AppComponent implements OnInit,OnDestroy{
   isAbscisseValid=false
   isOrdonneeValid=false
   isGroupByValid=false
+  isComboValid=true
   is_Date_Range_NULL=false
   isMultiParamsGroupByAllowed=false
   value=[];
@@ -26,7 +27,7 @@ export class AppComponent implements OnInit,OnDestroy{
   param2=[];
   is_checkbox_date_checked=true
   data={};
-  title = 'ngxcharts';
+  title = 'Adhoc Reporting';
   taskGroups: any[];
   taskGroupsSubscription: Subscription;
   taskGroupsIds: any[]; // faire la liaison entre les listes pour passer les élements d'une liste à une autre
@@ -208,8 +209,8 @@ else
   function_to_use(task_title)
   {
     this.dialog.open(GroupFunctionComponent, {
-      height: '200px',
-      width: '500px',
+      height: '215px',
+      width: '550px',
       disableClose : false,
       data: {'task_title':task_title,
             'dialog':this.dialog_function}
@@ -227,6 +228,7 @@ else
         this.isOrdonneeValid=false
         this.isGroupByValid=false
         this.isMultiParamsGroupByAllowed=false
+        this.isComboValid=false
         this.taskGroups = taskGroups;
         this.data["param2"]=[]
         this.data["GroupBy"]=[]
@@ -270,6 +272,9 @@ else
                   case "horizbarchart":
                     if (child.tasks.length==0)this.isGroupByValid=true;
                     else {this.isMultiParamsGroupByAllowed=false;this.itemsService.can_send_api_request=false;return true;}break; 
+                    case "combo":
+                      if (child.tasks.length==0)this.isGroupByValid=true;
+                      else {this.isMultiParamsGroupByAllowed=false;this.itemsService.can_send_api_request=false;return true;}break; 
                   default: return true;
                     
                 }
@@ -282,16 +287,15 @@ else
               }
               break;
             case "Ordonnée":
-    
-         
-            
-              //console.log("check this")
-              //console.log(this.itemsService.data_function)
-              
+
               var compteur=0;
-              if(child.tasks.length==0)
+              if(child.tasks.length==0 || (child.tasks.length>1 && this.itemsService.data["display"]!=="combo"))
               {
               this.itemsService.can_send_api_request=false;return true;
+              }
+              if (this.itemsService.data["display"]==="combo" && child.tasks.length!=2)
+              {
+                    this.isComboValid=false;return true;
               }
               for (let j=0;j<child.tasks.length;j++)
               {
@@ -312,22 +316,7 @@ else
               }
               this.isOrdonneeValid=true
               this.itemsService.can_send_api_request=true;
-         //     this.data["param2"]=this.itemsService.data_function
-     
-             // console.log("this.data[param2]")
-         //  console.log(this.data["param2"])
-          /*    for (let i=0;i<child.tasks.length;i++)
-              {
-                this.jsonObjOrdonnee={}
-                if (this.itemsService.data_function.indexOf(child.tasks[i])===-1)
-                {
-                  console.log("index OFFFF")
-                  this.jsonObjOrdonnee["nom"]=child.tasks[i].title;
-                  this.jsonObjOrdonnee["metrique"]="sum";
-                  this.data["param2"].push(this.jsonObjOrdonnee);
-                }
-              }
-         */
+       
                           
               this.data["where"]=this.itemsService.data["where"]
               this.itemsService.data=this.data;
