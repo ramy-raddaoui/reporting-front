@@ -32,6 +32,8 @@ import { MenuOfChartsComponent } from './menu-of-charts/menu-of-charts.component
 import { AngularSplitModule } from 'angular-split';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularBlockUiDynamicModule } from 'angular-block-ui-dynamic';
+import {MatTableModule} from '@angular/material/table';
+
 
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -39,6 +41,7 @@ import { ComboChartComponent } from './combo-chart/combo-chart.component';
 import { ComboSeriesVerticalComponent } from './combo-chart/combo-series-vertical.component';
 import { ComboChartGComponent } from './combo-chart-g/combo-chart-g.component';
 import { GroupFunctionComponent } from './group-function/group-function.component';
+import { MatTableComponent } from './mat-table/mat-table.component';
 library.add(fas); 
 
 
@@ -59,7 +62,8 @@ library.add(fas);
     ComboChartComponent,
     ComboSeriesVerticalComponent,
     ComboChartGComponent,
-    GroupFunctionComponent
+    GroupFunctionComponent,
+    MatTableComponent
   ],
   imports: [ 
     BrowserModule,
@@ -82,6 +86,7 @@ library.add(fas);
     MatButtonModule,
     FlexLayoutModule,
     FontAwesomeModule,
+    MatTableModule,
     AngularBlockUiDynamicModule,
     AngularSplitModule.forRoot(),
     NgxDaterangepickerMd.forRoot()

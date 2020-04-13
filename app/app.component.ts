@@ -8,6 +8,7 @@ import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
 import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
 import { FilterComponent } from './filter/filter.component';
 import { GroupFunctionComponent } from './group-function/group-function.component';
+import { RESTService } from './rest.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit,OnDestroy{
   isGroupByValid=false
   isComboValid=true
   is_Date_Range_NULL=false
+
   isMultiParamsGroupByAllowed=false
   value=[];
   param1={};
@@ -29,6 +31,9 @@ export class AppComponent implements OnInit,OnDestroy{
   data={};
   title = 'Adhoc Reporting';
   taskGroups: any[];
+  isDataAPINotEmpty=false
+
+  isDataAPINotEmptySubscription :Subscription;
   taskGroupsSubscription: Subscription;
   taskGroupsIds: any[]; // faire la liaison entre les listes pour passer les élements d'une liste à une autre
   jsonObjAbscisse={};
@@ -51,7 +56,7 @@ metriques=[];
 
 
 
-constructor(public itemsService: ItemsService,public dialog:MatDialog,public dialog_function:MatDialog){
+constructor(public restapi:RESTService,public itemsService: ItemsService,public dialog:MatDialog,public dialog_function:MatDialog){
 this.meta_data=this.itemsService.meta_data;
 this.metriques=this.itemsService.metriques;
 }
@@ -116,8 +121,14 @@ else
     this.data["where"]=[]
     this.data["period"].push(this.Prepare_JSON_DATE(this.value[0],"debut_période"))
     this.data["period"].push(this.Prepare_JSON_DATE(this.value[1],"fin_période"))
+    this.isDataAPINotEmptySubscription=this.restapi.DataAPI.subscribe(
+      (isDataAPINotEmpty) => {
+   //     console.log(isDataAPINotEmpty)
+        this.isDataAPINotEmpty=isDataAPINotEmpty;
+      });
+      this.restapi.emit_isDataAPINotEmpty()
    // console.log(this.itemsService.data_function)
-
+    
     this.ChangingFunction()
   }
 
@@ -156,7 +167,7 @@ else
     
     this.data["period"].push(this.Prepare_JSON_DATE(full_end_date,"fin_période"))
     this.itemsService.emitTaskGroups()
-    console.log("On change method here")
+   // console.log("On change method here")
     }
 
   }
@@ -183,11 +194,12 @@ else
     index_in_array=this.itemsService.taskGroups[0].tasks.indexOf(task)
     this.itemsService.taskGroups[0].tasks.splice(index_in_array,1);break;
     case "GROUP BY":
+    index_in_array=this.itemsService.taskGroups[1].tasks.indexOf(task)
     this.itemsService.taskGroups[1].tasks.splice(index_in_array,1);break;
    case "Ordonnée":
+    index_in_array=this.itemsService.taskGroups[2].tasks.indexOf(task)
     this.itemsService.taskGroups[2].tasks.splice(index_in_array,1);break;
    default: console.log("Error on remove Item")
-
    } 
    this.itemsService.emitTaskGroups()
   }
@@ -205,6 +217,7 @@ else
   });
   }
  
+
 
   function_to_use(task_title)
   {
@@ -224,6 +237,8 @@ else
     this.taskGroupsSubscription = this.itemsService.taskGroupsSubject.subscribe(
       (taskGroups: any[]) => {
         if (this.is_Date_Range_NULL==true && this.is_checkbox_date_checked){console.log("this.is_Date_Range_NULL==true");return;}
+        this.restapi.isDataAPINotEmpty=false
+        this.restapi.emit_isDataAPINotEmpty()
         this.isAbscisseValid=false
         this.isOrdonneeValid=false
         this.isGroupByValid=false
@@ -240,12 +255,12 @@ else
             {
             this.itemsService.can_send_api_request=false;return true;
             }
-           console.log("Abscisse section")
+      //     console.log("Abscisse section")
             this.data["param1"]=child.tasks[0]['title'];
             this.isAbscisseValid=true
             break;
             case "GROUP BY":
-              console.log("GROUP BY section")
+            //  console.log("GROUP BY section")
                 switch(this.itemsService.data["display"])
                 {
                   case "area":
@@ -261,7 +276,7 @@ else
                     if (child.tasks.length==0){this.isMultiParamsGroupByAllowed=true;return true;}
                     this.isGroupByValid=true;
                     this.isMultiParamsGroupByAllowed=true;
-                    console.log("stackedv")
+                 //   console.log("stackedv")
                    break;         
                   case "pie":
                     if (child.tasks.length==0)this.isGroupByValid=true;
@@ -273,6 +288,7 @@ else
                     if (child.tasks.length==0)this.isGroupByValid=true;
                     else {this.isMultiParamsGroupByAllowed=false;this.itemsService.can_send_api_request=false;return true;}break; 
                     case "combo":
+                      console.log("combooo")
                       if (child.tasks.length==0)this.isGroupByValid=true;
                       else {this.isMultiParamsGroupByAllowed=false;this.itemsService.can_send_api_request=false;return true;}break; 
                   default: return true;
@@ -287,7 +303,7 @@ else
               }
               break;
             case "Ordonnée":
-
+            //  console.log("ordonnée")
               var compteur=0;
               if(child.tasks.length==0 || (child.tasks.length>1 && this.itemsService.data["display"]!=="combo"))
               {

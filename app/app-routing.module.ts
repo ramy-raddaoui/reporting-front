@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { DragAndDropHorizBarComponent } from './drag-and-drop-horiz-bar/drag-and-drop-horiz-bar.component';
 import { StackedHorizbarChartComponent } from './stacked-horizbar-chart/stacked-horizbar-chart.component';
 import { ComboChartGComponent } from './combo-chart-g/combo-chart-g.component';
+import { MatTableComponent } from './mat-table/mat-table.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,8 @@ const routes: Routes = [
   {path: 'linechart' , component: LineChartComponent },
   {path: 'combochart' , component: ComboChartGComponent },
   {path: 'dragdrop' , component: DragAndDropHorizBarComponent },
+  {path: 'matable' , component: MatTableComponent },
+
 
 
 

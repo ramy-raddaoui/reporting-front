@@ -14,6 +14,7 @@ export class StackedVBarChartComponent implements OnInit {
 
   multi: any[];
   view: any[] = [900, 600];
+  showTable=true
    /* data = {'param1': "Nom du produit", 
   'param2': [{"nom":"boutique","metrique":"GB"},{"nom":"Rémunération finale","metrique":"somme"}],
   'where':  [{"nom":"Date début","value":"GB"},{"nom":"Date fin","value":"somme"}],
@@ -43,7 +44,13 @@ export class StackedVBarChartComponent implements OnInit {
        error=>this.handleErrorResponse(error)
      );
   }
- 
+  IsshowTable()
+  {
+    this.showTable = !this.showTable;
+  }
+
+  
+
 
   handleSuccessfulResponse(response)
   {
@@ -60,9 +67,15 @@ export class StackedVBarChartComponent implements OnInit {
   ) {
     Object.assign(this, { multi });
   }
+ 
 
   onSelect(event) {
     console.log(event);
+  }
+  filter(event)
+  {
+    console.log(event);
+
   }
 
   ngOnInit(): void {

@@ -98,12 +98,17 @@
     </div>
     -->
     
-    <div  style="display: table;margin: auto;">
+    <div *ngIf="isDataAPINotEmpty ;else emptydata" style="display: table;margin: auto;">
+    <router-outlet></router-outlet>
 
-    <router-outlet ></router-outlet>
     <br/>
     <app-export-pdf></app-export-pdf>
     </div>
+    <ng-template #emptydata>
+     <div style="display: table;margin: auto;" class="alert alert-danger">Empty data returned
+
+     </div>
+    </ng-template>
     
 
   </mat-drawer-content>

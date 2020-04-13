@@ -67,6 +67,7 @@ yRightTickFormat(data) {
 
 getAreaChart()
 {
+ 
    this.restapi.PieandHistchartGetDATA(this.itemsService.data).subscribe(
      response => this.handleSuccessfulResponse(response),
      error=>this.handleErrorResponse(error)
@@ -75,6 +76,13 @@ getAreaChart()
 handleSuccessfulResponse(response)
 {
   console.log("handleSuccessful response on combochart")
+  console.log(this.restapi.isDataAPINotEmpty)
+  console.log(response[0].length>0)
+  if(response[0].length>0)
+  {
+    this.restapi.isDataAPINotEmpty=true
+    this.restapi.emit_isDataAPINotEmpty()
+  }
   this.barChart=response[0]
   this.lineChartSeries=response[1]
   this.yAxisLabel=this.itemsService.data["param2"][0]["nom"]
