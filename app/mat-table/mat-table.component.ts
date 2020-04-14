@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { ItemsService } from '../items.service';
+import { RenderService } from '../render.service';
 
 /*export interface PeriodicElement {
   
@@ -27,7 +28,7 @@ export class MatTableComponent implements OnInit {
    dataSource: MatTableDataSource<any>;
    @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
    @ViewChild(MatSort) sort: MatSort;
-  constructor(public itemsService: ItemsService)
+  constructor(public itemsService: ItemsService,public render:RenderService)
   {
     
   }
@@ -110,7 +111,7 @@ export class MatTableComponent implements OnInit {
     setTimeout(() => this.dataSource.paginator = this.paginator);
 //this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-
+    this.render.emitrender()
     }
   
 
