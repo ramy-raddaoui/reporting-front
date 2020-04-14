@@ -33,6 +33,7 @@ import { AngularSplitModule } from 'angular-split';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularBlockUiDynamicModule } from 'angular-block-ui-dynamic';
 import {MatTableModule} from '@angular/material/table';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -88,6 +89,7 @@ library.add(fas);
     FlexLayoutModule,
     FontAwesomeModule,
     MatTableModule,
+    MatTableExporterModule,
     AngularBlockUiDynamicModule,
     AngularSplitModule.forRoot(),
     NgxDaterangepickerMd.forRoot()

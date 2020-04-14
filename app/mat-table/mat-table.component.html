@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table matTableExporter #exporter="matTableExporter" id="contentOfTable" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
@@ -31,13 +31,18 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <mat-paginator #scheduledOrdersPaginator [length]="100"
+  <mat-paginator #scheduledOrdersPaginator [length]="500"
   [pageSize]="10"
-  [pageSizeOptions]="[5, 10, 25, 100]">
+  [pageSizeOptions]="[5, 10, 25, 100,500]">
 </mat-paginator>
-  
-  
-  
+<div class="export-container">
+<!--<button mat-raised-button color="primary" (click)="exportTable()">Export to Excel</button>-->	
+  <button mat-raised-button color="primary" (click)="exporter.exportTable('xlsx', {fileName:'ExcelFile', sheet: 'sheet_name', Props: {Author: 'SofCT'}})">Excel</button>
+  <button mat-raised-button color="primary" (click)="exporter.exportTable('csv')">Csv</button>
+  <button mat-raised-button color="primary" (click)="exporter.exportTable('json')">Json</button>
+  <button mat-raised-button color="primary" (click)="exporter.exportTable('txt')">Txt</button>
+</div>
+
   <!-- Copyright 2019 Google LLC. All Rights Reserved.
       Use of this source code is governed by an MIT-style license that
       can be found in the LICENSE file at http://angular.io/license -->

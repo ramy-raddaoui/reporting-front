@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { ItemsService } from '../items.service';
 import { RenderService } from '../render.service';
+import { TableUtil } from "./tableUtil";
 
 /*export interface PeriodicElement {
   
@@ -38,11 +39,15 @@ export class MatTableComponent implements OnInit {
   ngOnInit(): void {
    // console.log(this.data);
   }
+
+  exportTable(){
+    TableUtil.exportToExcel("contentOfTable");
+  }
   ngOnChanges() {
     console.log(this.data)
     this.Column=[]
     this.displayedColumns=[]
-
+    this.ELEMENT_DATA=[]
     if (["area","stackv","stackh","line"].indexOf(this.itemsService.data["display"])>0)
     {
       this.displayedColumns.push('/')
@@ -67,7 +72,7 @@ export class MatTableComponent implements OnInit {
         }
         */
         console.log(this.displayedColumns)
-        this.ELEMENT_DATA=[]
+        
         for (let i=0;i<this.data.length;i++)
         { 
           let JSON_OBj={}

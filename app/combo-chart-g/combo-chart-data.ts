@@ -23,7 +23,7 @@
 ];
 */
 export let barChart: any = [
-  {
+ /* {
     name: '12 Janvier',
     value: 37.97
   },
@@ -82,11 +82,11 @@ export let barChart: any = [
   {
     name: '12 Mar',
     value: 37.40
-  }
+  }*/
 ];
 
 export let lineChartSeries = [
-  {
+ /* {
     name: 'Commission/Granted SR',
     series: [
       
@@ -150,9 +150,9 @@ export let lineChartSeries = [
         name: '12 Mar',
         value: 215
       }
-      
+     
     ]
-  }];
+  } */];
 /*  {
     name: 'Cell Phones',
     series: [

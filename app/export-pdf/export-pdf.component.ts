@@ -17,6 +17,27 @@ export class ExportPDFComponent implements OnInit {
     this.render.renderSubject.subscribe(
       () => {    
         setTimeout(() => {
+
+              ////////////
+/*
+    var data = document.getElementById('contentToConvert'); 
+    html2canvas(data).then(canvas => { 
+    // Few necessary setting options 
+    var imgWidth = 208; 
+    var pageHeight = 295; 
+    var imgHeight = canvas.height * imgWidth / canvas.width; 
+    var heightLeft = imgHeight; 
+    
+    const contentDataURL = canvas.toDataURL('image/png') 
+    let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF 
+    var position = 0; 
+    pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight) 
+    pdf.save('MYPdf.pdf'); // Generated PDF  
+     }); 
+*/
+
+
+    /////////////////
           // Charts are now rendered
           const chart = document.getElementById('chart');
           html2canvas(chart, {
@@ -29,8 +50,17 @@ export class ExportPDFComponent implements OnInit {
               document.getElementById('chart').style.visibility = 'visible';
             }
           }).then((canvas) => {
+         //   var imgWidth = 208; 
+          //   var pageHeight = 295; 
+          //  var imgHeight = canvas.height * imgWidth / canvas.width; 
+            //  var heightLeft = imgHeight; 
             // Get chart data so we can append to the pdf
-            const chartData = canvas.toDataURL();
+          const chartData = canvas.toDataURL();
+          /*    let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF 
+          var position = 0; 
+          pdf.addImage(chartData, 'PNG', 0, position) 
+            pdf.save('MYPdf.pdf'); // Generated PDF
+            */ 
             // Prepare pdf structure
             const docDefinition = { content: [],
               styles: {
@@ -51,7 +81,7 @@ export class ExportPDFComponent implements OnInit {
                 // alignment: 'justify'
               }
             };
-    
+
             // Add some content to the pdf
             const title = {text: 'Résultat de votre export en PDF', style: 'subheader'};
             const description = {text: 'Vous trouver ci dessous l\'objet exporté', style: 'subsubheader'};
@@ -60,7 +90,7 @@ export class ExportPDFComponent implements OnInit {
             // Push image of the chart
             docDefinition.content.push({image: chartData, width: 600});
             this.docDefinition = docDefinition;
-            // pdfMake.createPdf(docDefinition).download('chartToPdf' + '.pdf');
+             //pdfMake.createPdf(docDefinition).download('chartToPdf' + '.pdf');
           });
         }, 2000);
       
