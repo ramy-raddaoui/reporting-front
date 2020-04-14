@@ -22,7 +22,7 @@ export class AppComponent implements OnInit,OnDestroy{
   isGroupByValid=false
   isComboValid=true
   is_Date_Range_NULL=false
-
+  
   isMultiParamsGroupByAllowed=false
   value=[];
   param1={};
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit,OnDestroy{
   title = 'Adhoc Reporting';
   taskGroups: any[];
   isDataAPINotEmpty=false
-
+  showTable=true
   isDataAPINotEmptySubscription :Subscription;
   taskGroupsSubscription: Subscription;
   taskGroupsIds: any[]; // faire la liaison entre les listes pour passer les élements d'une liste à une autre
@@ -121,13 +121,7 @@ else
     this.data["where"]=[]
     this.data["period"].push(this.Prepare_JSON_DATE(this.value[0],"debut_période"))
     this.data["period"].push(this.Prepare_JSON_DATE(this.value[1],"fin_période"))
-    this.isDataAPINotEmptySubscription=this.restapi.DataAPI.subscribe(
-      (isDataAPINotEmpty) => {
-   //     console.log(isDataAPINotEmpty)
-        this.isDataAPINotEmpty=isDataAPINotEmpty;
-      });
-      this.restapi.emit_isDataAPINotEmpty()
-   // console.log(this.itemsService.data_function)
+
     
     this.ChangingFunction()
   }
@@ -238,7 +232,6 @@ else
       (taskGroups: any[]) => {
         if (this.is_Date_Range_NULL==true && this.is_checkbox_date_checked){console.log("this.is_Date_Range_NULL==true");return;}
         this.restapi.isDataAPINotEmpty=false
-        this.restapi.emit_isDataAPINotEmpty()
         this.isAbscisseValid=false
         this.isOrdonneeValid=false
         this.isGroupByValid=false

@@ -1,4 +1,4 @@
-<div id="chart" style="visibility: visible">
+<div id="chart" style="visibility: visible" *ngIf="single?.length > 0;else empty_data">
 
   <ngx-charts-pie-chart 
   [view]="view"
@@ -14,7 +14,11 @@
   (deactivate)="onDeactivate($event)"
   >
 </ngx-charts-pie-chart>   
-<div fxFlex="50%">
-  <ngx-charts-legend fxFlex="100%" class="chart-legend" [data]="single"></ngx-charts-legend>
+<div>
+  <app-mat-table [data]="single"></app-mat-table>
 </div>
 </div>
+<ng-template #empty_data>
+  <br/>
+ <span class="alert alert-danger">Empty DATA returned </span>
+</ng-template>

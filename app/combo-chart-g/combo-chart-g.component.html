@@ -1,4 +1,4 @@
-<combo-chart-component id="chart"
+<combo-chart-component id="chart" 
 [view]="view"
 [scheme]="comboBarScheme"
 [colorSchemeLine]="lineChartScheme"
@@ -23,3 +23,6 @@
 [yAxisLabel]="yAxisLabel"
 [yAxisLabelRight]="yAxisLabelRight">
 </combo-chart-component>
+<div>
+    <app-mat-table [data]="barChart" [dataLineChart]="lineChartSeries"></app-mat-table>
+</div>

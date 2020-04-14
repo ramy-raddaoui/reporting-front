@@ -64,7 +64,7 @@ export class ItemsService {
         
          {
           id: 0,
-          title: "Nom du produit",
+          title: "boutique",
           description: ""
         },
    /*     
@@ -80,13 +80,13 @@ export class ItemsService {
       title: "GROUP BY",
       id: "GROUP BY",
       tasks: [
-   
+   /* 
        {
           id: 0,
-          title: "boutique",
+          title: "Nom du produit",
           description: ""
         },
-   /*
+  
      */
         
         
@@ -100,12 +100,12 @@ export class ItemsService {
           id: 0,
           title: "Rémunération finale",
         },
-    /*      
+          
         {
           id: 1,
           title: "objectif par produit",
         },
-            
+    /*        
         {
           id: 1,
           title: "objectif par produit",

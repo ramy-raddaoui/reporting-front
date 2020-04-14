@@ -34,7 +34,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularBlockUiDynamicModule } from 'angular-block-ui-dynamic';
 import {MatTableModule} from '@angular/material/table';
 
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { ComboChartComponent } from './combo-chart/combo-chart.component';
@@ -67,6 +67,7 @@ library.add(fas);
   ],
   imports: [ 
     BrowserModule,
+    MatPaginatorModule,
     AppRoutingModule,
     AppRoutingModule,
     NgxChartsModule,

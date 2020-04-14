@@ -12,11 +12,9 @@ export class RESTService {
   isDataAPINotEmpty=false
   constructor(
     private http:HttpClient 
-  ) { }
+  ) {}
   
-  emit_isDataAPINotEmpty() {
-    this.DataAPI.next(this.isDataAPINotEmpty);
-  }
+
   PieandHistchartGetDATA(data)
 {
   //return this.http.get<any>(`http://localhost:3000/api/embed/card/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZSI6eyJxdWVzdGlvbiI6MX0sInBhcmFtcyI6e30sImV4cCI6NzU4MjU1NDc1NywiaWF0IjoxNTgyNTU0ODE2fQ.gUIfkQHQpI7n49V5wtezybY_hhHDA7NWn0IftnZJYgA/query`)
