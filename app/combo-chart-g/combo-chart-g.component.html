@@ -1,4 +1,4 @@
-<combo-chart-component id="chart" 
+<combo-chart-component id="chart" *ngIf="barChart.length > 0 || lineChartSeries.length>0;else empty"
 [view]="view"
 [scheme]="comboBarScheme"
 [colorSchemeLine]="lineChartScheme"
@@ -23,9 +23,14 @@
 [yAxisLabel]="yAxisLabel"
 [yAxisLabelRight]="yAxisLabelRight">
 </combo-chart-component>
-<br/>
-<app-export-pdf></app-export-pdf>
+<ng-template #empty>
+<div style="text-align :center;" class="alert alert-danger">No DATA Found</div>
 
+
+</ng-template>
+<br/>
+<app-export-pdf ></app-export-pdf>
+<br/>
 <div>
     <app-mat-table [data]="barChart" [dataLineChart]="lineChartSeries"></app-mat-table>
 </div>

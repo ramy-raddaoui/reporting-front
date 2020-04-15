@@ -9,6 +9,7 @@ import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
 import { FilterComponent } from './filter/filter.component';
 import { GroupFunctionComponent } from './group-function/group-function.component';
 import { RESTService } from './rest.service';
+import { GlobalInformationsComponent } from './global-informations/global-informations.component';
 
 
 @Component({
@@ -56,7 +57,7 @@ metriques=[];
 
 
 
-constructor(public restapi:RESTService,public itemsService: ItemsService,public dialog:MatDialog,public dialog_function:MatDialog){
+constructor(public restapi:RESTService,public itemsService: ItemsService,public dialog:MatDialog,public dialog_function:MatDialog,public dialog_save: MatDialog){
 this.meta_data=this.itemsService.meta_data;
 this.metriques=this.itemsService.metriques;
 }
@@ -224,9 +225,15 @@ else
     });
   }
 
+  
+  opensavedialog() {
+    const dialogRef = this.dialog_save.open(GlobalInformationsComponent,{disableClose: false ,width:"600px"
+    });
+}
+
 
   ChangingFunction()
-  {
+  { 
 
     this.taskGroupsSubscription = this.itemsService.taskGroupsSubject.subscribe(
       (taskGroups: any[]) => {

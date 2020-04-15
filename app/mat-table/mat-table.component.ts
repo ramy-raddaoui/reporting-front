@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { ItemsService } from '../items.service';
 import { RenderService } from '../render.service';
 import { TableUtil } from "./tableUtil";
-
+import {MatTableModule} from '@angular/material/table'; 
 /*export interface PeriodicElement {
   
 }

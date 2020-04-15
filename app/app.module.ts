@@ -24,6 +24,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list'; 
 import {MatButtonModule} from '@angular/material/button'; 
 import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input'; 
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { StackedHorizbarChartComponent } from './stacked-horizbar-chart/stacked-horizbar-chart.component';
 import { ExportPDFComponent } from './export-pdf/export-pdf.component';
@@ -34,7 +35,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularBlockUiDynamicModule } from 'angular-block-ui-dynamic';
 import {MatTableModule} from '@angular/material/table';
 import { MatTableExporterModule } from 'mat-table-exporter';
-
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -43,6 +44,10 @@ import { ComboSeriesVerticalComponent } from './combo-chart/combo-series-vertica
 import { ComboChartGComponent } from './combo-chart-g/combo-chart-g.component';
 import { GroupFunctionComponent } from './group-function/group-function.component';
 import { MatTableComponent } from './mat-table/mat-table.component';
+import { GlobalInformationsComponent } from './global-informations/global-informations.component';
+import {MatGridListModule} from '@angular/material/grid-list'; 
+import {MatSelectModule} from '@angular/material/select'; 
+import { MatFormFieldModule } from '@angular/material/form-field';
 library.add(fas); 
 
 
@@ -64,7 +69,8 @@ library.add(fas);
     ComboSeriesVerticalComponent,
     ComboChartGComponent,
     GroupFunctionComponent,
-    MatTableComponent
+    MatTableComponent,
+    GlobalInformationsComponent
   ],
   imports: [ 
     BrowserModule,
@@ -79,9 +85,12 @@ library.add(fas);
     DateRangePickerModule ,
     MatCheckboxModule,
     MatDialogModule,
+    MatSelectModule,
     MatRadioModule,
+    MatInputModule,
     ReactiveFormsModule ,
     MatToolbarModule,
+    MatFormFieldModule,
     MatSidenavModule,
     MatListModule,
     MatIconModule,
@@ -91,6 +100,8 @@ library.add(fas);
     MatTableModule,
     MatTableExporterModule,
     AngularBlockUiDynamicModule,
+    MatGridListModule,
+    MatDatepickerModule,
     AngularSplitModule.forRoot(),
     NgxDaterangepickerMd.forRoot()
   ],

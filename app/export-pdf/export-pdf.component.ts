@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { RenderService } from '../render.service';
@@ -40,6 +40,7 @@ export class ExportPDFComponent implements OnInit {
     /////////////////
           // Charts are now rendered
           const chart = document.getElementById('chart');
+          
           html2canvas(chart, {
             height: 1000,
             width: 1080,

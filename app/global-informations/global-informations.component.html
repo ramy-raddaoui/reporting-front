@@ -1,0 +1,73 @@
+<mat-toolbar color="primary">
+    <span class="fill-remaining-space">Save Chart</span>
+  </mat-toolbar>
+  
+  <div class="container" novalidate> 
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+        <div class="form-group col-12">
+            <label>Report Name</label>
+            <input type="text" formControlName="reportname" class="form-control" />
+        </div>
+        <div class="form-group col-12">
+            <label>Report description</label>
+            <input type="textarea" formControlName="reportdesc" class="form-control" />
+        </div>
+        <div class="form-group col-12">
+            <label>Generate report</label>
+            <select class="form-control" formControlName="greport">
+                <option [selected]="true" value="Daily">Daily</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Onaspecificdate">On a specific date</option>
+                <option value="Monthlybydate">Monthly by date</option>
+
+              </select>
+        </div>
+        <div class="form-group col-12">
+          <label>Days</label>
+        <mat-select formControlName="days" multiple class="form-control" >
+          <mat-option *ngFor="let day of DaysList" [value]="day">{{day}}</mat-option>
+      </mat-select>
+        </div>
+        <div class="form-group col-12">
+          <label>Select Recipients</label>
+          <mat-select formControlName="recipients" multiple class="form-control" >
+            <mat-option *ngFor="let recipient of recipients" [value]="recipient">{{recipient}}</mat-option>
+        </mat-select>
+        </div>
+        <div class="form-group col-12">
+          <label>Except</label>
+          <mat-select formControlName="excepts" multiple class="form-control" >
+            <mat-option *ngFor="let except of excepts" [value]="except">{{except}}</mat-option>
+        </mat-select>
+        </div>
+        <div class="form-group col-12">
+          <label>Send a specific email</label>
+          <input type="email" formControlName="email" class="form-control" />
+      </div>
+     <!--   <mat-form-field>
+  <mat-select placeholder="Toppings" [formControl]="toppings" [(ngModel)]="selectedToppings" multiple>
+    <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<p>
+  {{selectedToppings | json}}
+</p>
+-->
+    
+  
+
+  
+      <div class="form-element">
+        <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Submit Form</button>
+      </div>
+  
+    </form>
+  </div>
+  
+  <!--
+  <ng-template #forminfo>
+    <div class="container">
+      {{ post | json }}
+    </div>
+  </ng-template>
+  -->
