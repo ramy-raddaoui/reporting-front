@@ -14,6 +14,16 @@ export class RESTService {
     private http:HttpClient 
   ) {}
   
+  getTablesAlias()
+  {
+      return this.http.get<any>(`http://localhost:8080/get/tables/alias`)
+
+  }
+
+  getConfigurationOfTableAlias(data)
+  {
+      return this.http.get<any>(`http://localhost:8080/get/configuration/${data}`)
+  }
 
   PieandHistchartGetDATA(data)
 {

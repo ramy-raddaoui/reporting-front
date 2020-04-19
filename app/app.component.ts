@@ -10,6 +10,7 @@ import { FilterComponent } from './filter/filter.component';
 import { GroupFunctionComponent } from './group-function/group-function.component';
 import { RESTService } from './rest.service';
 import { GlobalInformationsComponent } from './global-informations/global-informations.component';
+import {MatSelectModule} from '@angular/material/select'; 
 
 
 @Component({
@@ -36,6 +37,8 @@ export class AppComponent implements OnInit,OnDestroy{
   showTable=true
   isDataAPINotEmptySubscription :Subscription;
   taskGroupsSubscription: Subscription;
+  TablesAliasSubscription :Subscription;
+  ConfigurationSubscription: Subscription;
   taskGroupsIds: any[]; // faire la liaison entre les listes pour passer les élements d'une liste à une autre
   jsonObjAbscisse={};
   jsonObjGB={};
@@ -114,6 +117,29 @@ else
   'display': 'stackv',
   'seuil':'200'};
   */
+
+ selectedValueoftableAlias: string;
+
+ aliasTables = [];
+
+ changeAliasTable(data){
+  this.ConfigurationSubscription = this.restapi.getConfigurationOfTableAlias(data).subscribe(
+    response => this.handleConfigurationSuccess(response),
+    error=>console.log(error)
+  );
+ }
+  handleConfigurationSuccess(response){
+    this.itemsService.meta_data[0]["tasks"]=[]
+    this.itemsService.meta_data[1]["tasks"]=[]
+    // Supprimer les élements mise dans le drag and Drop
+    for (let i=0;i<response.length;i++)
+    {
+        if (response[i]["type"]=="metadata")
+        this.itemsService.meta_data[0]["tasks"].push({id: i,title: response[i]["aliasColonne"]})
+        else
+        this.itemsService.meta_data[1]["tasks"].push({id: i,title: response[i]["aliasColonne"]})
+    }
+  }
   ngOnInit()
   {
     this.itemsService.data_function=[]
@@ -122,10 +148,19 @@ else
     this.data["where"]=[]
     this.data["period"].push(this.Prepare_JSON_DATE(this.value[0],"debut_période"))
     this.data["period"].push(this.Prepare_JSON_DATE(this.value[1],"fin_période"))
-
+    this.TablesAliasSubscription = this.restapi.getTablesAlias().subscribe(
+      response => this.handletableAlias(response),
+      error=>console.log(error)
+    );
     
     this.ChangingFunction()
   }
+  handletableAlias(response){
+    for (let i=0;i<response.length;i++)
+    {
+      this.aliasTables.push(response[i])
+    }
+}
 
   change_checkbox($event)
   {
@@ -239,6 +274,7 @@ else
       (taskGroups: any[]) => {
         if (this.is_Date_Range_NULL==true && this.is_checkbox_date_checked){console.log("this.is_Date_Range_NULL==true");return;}
         this.restapi.isDataAPINotEmpty=false
+    //  if (this.selectedValueoftableAlias==null)return;
         this.isAbscisseValid=false
         this.isOrdonneeValid=false
         this.isGroupByValid=false
@@ -336,6 +372,7 @@ else
                           
               this.data["where"]=this.itemsService.data["where"]
               this.itemsService.data=this.data;
+              this.itemsService.data["FROM"]=this.selectedValueoftableAlias
               this.itemsService.emitData();
               console.log("After emit DATA FUNCTION CALL")
               console.log(this.data)

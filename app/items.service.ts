@@ -21,7 +21,7 @@ export class ItemsService {
       title: "Métadonnées",
       id: "Métadonnées",
       tasks: [
-        {
+     /*   {
           id: 0,
           title: "boutique",
           description: ""
@@ -32,14 +32,14 @@ export class ItemsService {
           title: "Nom du produit",
           description: ""
         },
-       
+       */
       ]
     },
     {
       title: "Métriques",
       id: "Métriques",
       tasks: [
-        {
+      /*  {
           id: 0,
           title: "Rémunération finale",
           description: ""
@@ -50,7 +50,7 @@ export class ItemsService {
           title: "objectif par produit",
           description: ""
         },
-     
+     */
       ]
     } 
   ];
@@ -62,18 +62,18 @@ export class ItemsService {
       id: "Abscisse",
       tasks: [
         
-         {
+     /*     {
           id: 0,
           title: "boutique",
           description: ""
         },
-   /*     
+     
       {
           id: 1,
           title: "produit",
           description: ""
         },
-      */
+     */
       ]
     },
     {
@@ -96,7 +96,7 @@ export class ItemsService {
       title: "Ordonnée",
       id: "Ordonnée",
       tasks: [
-        {
+     /*   {
           id: 0,
           title: "Rémunération finale",
         },
@@ -105,7 +105,7 @@ export class ItemsService {
           id: 1,
           title: "objectif par produit",
         },
-    /*        
+            
         {
           id: 1,
           title: "objectif par produit",

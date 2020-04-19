@@ -44,6 +44,7 @@ export class MatTableComponent implements OnInit {
     TableUtil.exportToExcel("contentOfTable");
   }
   ngOnChanges() {
+    if (this.data.length==0 && this.dataLineChart.length==0)return;
     console.log(this.data)
     this.Column=[]
     this.displayedColumns=[]
