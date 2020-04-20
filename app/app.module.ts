@@ -49,7 +49,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select'; 
 import { MatFormFieldModule } from '@angular/material/form-field';
 library.add(fas); 
-
+import {MatNativeDateModule} from '@angular/material/core';
+//import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 @NgModule({
   declarations: [
@@ -102,10 +103,11 @@ library.add(fas);
     AngularBlockUiDynamicModule,
     MatGridListModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     AngularSplitModule.forRoot(),
     NgxDaterangepickerMd.forRoot()
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent] 
 })
 export class AppModule { }
