@@ -1,0 +1,38 @@
+<div class="container">
+    <h2 class="py-4">Your saved Charts</h2>
+  
+    <div class="form-group mb-4">
+      <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search">
+    </div>
+  
+    <table class="table" *ngIf="(charts | filter: searchText).length > 0; else noResults">
+      <colgroup>
+        <col width="5%">
+        <col width="*">
+        <col width="35%">
+        <col width="15%">
+      </colgroup>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let chart of charts | filter: searchText; let i = index">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{chart.name}}</td>
+          <td>{{chart.description}}</td>
+          <td><span (click)="getChartData(chart.id)" class="material-icons">insert_chart_outlined</span>
+            <span class="material-icons">delete</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <ng-template #noResults>
+      <p>No results found for "{{searchText}}".</p>
+    </ng-template>
+  </div>

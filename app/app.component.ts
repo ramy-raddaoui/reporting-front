@@ -11,6 +11,7 @@ import { GroupFunctionComponent } from './group-function/group-function.componen
 import { RESTService } from './rest.service';
 import { GlobalInformationsComponent } from './global-informations/global-informations.component';
 import {MatSelectModule} from '@angular/material/select'; 
+import { FavorisComponent } from './favoris/favoris.component';
 
 
 @Component({
@@ -60,7 +61,7 @@ metriques=[];
 
 
 
-constructor(public restapi:RESTService,public itemsService: ItemsService,public dialog:MatDialog,public dialog_function:MatDialog,public dialog_save: MatDialog){
+constructor(public restapi:RESTService,public itemsService: ItemsService,public dialog:MatDialog,public dialog_function:MatDialog,public dialog_save: MatDialog,public dialog_favoris: MatDialog){
 this.meta_data=this.itemsService.meta_data;
 this.metriques=this.itemsService.metriques;
 }
@@ -264,8 +265,13 @@ else
   opensavedialog() {
     const dialogRef = this.dialog_save.open(GlobalInformationsComponent,{disableClose: false ,width:"600px"
     });
-}
+    }
 
+
+    openfavorisdialog()
+    {
+      const dialogRef = this.dialog_favoris.open(FavorisComponent,{disableClose: false ,width:"600px"}); 
+    }
 
   ChangingFunction()
   { 
@@ -372,7 +378,7 @@ else
                           
               this.data["where"]=this.itemsService.data["where"]
               this.itemsService.data=this.data;
-              this.itemsService.data["FROM"]=this.selectedValueoftableAlias
+              //this.itemsService.data["FROM"]=this.selectedValueoftableAlias
               this.itemsService.emitData();
               console.log("After emit DATA FUNCTION CALL")
               console.log(this.data)

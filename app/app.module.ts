@@ -50,6 +50,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 library.add(fas); 
 import {MatNativeDateModule} from '@angular/material/core';
+import { FavorisComponent } from './favoris/favoris.component';
+import { FilterPipe } from './favoris/filter.pipe';
 //import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 @NgModule({
@@ -71,7 +73,9 @@ import {MatNativeDateModule} from '@angular/material/core';
     ComboChartGComponent,
     GroupFunctionComponent,
     MatTableComponent,
-    GlobalInformationsComponent
+    GlobalInformationsComponent,
+    FavorisComponent,
+    FilterPipe
   ],
   imports: [ 
     BrowserModule,

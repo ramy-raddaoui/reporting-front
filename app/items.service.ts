@@ -62,16 +62,14 @@ export class ItemsService {
       id: "Abscisse",
       tasks: [
         
-     /*     {
+        {
           id: 0,
           title: "boutique",
-          description: ""
         },
-     
+        /* 
       {
           id: 1,
           title: "produit",
-          description: ""
         },
      */
       ]
@@ -96,16 +94,16 @@ export class ItemsService {
       title: "Ordonnée",
       id: "Ordonnée",
       tasks: [
-     /*   {
+       {
           id: 0,
-          title: "Rémunération finale",
+          title: "Remuneration par produit",
         },
           
         {
           id: 1,
           title: "objectif par produit",
         },
-            
+     /*        
         {
           id: 1,
           title: "objectif par produit",
