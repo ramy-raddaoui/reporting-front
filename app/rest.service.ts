@@ -39,9 +39,9 @@ saveChart(data)
 	return this.http.post<any>(`http://localhost:8080/savechart`,JSON.stringify({data: data}),{headers: this.headers})
 }
 
-getChartsByuser(id)
+getChartsByuser(id,favorisChartsOfAliasTable)
 {
-  return this.http.get<any>(`http://localhost:8080/get/charts/of/user/${id}`)
+  return this.http.get<any>(`http://localhost:8080/get/charts/of/user/${id}/${favorisChartsOfAliasTable}`)
 }
 
 getChartData(id)

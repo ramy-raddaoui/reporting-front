@@ -100,7 +100,7 @@ else
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
      
     } else {
-
+ 
        transferArrayItem(event.previousContainer.data,
                         event.container.data,
                         event.previousIndex,
@@ -124,12 +124,15 @@ else
  aliasTables = [];
 
  changeAliasTable(data){
+   console.log(data)
   this.ConfigurationSubscription = this.restapi.getConfigurationOfTableAlias(data).subscribe(
     response => this.handleConfigurationSuccess(response),
     error=>console.log(error)
   );
  }
   handleConfigurationSuccess(response){
+
+    console.log(response)
     this.itemsService.meta_data[0]["tasks"]=[]
     this.itemsService.meta_data[1]["tasks"]=[]
     // Supprimer les élements mise dans le drag and Drop
@@ -237,13 +240,14 @@ else
 
   
 
-  filter(task)
+  filter(task,location)
   {
    this.dialog.open(FilterComponent, {
     height: '700px',
     width: '1100px',
     disableClose : false,
     data: {'task':task,
+          'location':location,
           'dialog':this.dialog}
   });
   }
@@ -269,8 +273,8 @@ else
 
 
     openfavorisdialog()
-    {
-      const dialogRef = this.dialog_favoris.open(FavorisComponent,{disableClose: false ,width:"600px"}); 
+    { 
+      const dialogRef = this.dialog_favoris.open(FavorisComponent,{disableClose: false ,width:"600px", data: {'selectedValueoftableAlias':this.selectedValueoftableAlias}}); 
     }
 
   ChangingFunction()
@@ -285,7 +289,7 @@ else
         this.isOrdonneeValid=false
         this.isGroupByValid=false
         this.isMultiParamsGroupByAllowed=false
-        this.isComboValid=false
+        this.isComboValid=true
         this.taskGroups = taskGroups;
         this.data["param2"]=[]
         this.data["GroupBy"]=[]
@@ -347,7 +351,7 @@ else
             case "Ordonnée":
             //  console.log("ordonnée")
               var compteur=0;
-              if(child.tasks.length==0 || (child.tasks.length>1 && this.itemsService.data["display"]!=="combo"))
+              if(child.tasks.length==0 || (child.tasks.length>1 && this.itemsService.data["display"]!="combo"))
               {
               this.itemsService.can_send_api_request=false;return true;
               }
@@ -378,7 +382,7 @@ else
                           
               this.data["where"]=this.itemsService.data["where"]
               this.itemsService.data=this.data;
-              //this.itemsService.data["FROM"]=this.selectedValueoftableAlias
+              this.itemsService.data["FROM"]=this.selectedValueoftableAlias
               this.itemsService.emitData();
               console.log("After emit DATA FUNCTION CALL")
               console.log(this.data)

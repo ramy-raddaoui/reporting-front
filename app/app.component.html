@@ -75,7 +75,7 @@
                 <span style="float:right;" (click)="delete(task,taskGroup.title)" class="material-icons">
                   delete
                   </span>
-                  <span *ngIf="taskGroup.title!='Ordonnée';else other_content" style="float:right;" (click)="filter(task)" class="material-icons">
+                  <span *ngIf="taskGroup.title!='Ordonnée';else other_content" style="float:right;" (click)="filter(task,taskGroup.title)" class="material-icons">
                     local_bar
                     </span>
                     <ng-template #other_content>

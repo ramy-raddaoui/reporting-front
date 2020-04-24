@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { CHARTS } from  './charts';
 import { RESTService } from '../rest.service';
 import { Subscription } from 'rxjs';
 import { ItemsService } from '../items.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 interface Chart {
   name: string;
@@ -18,11 +19,14 @@ export class FavorisComponent implements OnInit {
   charts= [];
   searchText: string;
   favorisCharts:Subscription;
+  favorisChartsOfAliasTable:Subscription;
   DataChartSubscription:Subscription;
-  constructor(public rest:RESTService,public itemsService: ItemsService) { }
 
+  constructor(public rest:RESTService,public itemsService: ItemsService,@Inject(MAT_DIALOG_DATA) public selectedValueoftableAlias) 
+  {
+  }
   ngOnInit(): void {
-    this.favorisCharts=this.rest.getChartsByuser(1).subscribe(
+    this.favorisCharts=this.rest.getChartsByuser(1,this.selectedValueoftableAlias).subscribe(
       (data: any) => {
         this.getFavorisCharts(data)
       }
@@ -43,7 +47,7 @@ export class FavorisComponent implements OnInit {
 
   getChartData(id)
   {
-    this.favorisCharts=this.rest.getChartData(id).subscribe(
+    this.favorisChartsOfAliasTable=this.rest.getChartData(id).subscribe(
       (data: any) => {
         this.getDataChart(data)
       }

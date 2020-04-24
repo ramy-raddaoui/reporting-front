@@ -14,7 +14,7 @@ export class FilterComponent implements OnInit {
   nb_conditions: any
   constructor(public formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<FilterComponent>,
-    @Inject(MAT_DIALOG_DATA) public task: any,@Inject(MAT_DIALOG_DATA) public dialog: any,public itemsService: ItemsService) {
+    @Inject(MAT_DIALOG_DATA) public task: any,@Inject(MAT_DIALOG_DATA) public location: any,@Inject(MAT_DIALOG_DATA) public dialog: any,public itemsService: ItemsService) {
       this.data=this.task["task"].title
      }
 /*
@@ -59,7 +59,7 @@ export class FilterComponent implements OnInit {
 */
    // else {
       let counter=0;
-      
+      console.log(this.itemsService.data_filter)
     while (counter<this.itemsService.data_filter.length)
     {
       if (this.itemsService.data_filter[counter]["conditions"][0].name===this.task["task"].title)
@@ -119,6 +119,7 @@ export class FilterComponent implements OnInit {
      let counter=0;
      JSON_OBJECT["name"]=this.task["task"].title
      JSON_OBJECT["logic"]=this.dynamicForm.value["logic"]
+     JSON_OBJECT["location"]=this.location["location"]
      JSON_OBJECT["conditions"]=[]
      if (this.itemsService.data_filter !== undefined)
      {
@@ -165,7 +166,7 @@ export class FilterComponent implements OnInit {
       this.itemsService.data["where"].push(JSON_OBJECT)
      }
      this.itemsService.emitTaskGroups()
-
+     this.close()
      
     
     /* console.log(this.dynamicForm.value["numberOfConditions"])

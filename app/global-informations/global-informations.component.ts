@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, FormArray, AbstractControl } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select'; 
 import {MatInputModule} from '@angular/material/input'; 
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
@@ -25,7 +25,7 @@ export class GlobalInformationsComponent implements OnInit {
   selectedDays;
   selectedValueOfGReport: string;
   saveChart : Subscription ;
-  constructor(private formBuilder: FormBuilder,public itemsService: ItemsService,public rest:RESTService ) { }
+  constructor(private formBuilder: FormBuilder,private dialogRef: MatDialogRef<GlobalInformationsComponent>,public itemsService: ItemsService,public rest:RESTService ) { }
   WeekDays=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
   MonthDays=[]
   ngOnInit() {
@@ -81,6 +81,10 @@ export class GlobalInformationsComponent implements OnInit {
     return (<FormArray> this.formGroup.get('emails')).controls
   }
 
+  close() {
+    this.dialogRef.close();
+  }
+
   onSubmit(post) {
     this.post=[]
     this.post.push(post);
@@ -89,13 +93,19 @@ export class GlobalInformationsComponent implements OnInit {
       (data: any) => {
         if (this.itemsService.can_send_api_request)
         {
-            console.log("successfully saved")
+            console.log(data)
         }
         else
         console.log("Sorry !!!! Chart not saved")
+      },
+      (error) => {
+        console.log('An error occured' + error);
+      },
+      () => {
+        console.log('Observable complete!');
       }
       );
-    console.log(this.post)
+     this.close()
   }
 
 }
