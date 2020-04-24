@@ -93,7 +93,7 @@ export class GlobalInformationsComponent implements OnInit {
       (data: any) => {
         if (this.itemsService.can_send_api_request)
         {
-            console.log(data)
+            alert('chart saved successfully')
         }
         else
         console.log("Sorry !!!! Chart not saved")

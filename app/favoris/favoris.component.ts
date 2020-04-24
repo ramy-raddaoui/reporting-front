@@ -21,12 +21,13 @@ export class FavorisComponent implements OnInit {
   favorisCharts:Subscription;
   favorisChartsOfAliasTable:Subscription;
   DataChartSubscription:Subscription;
-
+  tableAlias:any
   constructor(public rest:RESTService,public itemsService: ItemsService,@Inject(MAT_DIALOG_DATA) public selectedValueoftableAlias) 
   {
+    this.tableAlias=this.selectedValueoftableAlias["selectedValueoftableAlias"]
   }
   ngOnInit(): void {
-    this.favorisCharts=this.rest.getChartsByuser(1,this.selectedValueoftableAlias).subscribe(
+    this.favorisCharts=this.rest.getChartsByuser(1,this.tableAlias).subscribe(
       (data: any) => {
         this.getFavorisCharts(data)
       }

@@ -124,7 +124,6 @@ else
  aliasTables = [];
 
  changeAliasTable(data){
-   console.log(data)
   this.ConfigurationSubscription = this.restapi.getConfigurationOfTableAlias(data).subscribe(
     response => this.handleConfigurationSuccess(response),
     error=>console.log(error)
@@ -132,7 +131,6 @@ else
  }
   handleConfigurationSuccess(response){
 
-    console.log(response)
     this.itemsService.meta_data[0]["tasks"]=[]
     this.itemsService.meta_data[1]["tasks"]=[]
     // Supprimer les élements mise dans le drag and Drop
@@ -283,7 +281,6 @@ else
     this.taskGroupsSubscription = this.itemsService.taskGroupsSubject.subscribe(
       (taskGroups: any[]) => {
         if (this.is_Date_Range_NULL==true && this.is_checkbox_date_checked){console.log("this.is_Date_Range_NULL==true");return;}
-        this.restapi.isDataAPINotEmpty=false
     //  if (this.selectedValueoftableAlias==null)return;
         this.isAbscisseValid=false
         this.isOrdonneeValid=false
@@ -382,7 +379,9 @@ else
                           
               this.data["where"]=this.itemsService.data["where"]
               this.itemsService.data=this.data;
+           
               this.itemsService.data["FROM"]=this.selectedValueoftableAlias
+              //if(typeof this.itemsService.data["FROM"]==="undefined")return true;
               this.itemsService.emitData();
               console.log("After emit DATA FUNCTION CALL")
               console.log(this.data)
