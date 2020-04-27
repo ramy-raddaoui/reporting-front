@@ -21,7 +21,7 @@ export class GroupFunctionComponent implements OnInit {
 
   onClick($event)
   {
-    console.log("onclick function")
+    console.log(this.itemsService.data_function)
     let i=0;
     let trouve=false
       while (i<this.itemsService.data_function.length)
@@ -45,7 +45,7 @@ export class GroupFunctionComponent implements OnInit {
 
     let i=0;
     let trouve=false
-    console.log(this.itemsService.data_function.length)
+    console.log(this.itemsService.data_function)
       while (i<this.itemsService.data_function.length)
       {
         console.log("ici dans whilee")

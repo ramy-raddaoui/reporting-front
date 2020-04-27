@@ -5,6 +5,20 @@ import { Subject } from 'rxjs';
 })
 export class ItemsService {
   data={}
+  private idChart=null;
+
+  setidChart(idChart){
+    this.idChart = idChart;
+  }
+
+  getIdChart(){
+    return this.idChart;
+  }
+  clearIdChart()
+  {
+    this.idChart=null
+  }
+
   public can_send_api_request=false
   data_filter=[]
   data_function=[]
@@ -24,13 +38,11 @@ export class ItemsService {
      /*   {
           id: 0,
           title: "boutique",
-          description: ""
         },
         
       {
           id: 1,
           title: "Nom du produit",
-          description: ""
         },
        */
       ]
@@ -42,13 +54,11 @@ export class ItemsService {
       /*  {
           id: 0,
           title: "Rémunération finale",
-          description: ""
         },
         
       {
           id: 1,
           title: "objectif par produit",
-          description: ""
         },
      */
       ]
@@ -61,12 +71,12 @@ export class ItemsService {
       title: "Abscisse",
       id: "Abscisse",
       tasks: [
-        
+     /*     
         {
           id: 0,
           title: "boutique",
         },
-        /* 
+       
       {
           id: 1,
           title: "produit",
@@ -93,8 +103,8 @@ export class ItemsService {
     {
       title: "Ordonnée",
       id: "Ordonnée",
-      tasks: [
-       {
+      tasks: [ 
+    /*   {
           id: 0,
           title: "Remuneration par produit",
         },
@@ -103,7 +113,7 @@ export class ItemsService {
           id: 1,
           title: "objectif par produit",
         },
-     /*        
+             
         {
           id: 1,
           title: "objectif par produit",
@@ -118,6 +128,8 @@ export class ItemsService {
       ]
     }
   ];
+
+
   
   taskGroupsSubject = new Subject<any[]>();
   dataSubject=new Subject<any>();

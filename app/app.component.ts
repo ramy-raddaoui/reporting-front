@@ -272,7 +272,7 @@ else
 
     openfavorisdialog()
     { 
-      const dialogRef = this.dialog_favoris.open(FavorisComponent,{disableClose: false ,width:"600px", data: {'selectedValueoftableAlias':this.selectedValueoftableAlias}}); 
+      const dialogRef = this.dialog_favoris.open(FavorisComponent,{disableClose: false ,width:"600px", data: {'selectedValueoftableAlias':this.selectedValueoftableAlias,'dialog':this.dialog_favoris}}); 
     }
 
   ChangingFunction()
@@ -303,7 +303,6 @@ else
             this.isAbscisseValid=true
             break;
             case "GROUP BY":
-            //  console.log("GROUP BY section")
                 switch(this.itemsService.data["display"])
                 {
                   case "area":
@@ -331,7 +330,6 @@ else
                     if (child.tasks.length==0)this.isGroupByValid=true;
                     else {this.isMultiParamsGroupByAllowed=false;this.itemsService.can_send_api_request=false;return true;}break; 
                     case "combo":
-                      console.log("combooo")
                       if (child.tasks.length==0)this.isGroupByValid=true;
                       else {this.isMultiParamsGroupByAllowed=false;this.itemsService.can_send_api_request=false;return true;}break; 
                   default: return true;
@@ -387,7 +385,7 @@ else
               console.log(this.data)
             break; 
             default:console.log("Error on switch Boucle");
-          }
+          } 
         },this);
       }
     );

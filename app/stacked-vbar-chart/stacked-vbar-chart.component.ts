@@ -5,6 +5,7 @@ import { multi } from './data';
 import { RESTService } from '../rest.service';
 import { ItemsService } from '../items.service';
 import { Subscription } from 'rxjs';
+import { ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'app-stacked-vbar-chart',
   templateUrl: './stacked-vbar-chart.component.html',
@@ -62,6 +63,7 @@ export class StackedVBarChartComponent implements OnInit {
     console.log("Une erreur a survenue !!!"+error)
   }
   constructor(
+    private activatedRoute:ActivatedRoute,
     public restapi:RESTService,
     public itemsService: ItemsService
   ) {
@@ -77,9 +79,19 @@ export class StackedVBarChartComponent implements OnInit {
     console.log(event);
 
   }
+ 
 
+  
   ngOnInit(): void {
-    console.log("This is ngOnInit")
+
+    this.activatedRoute.paramMap.subscribe(params => {
+
+      var id = params.get('id');
+      this.itemsService.setidChart(id)
+      console.log(id)
+
+    });
+
     this.itemsService.data["display"]="stackv";
     this.dataSubscription = this.itemsService.dataSubject.subscribe(
       (data: any) => {
@@ -87,15 +99,20 @@ export class StackedVBarChartComponent implements OnInit {
         {
         this.itemsService.data["display"]="stackv";
         this.getAreaChart();
-        console.log("OKKKKKKKKKKK")
+
         }
         else
-        console.log("Sorry !!!! I can't SEND API REQUEST")
+        console.log("I can't SEND API REQUEST")
         }
       );
       //this.itemsService.emitData();
       this.itemsService.emitTaskGroups()
 
+  }
+
+  ngOnDestroy()
+  {
+    this.itemsService.clearIdChart()
   }
 
 }

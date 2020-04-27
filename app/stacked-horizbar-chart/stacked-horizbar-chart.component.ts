@@ -68,12 +68,12 @@ export class StackedHorizbarChartComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("This is ngOnInit")
-    this.itemsService.data["display"]="stackv";
+    this.itemsService.data["display"]="shbarchart";
     this.dataSubscription = this.itemsService.dataSubject.subscribe(
       (data: any) => {
         if (this.itemsService.can_send_api_request)
         {
-        this.itemsService.data["display"]="stackv";
+        this.itemsService.data["display"]="shbarchart";
         this.getAreaChart();
         }
         else

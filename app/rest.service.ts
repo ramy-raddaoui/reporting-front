@@ -49,6 +49,20 @@ getChartData(id)
   return this.http.get<any>(`http://localhost:8080/get/chart/data/${id}`)
 }
 
+getFullChartData(id)
+{
+  return this.http.get<any>(`http://localhost:8080/get/full/chart/data/${id}`)
+}
+ 
+getUsersList()
+{
+  return this.http.get<any>(`http://localhost:8080/get/users/all`)
+}
+
+getWeekDaysList()
+{
+  return this.http.get<any>(`http://localhost:8080/get/weekdays/all`)
+}
 
 
   /*

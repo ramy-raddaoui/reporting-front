@@ -32,7 +32,7 @@
           <div *ngSwitchCase="'Weekly'">
             <label>Days</label>
           <mat-select formControlName="gReportAdd" multiple class="form-control" >
-            <mat-option *ngFor="let week of WeekDays" [value]="week">{{week}}</mat-option>
+            <mat-option *ngFor="let week of WeekDays" [value]="week.id">{{week.name}}</mat-option>
           </mat-select>
             </div> 
             <div *ngSwitchCase="'Onaspecificdate'">
@@ -55,13 +55,13 @@
         <div class="form-group col-12">
           <label>Select Recipients</label>
           <mat-select formControlName="recipients" multiple class="form-control" >
-            <mat-option *ngFor="let recipient of recipients" [value]="recipient">{{recipient}}</mat-option>
+            <mat-option *ngFor="let recipient of recipients" [value]="recipient.id">{{recipient.name}}</mat-option>
         </mat-select>
         </div>
         <div class="form-group col-12">
           <label>Except</label>
           <mat-select formControlName="excepts" multiple class="form-control" >
-            <mat-option *ngFor="let except of excepts" [value]="except">{{except}}</mat-option>
+            <mat-option *ngFor="let except of excepts" [value]="except.id">{{except.name}}</mat-option>
         </mat-select>
         </div>
         <div class="form-group col-12">
@@ -88,9 +88,9 @@
     
   
 
-  
+<br/><br/>
       <div class="form-element">
-        <button mat-raised-button mat-dialog-close color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Save Chart</button>
+        <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Save Chart</button>
       </div>
   
     </form>
