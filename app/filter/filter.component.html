@@ -6,9 +6,9 @@
                 <div class="form-group">
                     <label>Number of Conditions</label>
                     <!--[ngClass]="{ 'is-invalid': submitted && f.numberOfConditions.errors }"-->
-                    <select [(ngModel)]="numberOfConditions" formControlName="numberOfConditions" class="form-control" (change)="onChangeConditions($event)" >
+                    <select [(ngModel)]="numberOfCond" formControlName="numberOfConditions" class="form-control" (change)="onChangeConditions($event)" >
                         <option value=""></option>
-                        <option [selected]="i == nb_conditions" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]">{{i}}</option>
+                        <option  [selected]="i == numberOfCond" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]">{{i}}</option>
                     </select>
                   <!--  <div *ngIf="submitted && f.numberOfConditions.errors" class="invalid-feedback">
                         <div *ngIf="f.numberOfConditions.errors.required">Number of conditions is required</div>

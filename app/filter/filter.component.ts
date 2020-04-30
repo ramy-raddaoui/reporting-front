@@ -12,7 +12,7 @@ export class FilterComponent implements OnInit {
   submitted = false;
   data :any;
   nb_conditions: any
-  numberOfConditions
+  numberOfCond;
   constructor(public formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<FilterComponent>,
     @Inject(MAT_DIALOG_DATA) public task: any,@Inject(MAT_DIALOG_DATA) public location: any,@Inject(MAT_DIALOG_DATA) public dialog: any,public itemsService: ItemsService) {
@@ -65,6 +65,7 @@ export class FilterComponent implements OnInit {
     {
       if (this.itemsService.data_filter[counter]["conditions"][0].name===this.task["task"].title)
       {
+        this.numberOfCond=this.itemsService.data_filter[counter].numberOfConditions;
         this.nb_conditions=this.itemsService.data_filter[counter].numberOfConditions;
         this.dynamicForm = this.formBuilder.group({
           numberOfConditions: [this.itemsService.data_filter[counter].numberOfConditions],
@@ -92,10 +93,10 @@ export class FilterComponent implements OnInit {
  get t() { return this.f.conditions as FormArray; }
 
  onChangeConditions(e) {
-   this.numberOfConditions=e.target.value || 0;
+  // this.numberOfConditions=e.target.value || 0;
     // const numberOfTickets = e.target.value || 0;
-     if (this.t.length < this.numberOfConditions) {
-         for (let i = this.t.length; i < this.numberOfConditions; i++) {
+     if (this.t.length < this.numberOfCond) {
+         for (let i = this.t.length; i < this.numberOfCond; i++) {
              this.t.push(this.formBuilder.group({
                  name: ['', Validators.required],
                  operator: ['', Validators.required],
@@ -103,7 +104,7 @@ export class FilterComponent implements OnInit {
              }));
          }
      } else {
-         for (let i = this.t.length; i >= this.numberOfConditions; i--) {
+         for (let i = this.t.length; i >= this.numberOfCond; i--) {
              this.t.removeAt(i);
          }
      }
@@ -118,7 +119,7 @@ export class FilterComponent implements OnInit {
      }
      
   
-     console.log(this.numberOfConditions)
+     console.log(this.numberOfCond)
      let JSON_OBJECT={}
      let trouve=false
      let counter=0;
@@ -142,7 +143,7 @@ export class FilterComponent implements OnInit {
       console.log(this.dynamicForm.value)
      if (trouve)
      {
-       if (this.dynamicForm.value["numberOfConditions"]==0)
+       if ((this.dynamicForm.value["numberOfConditions"]||0)==0)
        {
         this.itemsService.data_filter.splice(counter,1);
         if (this.itemsService.data["where"] !== undefined)
@@ -155,6 +156,7 @@ export class FilterComponent implements OnInit {
               this.itemsService.data["where"].splice(i,1);
               break;
             }
+            i++;
           }
         }
         this.close();
@@ -166,7 +168,7 @@ export class FilterComponent implements OnInit {
      }
      else
      {
-      if((this.numberOfConditions||0)==0)
+      if((this.numberOfCond||0)==0)
       {
         this.close();return;
       }
