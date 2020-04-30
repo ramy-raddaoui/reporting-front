@@ -5,6 +5,7 @@ import { multi } from './data';
 import { RESTService } from '../rest.service';
 import { ItemsService } from '../items.service';
 import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-stacked-horizbar-chart',
@@ -57,7 +58,8 @@ export class StackedHorizbarChartComponent implements OnInit {
   }
   constructor(
     public restapi:RESTService,
-    public itemsService: ItemsService
+    public itemsService: ItemsService,
+    private activatedRoute:ActivatedRoute
   ) {
     Object.assign(this, { multi });
   }
@@ -67,7 +69,12 @@ export class StackedHorizbarChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("This is ngOnInit")
+    this.activatedRoute.paramMap.subscribe(params => {
+
+      var id = params.get('id');
+      this.itemsService.setidChart(id)
+
+    });
     this.itemsService.data["display"]="shbarchart";
     this.dataSubscription = this.itemsService.dataSubject.subscribe(
       (data: any) => {

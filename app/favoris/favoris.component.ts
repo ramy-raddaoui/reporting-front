@@ -28,23 +28,6 @@ export class FavorisComponent implements OnInit {
     this.tableAlias=this.selectedValueoftableAlias["selectedValueoftableAlias"]
   }
   ngOnInit(): void {
-
-    // you must delete this after
-    this.rest.getFullChartData(1).subscribe(
-      (data: any) => {
-    
-           console.log(data)
-
-      },
-      (error) => {
-        console.log('An error occured' + error);
-      },
-      () => {
-        console.log('Observable complete!');
-      }
-      );
-
-      
     this.charts=[]
     this.favorisCharts=this.rest.getChartsByuser(1,this.tableAlias).subscribe(
       (data: any) => {
@@ -52,6 +35,8 @@ export class FavorisComponent implements OnInit {
       }
       );
   }
+
+
   getFavorisCharts(data) {
     let JSONOBJ;
     for (let i=0;i<data.length;i++)
@@ -78,7 +63,6 @@ export class FavorisComponent implements OnInit {
       );
   }
   getDataChart(data: any) {
-
     for (let i=0;i<this.itemsService.taskGroups.length;i++)
     {
       this.itemsService.taskGroups[i]["tasks"]=[]
@@ -107,6 +91,8 @@ export class FavorisComponent implements OnInit {
     // We have to fill conditions associated to saved chart
     for (let i=0;i<conditions.length;i++)
     {
+      console.log("condiiton[i]")
+      console.log(conditions[i])
       this.itemsService.data_filter.push(conditions[i])
     }
     this.itemsService.data_function=[]
@@ -119,8 +105,23 @@ export class FavorisComponent implements OnInit {
     this.itemsService.emitTaskGroups()
     this.close()
     this.router.navigate([data["display"],chartID]);
-    console.log(data);
     
+  }
+
+  deleteChart(chartId,indexOnRows)
+  {
+    this.rest.deleteChartByID(chartId).subscribe(
+      (data: any) => {
+        this.charts.splice(indexOnRows,1);
+      },
+      (error) => {
+        console.log('An error occured on delete operation' + error);
+      },
+      () => {
+        console.log('Observable complete!');
+      }
+      );
+      
   }
 
 }

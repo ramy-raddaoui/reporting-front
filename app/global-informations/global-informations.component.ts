@@ -70,9 +70,10 @@ export class GlobalInformationsComponent implements OnInit {
 
 
     this.createForm();
-    if (this.itemsService.getIdChart()!==null)
+    if (this.itemsService.getIdChart()!=null)
     this.FullDataChart=this.rest.getFullChartData(this.itemsService.getIdChart()).subscribe(
       (data: any) => {
+        if (data==null)return;
         this.formGroup.get('reportname').setValue(data["reportname"]);
         this.formGroup.get('reportdesc').setValue(data['reportdesc']);
         this.formGroup.get('greport').setValue(data['greport']);
@@ -182,9 +183,14 @@ export class GlobalInformationsComponent implements OnInit {
     console.log(this.post)
     this.post.push(this.itemsService.data)
     console.log(this.formGroup.get("recipients"))
-
-    this.saveChart=this.rest.saveChart(this.post).subscribe(
-      (data: any) => {
+    let idChart;
+    if (this.itemsService.getIdChart()!=null)
+    idChart=this.itemsService.getIdChart()
+    else
+    idChart=0
+    
+    this.saveChart=this.rest.saveChart(this.post,idChart).subscribe(
+      (data: any) => { 
         if (this.itemsService.can_send_api_request)
         {
             alert('chart saved successfully')

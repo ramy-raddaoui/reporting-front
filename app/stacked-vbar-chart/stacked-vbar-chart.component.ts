@@ -88,7 +88,6 @@ export class StackedVBarChartComponent implements OnInit {
 
       var id = params.get('id');
       this.itemsService.setidChart(id)
-      console.log(id)
 
     });
 

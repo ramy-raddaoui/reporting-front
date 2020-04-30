@@ -5,6 +5,7 @@ import { multi } from './data';
 import { RESTService } from '../rest.service';
 import { Subscription } from 'rxjs';
 import { ItemsService } from '../items.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-area-chart',
   templateUrl: './area-chart.component.html',
@@ -20,6 +21,12 @@ export class AreaChartComponent implements OnInit {
   dataSubscription: Subscription;
 
   ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe(params => {
+
+      var id = params.get('id');
+      this.itemsService.setidChart(id)
+
+    });
     this.itemsService.data["display"]="area";
     this.dataSubscription = this.itemsService.dataSubject.subscribe(
       (data: any) => {
@@ -73,7 +80,8 @@ export class AreaChartComponent implements OnInit {
 
   constructor(
     public restapi:RESTService,
-    public itemsService: ItemsService
+    public itemsService: ItemsService,
+    private activatedRoute:ActivatedRoute
   ) {
     Object.assign(this, { multi });
   }

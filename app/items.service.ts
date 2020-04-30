@@ -71,12 +71,12 @@ export class ItemsService {
       title: "Abscisse",
       id: "Abscisse",
       tasks: [
-     /*     
+      
         {
           id: 0,
           title: "boutique",
         },
-       
+       /*    
       {
           id: 1,
           title: "produit",
@@ -88,14 +88,14 @@ export class ItemsService {
       title: "GROUP BY",
       id: "GROUP BY",
       tasks: [
-   /* 
+   /*  */
        {
           id: 0,
           title: "Nom du produit",
           description: ""
         },
   
-     */
+    
         
         
       ]
@@ -104,11 +104,11 @@ export class ItemsService {
       title: "Ordonnée",
       id: "Ordonnée",
       tasks: [ 
-    /*   {
+      {
           id: 0,
           title: "Remuneration par produit",
         },
-          
+     /*        
         {
           id: 1,
           title: "objectif par produit",

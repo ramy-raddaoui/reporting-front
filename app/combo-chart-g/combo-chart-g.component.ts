@@ -6,6 +6,7 @@ import { formatLabel, escapeLabel } from '@swimlane/ngx-charts';
 import { ItemsService } from '../items.service';
 import { Subscription } from 'rxjs';
 import { RESTService } from '../rest.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-combo-chart-g',
   templateUrl: './combo-chart-g.component.html',
@@ -95,10 +96,16 @@ handleErrorResponse(error)
   console.log("Une erreur a survenue !!!"+error)
 }
 
-  constructor(public itemsService: ItemsService,public restapi:RESTService) { }
+  constructor(private activatedRoute:ActivatedRoute,public itemsService: ItemsService,public restapi:RESTService) { }
 
   ngOnInit(): void {
-    console.log("This is ngOnInit")
+
+    this.activatedRoute.paramMap.subscribe(params => {
+
+      var id = params.get('id');
+      this.itemsService.setidChart(id)
+
+    });
     this.itemsService.data["display"]="combo";
     this.dataSubscription = this.itemsService.dataSubject.subscribe(
       (data: any) => {

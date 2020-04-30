@@ -17,8 +17,8 @@
                 <div class="form-group">
                     <label>Logic Operator</label> 
                     <mat-radio-group formControlName="logic" aria-label="Select an option" class="form-control">
-                        <mat-radio-button value="ET">ET</mat-radio-button>
-                        <mat-radio-button value="OU">OU</mat-radio-button>
+                        <mat-radio-button value="AND">AND</mat-radio-button>
+                        <mat-radio-button value="OR">OR</mat-radio-button>
                       </mat-radio-group>
                       <div *ngIf="submitted && f.logic.errors" class="invalid-feedback">
                         <div *ngIf="f.logic.errors.required">Number of conditions is required</div>
@@ -43,7 +43,7 @@
                     <div class="form-group col-6">
                         <label>Opérateur</label>
                         <select class="form-control" formControlName="operator">
-                            <option [selected]="true" value="=">=</option>
+                            <option value="=">=</option>
                             <option value=">">></option>
                             <option value=">=">>=</option>
                             <option value="<"><</option>
@@ -52,14 +52,8 @@
                             <option value="not contains">not contains</option>
                             <option value="begins with">begins with</option>
                             <option value="not begins with">not begins with</option>
-                            <option value="is empty">is empty</option>
-                            <option value="is not empty">is not empty</option>
                             <option value="ends with">ends with</option>
                             <option value="not ends with">not ends with</option>
-                            <option value="is null">is null</option>
-                            <option value="is not null">is not null</option>
-
-
 
                           </select>
                             <div *ngIf="submitted && ticket.controls.operator.errors" class="invalid-feedback">

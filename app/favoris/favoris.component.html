@@ -5,7 +5,7 @@
       <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search">
     </div>
   
-    <table class="table" *ngIf="(charts | filter: searchText).length > 0; else noResults">
+    <table  class="table" *ngIf="(charts | filter: searchText).length > 0; else noResults">
       <colgroup>
         <col width="5%">
         <col width="*">
@@ -26,12 +26,12 @@
           <td>{{chart.name}}</td>
           <td>{{chart.description}}</td>
           <td><span (click)="getChartData(chart.id)" class="material-icons">insert_chart_outlined</span>
-            <span class="material-icons">delete</span>
+            <span (click)="deleteChart(chart.id,i)" class="material-icons">delete</span>
           </td>
         </tr>
       </tbody>
     </table>
-  
+
     <ng-template #noResults>
       <p>No results found for "{{searchText}}".</p>
     </ng-template>

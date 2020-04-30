@@ -16,14 +16,24 @@ import { MatTableComponent } from './mat-table/mat-table.component';
 const routes: Routes = [
   {path: '' , component: AppComponent },
   {path: 'pie' , component: PieChartComponent },
+  {path: 'pie/:id' , component: PieChartComponent },
   {path: 'area' , component: AreaChartComponent },
+  {path: 'area/:id' , component: AreaChartComponent },
   {path: 'vbarchart' , component: VerticalBarChartComponent },
+  {path: 'vbarchart/:id' , component: VerticalBarChartComponent },
   {path: 'stackv' , component: StackedVBarChartComponent },
   {path: 'stackv/:id' , component: StackedVBarChartComponent },
   {path: 'shbarchart' , component: StackedHorizbarChartComponent},
+  {path: 'shbarchart/:id' , component: StackedHorizbarChartComponent},
   {path: 'horizbarchart' , component: HorizBarChartComponent },
+  {path: 'horizbarchart/:id' , component: HorizBarChartComponent },
+
   {path: 'line' , component: LineChartComponent },
+  {path: 'line/:id' , component: LineChartComponent },
+
   {path: 'combo' , component: ComboChartGComponent },
+  {path: 'combo/:id' , component: ComboChartGComponent },
+
   {path: 'dragdrop' , component: DragAndDropHorizBarComponent },
   {path: 'matable' , component: MatTableComponent },
 

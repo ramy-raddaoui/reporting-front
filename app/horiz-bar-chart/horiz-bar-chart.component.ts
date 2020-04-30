@@ -5,6 +5,7 @@ import { single } from './data';
 import { RESTService } from '../rest.service';
 import { Subscription } from 'rxjs';
 import { ItemsService } from '../items.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-horiz-bar-chart',
   templateUrl: './horiz-bar-chart.component.html',
@@ -32,7 +33,8 @@ export class HorizBarChartComponent implements OnInit {
 
   constructor(
     public restapi:RESTService,
-    public itemsService: ItemsService
+    public itemsService: ItemsService,
+    private activatedRoute:ActivatedRoute
   ) {
     Object.assign(this, { single })
   }
@@ -69,6 +71,12 @@ export class HorizBarChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe(params => {
+
+      var id = params.get('id');
+      this.itemsService.setidChart(id)
+
+    });
     this.itemsService.data["display"]="horizbarchart";
     this.dataSubscription = this.itemsService.dataSubject.subscribe(
       (data: any) => {

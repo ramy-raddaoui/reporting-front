@@ -6,6 +6,7 @@ import { RESTService } from '../rest.service';
 import { HttpHeaders } from '@angular/common/http';
 import { ItemsService } from '../items.service';
 import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -33,7 +34,8 @@ export class PieChartComponent implements OnInit {
   };
  constructor( 
     public restapi:RESTService,
-    public itemsService: ItemsService
+    public itemsService: ItemsService,
+    private activatedRoute:ActivatedRoute
   ) {
     Object.assign(this, { single });
   }
@@ -42,6 +44,10 @@ export class PieChartComponent implements OnInit {
 
   
   ngOnInit() {
+    this.activatedRoute.paramMap.subscribe(params => {
+      var id = params.get('id');
+      this.itemsService.setidChart(id)
+    });
     this.itemsService.data["display"]="pie";
     this.dataSubscription = this.itemsService.dataSubject.subscribe(
       (data: any) => {

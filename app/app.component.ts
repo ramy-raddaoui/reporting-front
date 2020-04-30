@@ -30,7 +30,7 @@ export class AppComponent implements OnInit,OnDestroy{
   value=[];
   param1={};
   param2=[];
-  is_checkbox_date_checked=true
+  is_checkbox_date_checked=false
   data={};
   title = 'Adhoc Reporting';
   taskGroups: any[];
@@ -57,7 +57,8 @@ export class AppComponent implements OnInit,OnDestroy{
 
 meta_data = [];
 metriques=[];
-
+selectedValueoftableAlias: string;
+aliasTables = [];
 
 
 
@@ -119,9 +120,7 @@ else
   'seuil':'200'};
   */
 
- selectedValueoftableAlias: string;
 
- aliasTables = [];
 
  changeAliasTable(data){
   this.ConfigurationSubscription = this.restapi.getConfigurationOfTableAlias(data).subscribe(
@@ -144,8 +143,11 @@ else
   }
   ngOnInit()
   {
+    
     this.itemsService.data_function=[]
+    //this.value = [new Date("10/01/2019"), new Date("12/31/2019")];
     this.value = [new Date("10/01/2019"), new Date("12/31/2019")];
+
     this.data["period"]=[]
     this.data["where"]=[]
     this.data["period"].push(this.Prepare_JSON_DATE(this.value[0],"debut_période"))
@@ -291,6 +293,7 @@ else
         this.data["param2"]=[]
         this.data["GroupBy"]=[]
         this.data["param1"]=[]
+        if (!this.is_checkbox_date_checked)this.data["period"]=[]
         taskGroups.some(function (child) {
           switch(child.title){
             case "Abscisse":
@@ -315,7 +318,7 @@ else
                     this.isGroupByValid=true;
                     this.isMultiParamsGroupByAllowed=true;break; 
                   case "stackv":
-                    if (child.tasks.length==0){this.isMultiParamsGroupByAllowed=true;return true;}
+                    if (child.tasks.length==0){this.isMultiParamsGroupByAllowed=true;this.itemsService.can_send_api_request=false;return true;}
                     this.isGroupByValid=true;
                     this.isMultiParamsGroupByAllowed=true;
                  //   console.log("stackedv")

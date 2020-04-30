@@ -33,7 +33,7 @@ export class FilterComponent implements OnInit {
   ngOnInit() {
     this.dynamicForm = this.formBuilder.group({
       numberOfConditions: ['', Validators.required],
-      logic: ['ET', Validators.required],
+      logic: ['AND', Validators.required],
       conditions: new FormArray([])
   });
 

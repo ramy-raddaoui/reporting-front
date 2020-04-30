@@ -5,6 +5,7 @@ import { single } from './data';
 import { RESTService } from '../rest.service';
 import { Subject, Subscription } from 'rxjs';
 import { ItemsService } from '../items.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-vertical-bar-chart',
@@ -35,7 +36,8 @@ export class VerticalBarChartComponent implements OnInit {
 
   constructor(
     public restapi:RESTService,
-    public itemsService: ItemsService
+    public itemsService: ItemsService,
+    private activatedRoute:ActivatedRoute
   ) {
     Object.assign(this, { single })
   }
@@ -78,6 +80,10 @@ export class VerticalBarChartComponent implements OnInit {
    // subject.next(2);
   }
   ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe(params => {
+      var id = params.get('id');
+      this.itemsService.setidChart(id)
+    });
     this.itemsService.data["display"]="vbarchart";
     this.dataSubscription = this.itemsService.dataSubject.subscribe(
       (data: any) => {
