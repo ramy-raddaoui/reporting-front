@@ -12,6 +12,7 @@ export class FilterComponent implements OnInit {
   submitted = false;
   data :any;
   nb_conditions: any
+  numberOfConditions
   constructor(public formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<FilterComponent>,
     @Inject(MAT_DIALOG_DATA) public task: any,@Inject(MAT_DIALOG_DATA) public location: any,@Inject(MAT_DIALOG_DATA) public dialog: any,public itemsService: ItemsService) {
@@ -32,7 +33,7 @@ export class FilterComponent implements OnInit {
      */
   ngOnInit() {
     this.dynamicForm = this.formBuilder.group({
-      numberOfConditions: ['', Validators.required],
+      numberOfConditions: [''],
       logic: ['AND', Validators.required],
       conditions: new FormArray([])
   });
@@ -66,7 +67,7 @@ export class FilterComponent implements OnInit {
       {
         this.nb_conditions=this.itemsService.data_filter[counter].numberOfConditions;
         this.dynamicForm = this.formBuilder.group({
-          numberOfConditions: [this.itemsService.data_filter[counter].numberOfConditions, Validators.required],
+          numberOfConditions: [this.itemsService.data_filter[counter].numberOfConditions],
           logic: [this.itemsService.data_filter[counter].logic, Validators.required],
           conditions: new FormArray([])
       });
@@ -75,7 +76,7 @@ export class FilterComponent implements OnInit {
          this.t.push(this.formBuilder.group({
            name: [this.itemsService.data_filter[counter]["conditions"][i].name, Validators.required],
            operator: [this.itemsService.data_filter[counter]["conditions"][i].operator, Validators.required],
-           valeur: [this.itemsService.data_filter[counter]["conditions"][i].valeur, [Validators.required]]
+           valeur: [this.itemsService.data_filter[counter]["conditions"][i].valeur, Validators.required]
        }));
        }
         break;
@@ -91,17 +92,18 @@ export class FilterComponent implements OnInit {
  get t() { return this.f.conditions as FormArray; }
 
  onChangeConditions(e) {
-     const numberOfTickets = e.target.value || 0;
-     if (this.t.length < numberOfTickets) {
-         for (let i = this.t.length; i < numberOfTickets; i++) {
+   this.numberOfConditions=e.target.value || 0;
+    // const numberOfTickets = e.target.value || 0;
+     if (this.t.length < this.numberOfConditions) {
+         for (let i = this.t.length; i < this.numberOfConditions; i++) {
              this.t.push(this.formBuilder.group({
                  name: ['', Validators.required],
-                 operator: ['equal', Validators.required],
-                 valeur: ['', [Validators.required]]
+                 operator: ['', Validators.required],
+                 valeur: ['', Validators.required]
              }));
          }
      } else {
-         for (let i = this.t.length; i >= numberOfTickets; i--) {
+         for (let i = this.t.length; i >= this.numberOfConditions; i--) {
              this.t.removeAt(i);
          }
      }
@@ -114,6 +116,9 @@ export class FilterComponent implements OnInit {
      if (this.dynamicForm.invalid) {
          return;
      }
+     
+  
+     console.log(this.numberOfConditions)
      let JSON_OBJECT={}
      let trouve=false
      let counter=0;
@@ -134,10 +139,39 @@ export class FilterComponent implements OnInit {
         counter++;
       }
       }
+      console.log(this.dynamicForm.value)
      if (trouve)
-     this.itemsService.data_filter[counter]=this.dynamicForm.value
+     {
+       if (this.dynamicForm.value["numberOfConditions"]==0)
+       {
+        this.itemsService.data_filter.splice(counter,1);
+        if (this.itemsService.data["where"] !== undefined)
+        {
+        let i=0
+        while (i<this.itemsService.data["where"].length)
+          {
+            if (this.itemsService.data["where"][i].name===this.task["task"].title)
+            {
+              this.itemsService.data["where"].splice(i,1);
+              break;
+            }
+          }
+        }
+        this.close();
+        this.itemsService.emitTaskGroups()
+        return;
+       }
+      this.itemsService.data_filter[counter]=this.dynamicForm.value
+  
+     }
      else
+     {
+      if((this.numberOfConditions||0)==0)
+      {
+        this.close();return;
+      }
      this.itemsService.data_filter.push(this.dynamicForm.value)
+     }
      for (let i=0;i<this.dynamicForm.value["conditions"].length;i++)
      {
         let JSON_Cond_Item={}
@@ -165,6 +199,17 @@ export class FilterComponent implements OnInit {
      {
       this.itemsService.data["where"].push(JSON_OBJECT)
      }
+
+     /*if((this.numberOfConditions||0)==0)
+     {
+     for (let i=0;i<this.itemsService.data_filter.length;i++)
+     if (this.itemsService.data_filter[i]["conditions"].length==0)
+     this.itemsService.data_filter.splice(i,1);
+     console.log(this.itemsService.data_filter)
+     this.close()
+     return;
+     }
+     */
      this.itemsService.emitTaskGroups()
      this.close()
      

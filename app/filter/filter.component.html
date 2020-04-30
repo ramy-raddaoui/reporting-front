@@ -5,13 +5,15 @@
             <div class="form-row">
                 <div class="form-group">
                     <label>Number of Conditions</label>
-                    <select formControlName="numberOfConditions" class="form-control" (change)="onChangeConditions($event)" [ngClass]="{ 'is-invalid': submitted && f.numberOfConditions.errors }">
+                    <!--[ngClass]="{ 'is-invalid': submitted && f.numberOfConditions.errors }"-->
+                    <select [(ngModel)]="numberOfConditions" formControlName="numberOfConditions" class="form-control" (change)="onChangeConditions($event)" >
                         <option value=""></option>
                         <option [selected]="i == nb_conditions" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]">{{i}}</option>
                     </select>
-                    <div *ngIf="submitted && f.numberOfConditions.errors" class="invalid-feedback">
+                  <!--  <div *ngIf="submitted && f.numberOfConditions.errors" class="invalid-feedback">
                         <div *ngIf="f.numberOfConditions.errors.required">Number of conditions is required</div>
                     </div>
+                -->
                 </div>
 
                 <div class="form-group">
@@ -42,7 +44,7 @@
                     <!-- second ITEM-->
                     <div class="form-group col-6">
                         <label>Opérateur</label>
-                        <select class="form-control" formControlName="operator">
+                        <select class="form-control" formControlName="operator" [ngClass]="{ 'is-invalid': submitted && ticket.controls.operator.errors }">
                             <option value="=">=</option>
                             <option value=">">></option>
                             <option value=">=">>=</option>
@@ -64,6 +66,9 @@
                     <div class="form-group col-6">
                         <label>Valeur</label>
                         <input type="text" formControlName="valeur" class="form-control" [ngClass]="{ 'is-invalid': submitted && ticket.controls.valeur.errors }" />
+                        <div *ngIf="submitted && ticket.controls.valeur.errors" class="invalid-feedback">
+                            <div *ngIf="ticket.controls.valeur.required">Valeur is required</div>
+                        </div> 
                      <!--   <div *ngIf="submitted && ticket.controls.email.errors" class="invalid-feedback">
                             <div *ngIf="ticket.controls.email.errors.required">Email is required</div>
                             <div *ngIf="ticket.controls.email.errors.email">Email must be a valid email address</div>
